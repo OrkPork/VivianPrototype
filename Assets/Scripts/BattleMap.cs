@@ -15,6 +15,8 @@ public class BattleMap : MonoBehaviour {
 	public GameObject selectorModel;
 	float waitAmount = 0.15f;
 	float weGonnaWaitOnThisShit;
+	public Texture2D barOutline;
+	public Texture2D barPixel;
 	// Use this for initialization
 	void Start () 
 	{
@@ -23,7 +25,7 @@ public class BattleMap : MonoBehaviour {
 
 	void OnGUI()
 	{
-		if (initiativeList.Count > 0) 
+		if (initiativeList.Count > 10) 
 		{
 			GUI.color = new Color (GUI.color.r, GUI.color.g, GUI.color.b);
 			for (int i = 0; i < 10; i++) 
@@ -37,12 +39,30 @@ public class BattleMap : MonoBehaviour {
 			                       ((Screen.height * 2) / 9),
 				                        (Screen.height / 18)), "" + initiativeList [i].tickCount + " " + initiativeList [i].character.name);
 			}
+
+			for(int i = 0; i < player.partyList.Count; i++)
+			{
+				Rect portraitRect = new Rect((Screen.width*i)/4,
+				                             (3),
+				                             ((Screen.height) / 9),
+				                             (Screen.height / 9));
+
+				GUI.DrawTexture(portraitRect ,player.partyList[i].partyPortrait);
+			}
+			if(initiativeList.Count>0)
+			{
+				if(initiativeList[0].character.isPC == true)
+				{
+					initiativeList[0].character.getGUI();
+				}
+
+			}
 			
 		}
 		
 	}
 
-	public void wait(float time)
+	public void wait(float time)//Waits a number of seconds = to time
 	{
 		weGonnaWaitOnThisShit = time;
 	}
@@ -248,6 +268,7 @@ public class BattleMap : MonoBehaviour {
 		if (initiativeList.Count > 0) 
 		{
 			initiativeList.RemoveAt (0);
+			mainMechanics.mainCamera.target=initiativeList[0].character.gameObject;
 		}
 	}
 
@@ -255,6 +276,7 @@ public class BattleMap : MonoBehaviour {
 	{
 		selectorModel.SetActive (false);
 		turnTaker.isChoosing = false;
+		mainMechanics.mainCamera.target = turnTaker.gameObject;
 	}
 
 	public void SpawnEnemies()
@@ -364,13 +386,12 @@ public class BattleMap : MonoBehaviour {
 	{
 		if (player.inCombat == true && player.waitingForFader == false)//Sets player to being in combat 
 		{
-			initiativeList [0].character.isTurn = true;
+			initiativeList [0].character.getTurn();
 		}
 	}
 
 	void CompleteCombat()//Ends the combat encounter
 	{
-		initiativeList [0].character.isTurn = false;
 		initiativeList.Clear ();
 		combatantsInFight.Clear ();
 		mainMechanics.GoingToActiveateMainMap ();
@@ -394,7 +415,7 @@ public class BattleMap : MonoBehaviour {
 					enemiesInFight++;
 				}
 			}
-			if (enemiesInFight == 0) //If there are no enemies left, end the combat
+			if (enemiesInFight == 0 && initiativeList[0].character.isReadyToEndTurn() == true) //If there are no enemies left, end the combat
 			{
 				CompleteCombat();
 			}

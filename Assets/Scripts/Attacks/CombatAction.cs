@@ -17,6 +17,19 @@ public class CombatAction
 	public Combatant targetEnemy;
 	public float range;
 
+	public bool isReadyToEndTurn()
+	{
+		if (isAnimating == false && isAnimating == false && trueAnimating == false) 
+		{
+			return true;
+		}
+		else
+		{
+			return false;
+		}
+		   
+	}
+
 	public virtual void Start () 
 	{
 
@@ -35,11 +48,6 @@ public class CombatAction
 		isAnimating = true;
 		startingPosition = user.transform.position;
 		startingRotation = user.transform.rotation;
-	}
-
-	public bool isPlayingAnimation ()
-	{
-		return isAnimating;
 	}
 
 	public virtual void beginTrueAnimation()

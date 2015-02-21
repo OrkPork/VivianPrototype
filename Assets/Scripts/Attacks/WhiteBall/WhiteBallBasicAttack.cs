@@ -6,6 +6,7 @@ public class WhiteBallBasicAttack : CombatAction {
 	// Use this for initialization
 	public override void Start () 
 	{
+		base.Start ();
 		isMelee = true;
 		damage = 100;
 		range = 2;
