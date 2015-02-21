@@ -16,7 +16,6 @@ public class BattleMap : MonoBehaviour {
 	float waitAmount = 0.15f;
 	float weGonnaWaitOnThisShit;
 	public Texture2D barOutline;
-	public Texture2D barPixel;
 	// Use this for initialization
 	void Start () 
 	{
@@ -26,37 +25,89 @@ public class BattleMap : MonoBehaviour {
 	void OnGUI()
 	{
 		if (initiativeList.Count > 10) 
-		{
-			GUI.color = new Color (GUI.color.r, GUI.color.g, GUI.color.b);
+		{ 
+			var centeredStyle = GUI.skin.GetStyle("Label");
+			centeredStyle.alignment = TextAnchor.UpperCenter;
+			centeredStyle.fontSize = ((Screen.width/100));
 			for (int i = 0; i < 10; i++) 
 			{
+				if(initiativeList[i].character == targetedCombatant)
+				{
+					GUI.contentColor = Color.red*0.5f;
+				}
 				GUI.DrawTexture (new Rect (Screen.width - ((Screen.height * 2) / 9),
 			                           (Screen.height / 18) * i,
 			                           ((Screen.height * 2) / 9),
-			                           (Screen.height / 18)), initiativeList [i].intiativePortrait);
+			                           (Screen.height / 18)), initiativeList [i].intiativePortrait);//Draw initiative List
 				GUI.TextArea (new Rect (Screen.width - ((Screen.height * 2) / 9),
 			                       (Screen.height / 18) * i,
 			                       ((Screen.height * 2) / 9),
-				                        (Screen.height / 18)), "" + initiativeList [i].tickCount + " " + initiativeList [i].character.name);
+				                        (Screen.height / 18)), "" + initiativeList [i].tickCount + " " + initiativeList [i].character.name);//Draw Tick Count
+			
+				GUI.contentColor = Color.white;
+			
 			}
 
-			for(int i = 0; i < player.partyList.Count; i++)
+			for(int i = 0; i < player.partyList.Count; i++)//Draw party's portraits, MP, and HP
 			{
-				Rect portraitRect = new Rect((Screen.width*i)/4,
+				GUIContent textCalc = new GUIContent(""+player.partyList[i].currentHP+"/"+player.partyList[i].maxHP);
+				Vector2 textSize = centeredStyle.CalcSize(textCalc);//Gets the x and y size of a string in pixels
+				Rect portraitRect = new Rect((((Screen.height*2)/9)+textSize.x+6)*i,
 				                             (3),
 				                             ((Screen.height) / 9),
-				                             (Screen.height / 9));
+				                             ((Screen.height) / 9));
 
-				GUI.DrawTexture(portraitRect ,player.partyList[i].partyPortrait);
-			}
-			if(initiativeList.Count>0)
-			{
-				if(initiativeList[0].character.isPC == true)
+				GUI.DrawTexture(portraitRect ,player.partyList[i].partyPortrait);//Draw Portrait
+				Rect HPTextRect = new Rect(portraitRect.x+portraitRect.width+5, portraitRect.y, textSize.x, textSize.y);
+				GUI.Label(HPTextRect, ""+player.partyList[i].currentHP+"/"+player.partyList[i].maxHP);//Draw HP current/Max
+
+				Rect HPbar = new Rect(HPTextRect.x,portraitRect.y+HPTextRect.height, Screen.width/20, 5);
+				GUI.DrawTexture(HPbar, barOutline);//Draws the HP bar background
+				int HPBarPercent = (int)(player.partyList[i].getPercentHP()*(HPbar.width-2));
+				int HPpercent = (int)(player.partyList[i].getPercentHP()*100);//Gets HP percent
+				for(int a = 0; a < HPBarPercent; a++)//Fills and colors the HP bar
 				{
-					initiativeList[0].character.getGUI();
+					if(HPpercent >= 75)
+					{
+						GUI.color = Color.green;
+
+					}
+					else if (HPpercent < 75 && HPpercent >=30)
+					{
+						GUI.color = Color.yellow;
+
+					}
+					else
+					{
+					GUI.color = Color.red;
+					}
+					Rect HPbit = new Rect(HPbar.x+1+a, HPbar.y+1, 1, 3);
+					GUI.DrawTexture(HPbit, Texture2D.whiteTexture);
+					GUI.color = Color.white;
 				}
 
+				//Same thing, but for MP
+				Rect MPTextRect = new Rect(portraitRect.x+portraitRect.width+5, HPbar.y+HPbar.height+1, textSize.x, textSize.y);
+				GUI.Label(MPTextRect, ""+player.partyList[i].currentMP+"/"+player.partyList[i].maxMP);//Draw MP current/Max
+				
+				Rect MPbar = new Rect(MPTextRect.x,MPTextRect.y+MPTextRect.height, Screen.width/20, 5);
+				GUI.DrawTexture(MPbar, barOutline);//Draws the MP bar background
+				int MPpercent = (int)(player.partyList[i].getPercentMP()*(MPbar.width-2));//Gets MP percent
+				for(int a = 0; a < MPpercent; a++)//Fills and colors the MP bar
+				{
+					GUI.color = Color.blue;
+					Rect MPbit = new Rect(MPbar.x+1+a, MPbar.y+1, 1, 3);
+					GUI.DrawTexture(MPbit, Texture2D.whiteTexture);
+					GUI.color = Color.white;
+				}
+
+
 			}
+				if(initiativeList[0].character.isPC == true)
+				{
+				centeredStyle.fontSize = Screen.height/40;
+					initiativeList[0].character.getGUI();
+				}
 			
 		}
 		

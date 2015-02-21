@@ -256,6 +256,7 @@ public class Combatant : MonoBehaviour
 				}
 				GUI.contentColor = Color.red;
 				GUI.Label (buttonAreaList [i], buttonName);
+				GUI.contentColor = Color.white;
 			}
 		}
 	}
