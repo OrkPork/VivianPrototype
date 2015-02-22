@@ -28,21 +28,20 @@ public class BattleMap : MonoBehaviour {
 		{ 
 			var centeredStyle = GUI.skin.GetStyle("Label");
 			centeredStyle.alignment = TextAnchor.UpperCenter;
-			centeredStyle.fontSize = ((Screen.width/100));
+			centeredStyle.fontSize = ((Screen.height/40));
 			for (int i = 0; i < 10; i++) 
 			{
+				Rect initRect = new Rect (Screen.width - ((Screen.height * 2) / 9),
+				                     (Screen.height / 18) * i,
+				                     ((Screen.height * 2) / 9),
+				                          (Screen.height / 18));
 				if(initiativeList[i].character == targetedCombatant)
 				{
+					initRect.x = initRect.x-Screen.width/100;
 					GUI.contentColor = Color.red*0.5f;
 				}
-				GUI.DrawTexture (new Rect (Screen.width - ((Screen.height * 2) / 9),
-			                           (Screen.height / 18) * i,
-			                           ((Screen.height * 2) / 9),
-			                           (Screen.height / 18)), initiativeList [i].intiativePortrait);//Draw initiative List
-				GUI.TextArea (new Rect (Screen.width - ((Screen.height * 2) / 9),
-			                       (Screen.height / 18) * i,
-			                       ((Screen.height * 2) / 9),
-				                        (Screen.height / 18)), "" + initiativeList [i].tickCount + " " + initiativeList [i].character.name);//Draw Tick Count
+				GUI.DrawTexture (initRect, initiativeList [i].intiativePortrait);//Draw initiative List
+				GUI.TextArea (initRect, "" + initiativeList [i].tickCount + " " + initiativeList [i].character.name);//Draw Tick Count
 			
 				GUI.contentColor = Color.white;
 			
@@ -50,18 +49,24 @@ public class BattleMap : MonoBehaviour {
 
 			for(int i = 0; i < player.partyList.Count; i++)//Draw party's portraits, MP, and HP
 			{
+				Rect portraitRect = new Rect(((Screen.height * 2) / 9)+(Screen.width/100), Screen.height-((Screen.height/18)*(4-i)), Screen.height/6, Screen.height/18);
+				
+				centeredStyle.fontSize = ((Screen.height/20));
+				GUIContent nameCalc = new GUIContent("VIVIAN");
+				Vector2 nameSize = centeredStyle.CalcSize(nameCalc);
+				Rect nameTextRect = new Rect(portraitRect.x+portraitRect.width+3, portraitRect.y, nameSize.x, nameSize.y);
+				GUI.Label(nameTextRect,player.partyList[i].name);
+				
+				centeredStyle.fontSize = ((Screen.height/40));
 				GUIContent textCalc = new GUIContent(""+player.partyList[i].currentHP+"/"+player.partyList[i].maxHP);
 				Vector2 textSize = centeredStyle.CalcSize(textCalc);//Gets the x and y size of a string in pixels
-				Rect portraitRect = new Rect((((Screen.height*2)/9)+textSize.x+6)*i,
-				                             (3),
-				                             ((Screen.height) / 9),
-				                             ((Screen.height) / 9));
+
 
 				GUI.DrawTexture(portraitRect ,player.partyList[i].partyPortrait);//Draw Portrait
-				Rect HPTextRect = new Rect(portraitRect.x+portraitRect.width+5, portraitRect.y, textSize.x, textSize.y);
+				Rect HPTextRect = new Rect(nameTextRect.x+nameTextRect.width+5, portraitRect.y, Screen.height/5, textSize.y);
 				GUI.Label(HPTextRect, ""+player.partyList[i].currentHP+"/"+player.partyList[i].maxHP);//Draw HP current/Max
 
-				Rect HPbar = new Rect(HPTextRect.x,portraitRect.y+HPTextRect.height, Screen.width/20, 5);
+				Rect HPbar = new Rect(HPTextRect.x,portraitRect.y+HPTextRect.height-3, HPTextRect.width, 5);
 				GUI.DrawTexture(HPbar, barOutline);//Draws the HP bar background
 				int HPBarPercent = (int)(player.partyList[i].getPercentHP()*(HPbar.width-2));
 				int HPpercent = (int)(player.partyList[i].getPercentHP()*100);//Gets HP percent
@@ -87,10 +92,10 @@ public class BattleMap : MonoBehaviour {
 				}
 
 				//Same thing, but for MP
-				Rect MPTextRect = new Rect(portraitRect.x+portraitRect.width+5, HPbar.y+HPbar.height+1, textSize.x, textSize.y);
+				Rect MPTextRect = new Rect(HPbar.x+HPbar.width+5, HPTextRect.y, Screen.height/8, textSize.y);
 				GUI.Label(MPTextRect, ""+player.partyList[i].currentMP+"/"+player.partyList[i].maxMP);//Draw MP current/Max
 				
-				Rect MPbar = new Rect(MPTextRect.x,MPTextRect.y+MPTextRect.height, Screen.width/20, 5);
+				Rect MPbar = new Rect(MPTextRect.x,HPbar.y, MPTextRect.width, 5);
 				GUI.DrawTexture(MPbar, barOutline);//Draws the MP bar background
 				int MPpercent = (int)(player.partyList[i].getPercentMP()*(MPbar.width-2));//Gets MP percent
 				for(int a = 0; a < MPpercent; a++)//Fills and colors the MP bar
@@ -328,6 +333,7 @@ public class BattleMap : MonoBehaviour {
 		selectorModel.SetActive (false);
 		turnTaker.isChoosing = false;
 		mainMechanics.mainCamera.target = turnTaker.gameObject;
+		targetedCombatant = null;
 	}
 
 	public void SpawnEnemies()

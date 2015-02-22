@@ -73,12 +73,12 @@ public class Combatant : MonoBehaviour
 					buttonAreaList.Clear ();//Clears buttons
 					for (int i = 4; i != 0; i--) 
 					{//Reforms buttons
-						Rect buttonRect = new Rect (Screen.width / 20,
+						Rect buttonRect = new Rect (0,
 						                            Screen.height - (Screen.height / 18) * i,
 						                            ((Screen.height * 2) / 9),
 						                            (Screen.height / 18));
 						buttonAreaList.Add (buttonRect);
-					}//If it is this combatant's turn
+					}
 					Vector2 mousePos = new Vector2 (Input.mousePosition.x, Screen.height - Input.mousePosition.y);//get mouse positions
 						
 						

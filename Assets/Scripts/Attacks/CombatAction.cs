@@ -55,6 +55,14 @@ public class CombatAction
 		trueAnimating = true;
 	}
 
+	public virtual void MoveToPosition(Vector3 targetPosition)
+	{
+		Quaternion currentRotation = user.transform.rotation;
+		user.transform.LookAt(targetPosition);
+		user.transform.position += user.transform.forward*15*Time.deltaTime;
+		user.transform.rotation = currentRotation;
+	}
+
 	// Update is called once per frame
 	public virtual void Update ()
 	{
@@ -65,7 +73,7 @@ public class CombatAction
 			user.transform.rotation = Quaternion.Lerp (currentRot, user.transform.rotation, 2 * Time.deltaTime);//Interpolates towards target.
 			if (isMelee == true) 
 			{
-				user.transform.position = Vector3.Lerp (user.transform.position, targetEnemy.transform.position, 5 * Time.deltaTime);
+				MoveToPosition(targetEnemy.transform.position);
 
 				if (Vector3.Distance(user.transform.position, targetEnemy.transform.position) <= range) 
 				{
@@ -92,10 +100,8 @@ public class CombatAction
 				bool positionReset = false;
 				if(user.transform.position != startingPosition)
 				{
-					//float angel = Vector3.Angle(user.transform.position, startingPosition);
-					//user.transform.Translate((angel*Vector3.back)*Time.deltaTime*2);
-					user.transform.position = Vector3.Lerp (user.transform.position, startingPosition, 2*Time.deltaTime);
-					if(Vector3.Distance(user.transform.position, startingPosition) < 1f)
+					MoveToPosition(startingPosition);
+					if(Vector3.Distance(user.transform.position, startingPosition) < 0.5f)
 					{
 						user.transform.position = startingPosition;
 						positionReset = true;
