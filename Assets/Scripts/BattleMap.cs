@@ -9,7 +9,6 @@ public class BattleMap : MonoBehaviour {
 	//	2) produces/displays win text and 
 	//	3) counts produces and displays score text.
 	//	4) detects enemy encounters/collisions, flags them, calls MainMechanics
-	//	
 
 	public PlayerControls player;
 	public MainMechanics mainMechanics;

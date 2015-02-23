@@ -49,12 +49,19 @@ public class PlayerControls : MonoBehaviour
 		}
 	}
 
+    /// <summary>
+    /// Zeroes rigidbody velocity and angularvelocity
+    /// </summary>
 	public void removeForce()
 	{
 		rigidbody.velocity = Vector3.zero;
 		rigidbody.angularVelocity = Vector3.zero;
 	}
 
+    /// <summary>
+    /// Detects enemy collision, calls battle state
+    /// </summary>
+    /// <param name="other">Collider, reads tag component to determine if enemy</param>
 	void OnTriggerEnter(Collider other) 
 	{
 		if (other.tag == "Enemy") 
@@ -67,7 +74,9 @@ public class PlayerControls : MonoBehaviour
 			}
 		}
 	}
-
+    /// <summary>
+    /// Displays Score, if 18 displays wintext
+    /// </summary>
 	void SetCountText()
 	{
 		scoreText.text = "Score: " + score.ToString ();
