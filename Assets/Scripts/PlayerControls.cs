@@ -18,6 +18,9 @@ public class PlayerControls : MonoBehaviour
 		mainMechs = input;
 	}
 
+    /// <summary>
+    /// Initializes values, clears wintext, set incombat to false
+    /// </summary>
 	void Start()
 	{
 		SetCountText();
@@ -25,16 +28,26 @@ public class PlayerControls : MonoBehaviour
 		inCombat = false;
 	}
 
+    /// <summary>
+    /// Returns the current position.
+    /// </summary>
 	public Vector3 getPosition()
 	{
 		return transform.position;
 	}
 
+    /// <summary>
+    /// Change the players position
+    /// </summary>
+    /// <param name="startPos">New position</param>
 	public void setPosition(Vector3 startPos)
 	{
 		transform.position = startPos;
 	}
 
+    /// <summary>
+    /// Handles movement at the physics interval, called by unity
+    /// </summary>
 	void FixedUpdate()
 	{
 		if (waitingForFader == false && inCombat == false)
