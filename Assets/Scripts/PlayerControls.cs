@@ -65,14 +65,6 @@ public class PlayerControls : MonoBehaviour
 				inCombat = true;
 				mainMechs.GoingToActiveateBattleMap();
 			}
-			else if (inCombat == true)
-			{
-				Combatant dyingEnemy = other.gameObject.GetComponent("Combatant") as Combatant;
-				dyingEnemy.isKill();
-				Destroy(other.gameObject);
-				score++;
-				SetCountText();
-			}
 		}
 	}
 

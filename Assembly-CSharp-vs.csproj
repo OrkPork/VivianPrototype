@@ -52,6 +52,7 @@
      <Compile Include="Assets\Scripts\CameraControls.cs" />
      <Compile Include="Assets\Scripts\Combatant.cs" />
      <Compile Include="Assets\Scripts\DontOffload.cs" />
+     <Compile Include="Assets\Scripts\EffectText.cs" />
      <Compile Include="Assets\Scripts\Fades.cs" />
      <Compile Include="Assets\Scripts\InitiativeToken.cs" />
      <Compile Include="Assets\Scripts\MainMechanics.cs" />

@@ -277,7 +277,7 @@ public class Combatant : MonoBehaviour
 
 	public void isKill ()
 	{
-		battleMechanics.KillEnemy (gameObject, this);
+		battleMechanics.RemoveFromInitiative (gameObject, this);
 		Destroy (this.gameObject);
 	}
 
@@ -288,18 +288,26 @@ public class Combatant : MonoBehaviour
 
 	public void beDealtDamage (int damage)
 	{
-		if (isDefending == true) {
+		if (isDefending == true) 
+		{
 			currentHP -= damage / 2;
-		} else {
+		} 
+		else 
+		{
 			currentHP -= damage;
 		}
-		if (currentHP < 0) {
+		if (currentHP < 0) 
+		{
 			currentHP = 0;
 		}
-		if (currentHP <= 0) {
-			if (isPC == false) {
+		if (currentHP <= 0) 
+		{
+			if (isPC == false) 
+			{
 				isKill ();
-			} else {
+			} 
+			else 
+			{
 				Debug.Log ("Man down!");
 			}
 		}

@@ -23,14 +23,24 @@ public class BattleMap : MonoBehaviour {
 	float waitAmount = 0.15f;
 	float weGonnaWaitOnThisShit;
 	public Texture2D barOutline;
+	List<EffectText> effectsList = new List<EffectText>();
 	// Use this for initialization
 	void Start () 
 	{
 		offset = transform.position;
 	}
 
+	public void addEffectText(GameObject position, string text)
+	{
+		EffectText effectText = new EffectText();
+
+		effectText.set (text, position, mainMechanics);
+		effectsList.Add(effectText);
+	}
+
 	void OnGUI()
 	{
+		//
 		if (initiativeList.Count > 10) 
 		{ 
 			var centeredStyle = GUI.skin.GetStyle("Label");
@@ -428,7 +438,7 @@ public class BattleMap : MonoBehaviour {
 		initiativeList = initiativeList.OrderBy (Combatant => Combatant.tickCount).ToList ();
 	}
 
-	public void KillEnemy(GameObject deadEnemy, Combatant deadEnemyCombatant)
+	public void RemoveFromInitiative(GameObject deadEnemy, Combatant deadEnemyCombatant)
 	{
 		combatantsInFight.Remove (deadEnemy);
 		for (int i = 0; i < initiativeList.Count; i++)  
