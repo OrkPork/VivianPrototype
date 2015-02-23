@@ -29,7 +29,7 @@ public class BattleMap : MonoBehaviour {
 		offset = transform.position;
 	}
 
-	public void addEffectText(GameObject position, string text)
+	public void addEffectText(Vector3 position, string text)
 	{
 		EffectText effectText = new EffectText();
 
@@ -39,12 +39,11 @@ public class BattleMap : MonoBehaviour {
 
 	void OnGUI()
 	{
-		//
+		var centeredStyle = GUI.skin.GetStyle("Label");
+		centeredStyle.alignment = TextAnchor.UpperCenter;
+		centeredStyle.fontSize = ((Screen.height/40));
 		if (initiativeList.Count > 10) 
 		{ 
-			var centeredStyle = GUI.skin.GetStyle("Label");
-			centeredStyle.alignment = TextAnchor.UpperCenter;
-			centeredStyle.fontSize = ((Screen.height/40));
 			for (int i = 0; i < 10; i++) 
 			{
 				Rect initRect = new Rect (Screen.width - ((Screen.height * 2) / 9),
@@ -128,8 +127,21 @@ public class BattleMap : MonoBehaviour {
 				{
 				centeredStyle.fontSize = Screen.height/40;
 					initiativeList[0].character.getGUI();
-				}
+			}
 			
+		}
+		
+		for(int i = 0; i < effectsList.Count; i++)
+		{
+			if(effectsList[i].timer <= 0)
+			{
+				effectsList.RemoveAt(i);
+				i--;
+			}
+			else
+			{
+				effectsList[i].Update(centeredStyle);
+			}
 		}
 		
 	}

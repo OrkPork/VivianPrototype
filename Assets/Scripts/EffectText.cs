@@ -3,30 +3,36 @@ using System.Collections;
 
 public class EffectText {
 
-	GameObject objectAffected;
+	Vector3 affectedSpace;
 	MainMechanics mainMechs;
 	string text;
-	public int timer = 10;
+	public float timer = 1;
 	
 	// Update is called once per frame
-	public void set(string inputText, GameObject goingOffOf, MainMechanics main)
+	public void set(string inputText, Vector3 goingOffOf, MainMechanics main)
 	{
 		text = inputText;
-		objectAffected = goingOffOf;
+		affectedSpace = goingOffOf;
 		mainMechs = main;
 	}
 
-	/*public void Update () 
+	public void Update (GUIStyle centeredStyle) 
 	{
-		Vector3 screenCoords = 
+		Vector3 screenCoords = mainMechs.mainCamera.camera.WorldToScreenPoint(affectedSpace);
 		
-		Vector2 placement = new Vector3(screenCoords.x, Screen.width - screenCoords.y + (10-timer));
+		Vector2 placement = new Vector3(screenCoords.x, Screen.height - screenCoords.y + ((timer*10)-10));
 
-		Vector2 nameSize = GUIContent.CalcSize(text);
+		centeredStyle.fontSize = ((Screen.height/20));
+
+		GUIContent nameCalc = new GUIContent(text);
+
+		GUI.contentColor = Color.red;
+
+		Vector2 nameSize = centeredStyle.CalcSize(nameCalc);
 
 		Rect textRectangle = new Rect(placement.x,placement.y, nameSize.x, nameSize.y); 
 
 		GUI.Label(textRectangle, text);
-		timer--;
-	}*/
+		timer -= Time.deltaTime;
+	}
 }

@@ -290,12 +290,12 @@ public class Combatant : MonoBehaviour
 	{
 		if (isDefending == true) 
 		{
-			currentHP -= damage / 2;
-		} 
-		else 
-		{
-			currentHP -= damage;
+			damage = damage / 2;
 		}
+
+		battleMechanics.addEffectText(gameObject.transform.position+new Vector3(0,2,0), ""+damage);
+		currentHP -= damage;
+
 		if (currentHP < 0) 
 		{
 			currentHP = 0;
