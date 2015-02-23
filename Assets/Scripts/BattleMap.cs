@@ -4,6 +4,13 @@ using System.Collections.Generic;
 using System.Linq;
 
 public class BattleMap : MonoBehaviour {
+	//PlayerControls: 
+	//	1) controls/has values for player movement 
+	//	2) produces/displays win text and 
+	//	3) counts produces and displays score text.
+	//	4) detects enemy encounters/collisions, flags them, calls MainMechanics
+	//	
+
 	public PlayerControls player;
 	public MainMechanics mainMechanics;
 	private Vector3 offset;
