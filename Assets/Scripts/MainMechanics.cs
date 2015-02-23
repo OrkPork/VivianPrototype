@@ -39,6 +39,21 @@ public class MainMechanics : MonoBehaviour {
 		player.waitingForFader = true;
 	}
 
+    //Consider consolidating activatebattlemap and deactivate battlemap into one function
+    /*
+    void BattleMapState(bool entered)
+    {
+        battleMap.SetActive(entered);
+        if(entered) battleMechanics.SpawnEnemies();
+        mainMap.SetActive(!entered);
+        player.removeForce();
+        player.inCombat = entered;
+        SetPlayerPosition();
+        mainCamera.inCombat = entered;
+        if (entered) mainCamera.combatAngleChange();
+       
+    }
+    */
 
 
 	void ActivateBattleMap()
