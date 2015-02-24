@@ -9,7 +9,7 @@ public class PlayerControls : MonoBehaviour
 	public GUIText winText;
 	private int score = 0;
 	public MainMechanics mainMechs;
-	private int combatCount;
+	private int combatCount; //is this unused?
 	public bool inCombat;
 	public bool waitingForFader = false;
 	public List<Combatant> partyList = new List<Combatant> ();
@@ -39,7 +39,7 @@ public class PlayerControls : MonoBehaviour
     /// <summary>
     /// Change the players position
     /// </summary>
-    /// <param name="startPos">New position</param>
+    /// <param name="startPos">New position: Vector3</param>
 	public void setPosition(Vector3 startPos)
 	{
 		transform.position = startPos;
@@ -87,6 +87,7 @@ public class PlayerControls : MonoBehaviour
 			}
 		}
 	}
+
     /// <summary>
     /// Displays Score, if 18 displays wintext
     /// </summary>

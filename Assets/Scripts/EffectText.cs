@@ -9,6 +9,12 @@ public class EffectText {
 	public float timer = 1;
 	
 	// Update is called once per frame
+    /// <summary>
+    /// Receives text and relevant params
+    /// </summary>
+    /// <param name="inputText"></param>
+    /// <param name="goingOffOf"></param>
+    /// <param name="main"></param>
 	public void set(string inputText, Vector3 goingOffOf, MainMechanics main)
 	{
 		text = inputText;
