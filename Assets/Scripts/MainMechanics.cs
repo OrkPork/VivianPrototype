@@ -132,7 +132,7 @@ public class MainMechanics : MonoBehaviour {
 
 
     /// <summary>
-    /// Checks if map is fading or recently faded, resets bools if recently faded then checks if we are entering map or battle to call the fader functions.
+    /// Checks if map is fading or recently faded, resets bools if recently faded if not then checks if we are entering map or battle to call the fader functions.
     /// </summary>
 	void Update()
 	{

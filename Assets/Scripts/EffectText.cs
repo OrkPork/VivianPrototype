@@ -12,8 +12,8 @@ public class EffectText {
     /// <summary>
     /// Receives text and relevant params
     /// </summary>
-    /// <param name="inputText"></param>
-    /// <param name="goingOffOf"></param>
+    /// <param name="inputText">Text to be displayed</param>
+    /// <param name="goingOffOf">Position</param>
     /// <param name="main"></param>
 	public void set(string inputText, Vector3 goingOffOf, MainMechanics main)
 	{
