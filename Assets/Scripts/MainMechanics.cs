@@ -85,8 +85,8 @@ public class MainMechanics : MonoBehaviour {
         mainCamera.inCombat = entered;
         if (entered) mainCamera.combatAngleChange();
        
-    }
-    */
+    }*/
+    
 
     /// <summary>
     /// Activates battlestate, deactivates mapstate, zeroes player velocity, calls enemy spawn, calls camera angle chance, sets relevant bools

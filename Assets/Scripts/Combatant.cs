@@ -4,7 +4,7 @@ using System.Collections.Generic;
 
 public class Combatant : MonoBehaviour
 {
-
+	public int level = 1;
 	public int currentHP;
 	public int maxHP;
 	public int currentMP;
@@ -33,15 +33,40 @@ public class Combatant : MonoBehaviour
 	public CombatAction chosenAction;
 	public bool isWaitingOnAnimation = false;
 	bool isDefending = false;
+	int xp = 500;
+	int xpToNextLevel = 1000;
 
 	public bool isReadyToEndTurn()
 	{
-		return chosenAction.isReadyToEndTurn ();
+		
+		if(chosenAction == null)
+		{
+			return true;
+		}
+		else
+		{
+			return chosenAction.isReadyToEndTurn ();
+		}
 	}
 
 	void Start ()
 	{
 		basicAttack.Start ();
+	}
+	
+	public void checkLevel()
+	{
+		if(xp >= xpToNextLevel)
+		{
+			xp -= xpToNextLevel;
+			xpToNextLevel += 1000;
+		}
+	}
+
+	public float getXpPercent()
+	{
+		float percent = (float)xp / (float)xpToNextLevel;
+		return percent;
 	}
 
 	public float getPercentHP ()
@@ -197,7 +222,8 @@ public class Combatant : MonoBehaviour
 			} 
 			else 
 			{
-				Combatant targetOfAI = battleMechanics.player.partyList [Random.Range (0, battleMechanics.player.partyList.Count - 1)];
+				int target = Random.Range (0, battleMechanics.player.partyList.Count);
+				Combatant targetOfAI = battleMechanics.player.partyList [target];
 				chosenAction.playAnimation (targetOfAI, this);
 			}
 			break;

@@ -40,5 +40,7 @@ public class EffectText {
 
 		GUI.Label(textRectangle, text);
 		timer -= Time.deltaTime;
+
+		centeredStyle.fontSize = ((Screen.height/40));
 	}
 }

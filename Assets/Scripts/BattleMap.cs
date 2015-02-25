@@ -23,6 +23,7 @@ public class BattleMap : MonoBehaviour {
 	float weGonnaWaitOnThisShit;
 	public Texture2D barOutline;
 	List<EffectText> effectsList = new List<EffectText>();
+	bool activateEndCombatMenu = false;
 	// Use this for initialization
 	void Start () 
 	{
@@ -35,6 +36,42 @@ public class BattleMap : MonoBehaviour {
 
 		effectText.set (text, position, mainMechanics);
 		effectsList.Add(effectText);
+	}
+
+	void DisplayEndCombatMenu(GUIStyle style)
+	{
+		GUI.DrawTexture(new Rect(0,0,Screen.width, Screen.height), Texture2D.whiteTexture);
+		
+		style.fontSize = ((Screen.height/20));
+		for(int i = 0; i < player.partyList.Count; i++)
+		{
+			GUIContent nameCalc = new GUIContent(player.partyList[i].name);
+			Vector2 nameSize = style.CalcSize(nameCalc);
+			Rect portraitRect = new Rect(Screen.width/100, Screen.height/8 *(i+1), player.partyList[i].partyPortrait.width, player.partyList[i].partyPortrait.height);
+			Rect nameTextRect = new Rect( portraitRect.x+portraitRect.width+(Screen.width/100), portraitRect.y, nameSize.x, nameSize.y);
+
+			GUI.DrawTexture(portraitRect, player.partyList[i].partyPortrait);
+			GUI.contentColor = Color.black;
+			GUI.Label(nameTextRect,player.partyList[i].name);
+			GUI.contentColor = Color.white;
+
+			Rect xpBarRect = new Rect(portraitRect.x, portraitRect.y+portraitRect.height+nameTextRect.height, Screen.height/2, barOutline.height);
+			GUI.DrawTexture(xpBarRect, barOutline);
+			
+			int xpPercent = (int)(player.partyList[i].getXpPercent()*(xpBarRect.width-2));
+			GUI.color = Color.cyan;
+			for(int p = 0; p < xpPercent; p++)
+			{
+				GUI.DrawTexture(new Rect(xpBarRect.x+1+p, xpBarRect.y+1, 1, xpBarRect.height-2), Texture2D.whiteTexture);
+			}
+			GUI.color = Color.white;
+		}
+
+		if(Input.GetButtonUp("Action"))
+		{
+			CompleteCombat();
+		}
+
 	}
 
 	void OnGUI()
@@ -129,6 +166,10 @@ public class BattleMap : MonoBehaviour {
 					initiativeList[0].character.getGUI();
 			}
 			
+		}
+		if(activateEndCombatMenu == true)
+		{
+			DisplayEndCombatMenu(centeredStyle);
 		}
 		
 		for(int i = 0; i < effectsList.Count; i++)
@@ -385,6 +426,7 @@ public class BattleMap : MonoBehaviour {
 		for (int i = 0; i < player.partyList.Count; i++) 
 		{
 			combatantsInFight.Add (player.partyList[i].gameObject);
+			player.partyList[i].setBattleMap(this);
 			initiativeList.Add (player.partyList[i].initToken.getInitCopy());
 		}
 		RollForInitiative ();
@@ -409,7 +451,7 @@ public class BattleMap : MonoBehaviour {
 	{
 		for(int i = 0; i < initiativeList.Count; i++)
 		{
-			if(initiativeList[i].character == basePoint.character && initiativeList[i] != basePoint)
+			if(initiativeList[i].character.gameObject == basePoint.character.gameObject && initiativeList[i] != basePoint)
 			{
 				initiativeList.RemoveAt(i);
 				i--;
@@ -446,6 +488,7 @@ public class BattleMap : MonoBehaviour {
 	void SortInitiative()
 	{
 		initiativeList = initiativeList.OrderByDescending (Combatant => Combatant.character.isPC).ToList ();
+		initiativeList = initiativeList.OrderByDescending (Combatant => Combatant.character.isWaitingOnAnimation).ToList ();
 		initiativeList = initiativeList.OrderBy (Combatant => Combatant.tickCount).ToList ();
 	}
 
@@ -460,7 +503,7 @@ public class BattleMap : MonoBehaviour {
 				i--;
 			}
 		}
-		for (int i = 0; i < combatantsInFight.Count + player.partyList.Count-1; i++) 
+		for (int i = 0; i < combatantsInFight.Count; i++) 
 		{
 			MakeInitPrediction(initiativeList[i], 4, false);
 		}
@@ -480,6 +523,7 @@ public class BattleMap : MonoBehaviour {
 		initiativeList.Clear ();
 		combatantsInFight.Clear ();
 		mainMechanics.GoingToActiveateMainMap ();
+		activateEndCombatMenu = false;
 	}
 
 	// Update is called once per frame
@@ -502,7 +546,8 @@ public class BattleMap : MonoBehaviour {
 			}
 			if (enemiesInFight == 0 && initiativeList[0].character.isReadyToEndTurn() == true) //If there are no enemies left, end the combat
 			{
-				CompleteCombat();
+				activateEndCombatMenu = true;
+				//CompleteCombat();
 			}
 		}
 	}
