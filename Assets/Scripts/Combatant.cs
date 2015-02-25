@@ -50,12 +50,16 @@ public class Combatant : MonoBehaviour
 		}
 	}
 
+    //calls basicattack, a function that only calls a function?
 	void Start ()
 	{
 		basicAttack.Start ();
 	}
 
-
+    /// <summary>
+    /// Receives experience points, if exp is greater than XpToNextLevel it increases the cap
+    /// </summary>
+    /// <param name="addedXp"> Earned experience points</param>
 	public void AddXp(int addedXp)
 	{
 		xp += addedXp;
@@ -66,18 +70,30 @@ public class Combatant : MonoBehaviour
 		}
 	}
 
+    /// <summary>
+    /// Percentage of the experience cap currently earned
+    /// </summary>
+    /// <returns>float</returns>
 	public float getXpPercent()
 	{
 		float percent = (float)xp / (float)xpToNextLevel;
 		return percent;
 	}
 
+    /// <summary>
+    /// Percentage of the HP cap currently at
+    /// </summary>
+    /// <returns>float</returns>
 	public float getPercentHP ()
 	{
 		float percent = (float)currentHP / (float)maxHP;
 		return percent;
 	}
 
+    /// <summary>
+    /// Percentage of the MP cap currently at
+    /// </summary>
+    /// <returns>float</returns>
 	public float getPercentMP ()
 	{
 		float percent = currentMP / maxMP;
