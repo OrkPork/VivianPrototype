@@ -23,11 +23,17 @@ public class BattleMap : MonoBehaviour {
 	float weGonnaWaitOnThisShit;
 	public Texture2D barOutline;
 	List<EffectText> effectsList = new List<EffectText>();
-	bool activateEndCombatMenu = false;
+	public bool activateEndCombatMenu = false;
+	int xpGained;
 	// Use this for initialization
 	void Start () 
 	{
 		offset = transform.position;
+	}
+
+	public void addXpGain(int xpGain)
+	{
+		xpGained += xpGain;
 	}
 
 	public void addEffectText(Vector3 position, string text)
@@ -45,17 +51,29 @@ public class BattleMap : MonoBehaviour {
 		style.fontSize = ((Screen.height/20));
 		for(int i = 0; i < player.partyList.Count; i++)
 		{
-			GUIContent nameCalc = new GUIContent(player.partyList[i].name);
+			if(xpGained > 0)
+			{
+				player.partyList[i].AddXp(1);
+			}
+			Rect portraitRect;
+			GUIContent nameCalc = new GUIContent(player.partyList[i].creatureName);
 			Vector2 nameSize = style.CalcSize(nameCalc);
-			Rect portraitRect = new Rect(Screen.width/100, Screen.height/8 *(i+1), player.partyList[i].partyPortrait.width, player.partyList[i].partyPortrait.height);
+			if(i<2)
+			{
+				portraitRect = new Rect(Screen.width/100, (Screen.height/8*(i+1))+(i*(Screen.height/15)), Screen.height/6, Screen.height/18);
+			}
+			else
+			{
+				portraitRect = new Rect(Screen.width/2 + Screen.width/100, (Screen.height/8*(i-1))+((i-2)*((Screen.height/15))), Screen.height/6, Screen.height/18);
+			}
 			Rect nameTextRect = new Rect( portraitRect.x+portraitRect.width+(Screen.width/100), portraitRect.y, nameSize.x, nameSize.y);
 
 			GUI.DrawTexture(portraitRect, player.partyList[i].partyPortrait);
 			GUI.contentColor = Color.black;
-			GUI.Label(nameTextRect,player.partyList[i].name);
+			GUI.Label(nameTextRect,player.partyList[i].creatureName);
 			GUI.contentColor = Color.white;
 
-			Rect xpBarRect = new Rect(portraitRect.x, portraitRect.y+portraitRect.height+nameTextRect.height, Screen.height/2, barOutline.height);
+			Rect xpBarRect = new Rect(portraitRect.x, portraitRect.y+portraitRect.height+Screen.height/50, Screen.width/4, Screen.height/20);
 			GUI.DrawTexture(xpBarRect, barOutline);
 			
 			int xpPercent = (int)(player.partyList[i].getXpPercent()*(xpBarRect.width-2));
@@ -66,20 +84,35 @@ public class BattleMap : MonoBehaviour {
 			}
 			GUI.color = Color.white;
 		}
-
-		if(Input.GetButtonUp("Action"))
+		if(xpGained > 0)
 		{
-			CompleteCombat();
+			xpGained--;
 		}
-
+		
+		
+		Rect outline = new Rect(0,Screen.height/2,Screen.width, Screen.height/2);
+		Rect itemInterior = new Rect(outline.x+4,outline.y+4,outline.width-8, outline.height-8);
+		
+		GUI.color = Color.black;
+		GUI.DrawTexture(outline, Texture2D.whiteTexture);
+		
+		GUI.color = Color.white;
+		GUI.DrawTexture(itemInterior, Texture2D.whiteTexture);
+		
+		
 	}
-
+	
 	void OnGUI()
 	{
 		var centeredStyle = GUI.skin.GetStyle("Label");
 		centeredStyle.alignment = TextAnchor.UpperCenter;
 		centeredStyle.fontSize = ((Screen.height/40));
-		if (initiativeList.Count > 10) 
+		
+		if(activateEndCombatMenu == true)
+		{
+			DisplayEndCombatMenu(centeredStyle);
+		}
+		else if (initiativeList.Count > 10) 
 		{ 
 			for (int i = 0; i < 10; i++) 
 			{
@@ -93,7 +126,7 @@ public class BattleMap : MonoBehaviour {
 					GUI.contentColor = Color.red*0.5f;
 				}
 				GUI.DrawTexture (initRect, initiativeList [i].intiativePortrait);//Draw initiative List
-				GUI.TextArea (initRect, "" + initiativeList [i].tickCount + " " + initiativeList [i].character.name);//Draw Tick Count
+				GUI.TextArea (initRect, "" + initiativeList [i].tickCount + " " + initiativeList [i].character.creatureName);//Draw Tick Count
 			
 				GUI.contentColor = Color.white;
 			
@@ -107,7 +140,7 @@ public class BattleMap : MonoBehaviour {
 				GUIContent nameCalc = new GUIContent("VIVIAN");
 				Vector2 nameSize = centeredStyle.CalcSize(nameCalc);
 				Rect nameTextRect = new Rect(portraitRect.x+portraitRect.width+3, portraitRect.y, nameSize.x, nameSize.y);
-				GUI.Label(nameTextRect,player.partyList[i].name);
+				GUI.Label(nameTextRect,player.partyList[i].creatureName);
 				
 				centeredStyle.fontSize = ((Screen.height/40));
 				GUIContent textCalc = new GUIContent(""+player.partyList[i].currentHP+"/"+player.partyList[i].maxHP);
@@ -166,10 +199,6 @@ public class BattleMap : MonoBehaviour {
 					initiativeList[0].character.getGUI();
 			}
 			
-		}
-		if(activateEndCombatMenu == true)
-		{
-			DisplayEndCombatMenu(centeredStyle);
 		}
 		
 		for(int i = 0; i < effectsList.Count; i++)
@@ -409,10 +438,12 @@ public class BattleMap : MonoBehaviour {
 	{
 		combatantsInFight.Add( Instantiate (enemyList[0], spawnPositions [0].transform.position, 
 		            					spawnPositions [0].transform.rotation) as GameObject);
-		combatantsInFight [0].name = "Enemy1";
+		combatantsInFight [0].name = "Enemy 1";
+
 		combatantsInFight.Add(Instantiate (enemyList[0], spawnPositions [1].transform.position, 
 		                                spawnPositions [1].transform.rotation)as GameObject);
 		combatantsInFight [1].name = "Enemy2";
+
 		combatantsInFight.Add(Instantiate (enemyList[0], spawnPositions [2].transform.position, 
 		                                spawnPositions [2].transform.rotation)as GameObject);
 		combatantsInFight [2].name = "Enemy3";
@@ -421,6 +452,7 @@ public class BattleMap : MonoBehaviour {
 		{
 			Combatant enemyFile = combatantsInFight[i].GetComponent("Combatant") as Combatant;
 			enemyFile.setBattleMap(this);
+			enemyFile.creatureName = enemyFile.gameObject.name;
 			initiativeList.Add( enemyFile.initToken.getInitCopy() );
 		}
 		for (int i = 0; i < player.partyList.Count; i++) 
@@ -512,9 +544,17 @@ public class BattleMap : MonoBehaviour {
 
 	void Update()
 	{
-		if (player.inCombat == true && player.waitingForFader == false)//Sets player to being in combat 
+		if (player.inCombat == true && player.waitingForFader == false && activateEndCombatMenu == false)//Sets player to being in combat 
 		{
 			initiativeList [0].character.getTurn();
+		}
+		else if (activateEndCombatMenu == true)
+		{
+			
+			if(Input.GetButtonUp("Action") == true)
+			{
+				CompleteCombat();
+			}
 		}
 	}
 
@@ -523,7 +563,6 @@ public class BattleMap : MonoBehaviour {
 		initiativeList.Clear ();
 		combatantsInFight.Clear ();
 		mainMechanics.GoingToActiveateMainMap ();
-		activateEndCombatMenu = false;
 	}
 
 	// Update is called once per frame

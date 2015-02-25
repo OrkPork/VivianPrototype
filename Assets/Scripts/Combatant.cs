@@ -33,8 +33,9 @@ public class Combatant : MonoBehaviour
 	public CombatAction chosenAction;
 	public bool isWaitingOnAnimation = false;
 	bool isDefending = false;
-	int xp = 500;
+	int xp = 0;
 	int xpToNextLevel = 1000;
+	public int xpValue;
 
 	public bool isReadyToEndTurn()
 	{
@@ -53,9 +54,11 @@ public class Combatant : MonoBehaviour
 	{
 		basicAttack.Start ();
 	}
-	
-	public void checkLevel()
+
+
+	public void AddXp(int addedXp)
 	{
+		xp += addedXp;
 		if(xp >= xpToNextLevel)
 		{
 			xp -= xpToNextLevel;
@@ -330,6 +333,7 @@ public class Combatant : MonoBehaviour
 		{
 			if (isPC == false) 
 			{
+				battleMechanics.addXpGain(xpValue);
 				isKill ();
 			} 
 			else 
