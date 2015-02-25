@@ -3,7 +3,14 @@ using System.Collections;
 
 public class EffectText {
 
-	Vector3 affectedSpace;
+    /*
+     * Apparently GUI is legacy the following link might be helpful in a different approach
+     * maybe not since this is just a text effect and not user interface
+     * http://unity3d.com/learn/tutorials/modules/beginner/ui/ui-canvas
+     * 
+     * */
+
+    Vector3 affectedSpace;
 	MainMechanics mainMechs;
 	string text;
     //battlemaps reads the timer value and removes the effect when the timer is completed
@@ -50,8 +57,7 @@ public class EffectText {
 		timer -= Time.deltaTime;
         
         //...makes the font smaller, I don't understand why, when GUI.Label is called it displays the text
-        //and when the update function is called the font will be set larger and then displayed before being reduced
-        //What's this for?
+        //and when the update function is called the font will be set larger 
 		centeredStyle.fontSize = ((Screen.height/40));
 	}
 }
