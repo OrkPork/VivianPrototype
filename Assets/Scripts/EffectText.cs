@@ -13,6 +13,7 @@ public class EffectText {
     Vector3 affectedSpace;
 	MainMechanics mainMechs;
 	string text;
+	Color textColor;
     //battlemaps reads the timer value and removes the effect when the timer is completed
 	public float timer = 1;
 	
@@ -23,11 +24,12 @@ public class EffectText {
     /// <param name="inputText">Text to be displayed</param>
     /// <param name="goingOffOf">Position to be centered around</param>
     /// <param name="main">Reference to main</param>
-	public void set(string inputText, Vector3 goingOffOf, MainMechanics main)
+	public void set(string inputText, Vector3 goingOffOf, MainMechanics main, Color color)
 	{
 		text = inputText;
 		affectedSpace = goingOffOf;
 		mainMechs = main;
+		textColor = color;
 	}
     /// <summary>
     /// Centers text above a provided position
@@ -46,7 +48,7 @@ public class EffectText {
 
 		GUIContent nameCalc = new GUIContent(text);
 
-		GUI.contentColor = Color.red;
+		GUI.contentColor = textColor;
 
         //determine how big our text area will be
 		Vector2 nameSize = centeredStyle.CalcSize(nameCalc);

@@ -36,11 +36,11 @@ public class BattleMap : MonoBehaviour {
 		xpGained += xpGain;
 	}
 
-	public void addEffectText(Vector3 position, string text)
+	public void addEffectText(Vector3 position, string text, Color color)
 	{
 		EffectText effectText = new EffectText();
 
-		effectText.set (text, position, mainMechanics);
+		effectText.set (text, position, mainMechanics, color);
 		effectsList.Add(effectText);
 	}
 

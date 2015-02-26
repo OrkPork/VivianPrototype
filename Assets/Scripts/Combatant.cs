@@ -334,13 +334,31 @@ public class Combatant : MonoBehaviour
 
 	public void beDealtDamage (int damage)
 	{
-		if (isDefending == true) 
+		if (isDefending == true && damage > 0) 
 		{
 			damage = damage / 2;
 		}
 
-		battleMechanics.addEffectText(gameObject.transform.position+new Vector3(0,2,0), ""+damage);
+		Color color = Color.white;
+		
 		currentHP -= damage;
+		
+		if(damage > 0)
+		{
+			color = Color.red;
+		}
+		else if (damage < 0)
+		{
+			color = Color.green;
+			damage = damage * (-1);
+		}
+
+		battleMechanics.addEffectText(gameObject.transform.position+new Vector3(0,2,0), ""+damage, color);
+
+		if(currentHP > maxHP)
+		{
+			currentHP = maxHP;
+		}
 
 		if (currentHP < 0) 
 		{

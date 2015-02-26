@@ -1,17 +1,17 @@
 ﻿<Properties>
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Scripts\Items\Item.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Scripts\Combatant.cs">
     <Files>
-      <File FileName="Assets\Scripts\Combatant.cs" Line="69" Column="12" />
+      <File FileName="Assets\Scripts\Combatant.cs" Line="353" Column="27" />
       <File FileName="Assets\Scripts\CameraControls.cs" Line="1" Column="1" />
       <File FileName="Assets\Scripts\Attacks\CombatAction.cs" Line="1" Column="1" />
       <File FileName="Assets\Scripts\PlayerControls.cs" Line="1" Column="1" />
       <File FileName="Assets\Scripts\MainMechanics.cs" Line="1" Column="1" />
       <File FileName="Assets\Scripts\Attacks\WhiteBall\WhiteBallBasicAttack.cs" Line="1" Column="1" />
-      <File FileName="Assets\Scripts\BattleMap.cs" Line="81" Column="1" />
+      <File FileName="Assets\Scripts\BattleMap.cs" Line="1" Column="1" />
       <File FileName="Assets\Scripts\EffectText.cs" Line="1" Column="1" />
       <File FileName="Assets\Scripts\InitiativeToken.cs" Line="1" Column="1" />
-      <File FileName="Assets\Scripts\Items\Item.cs" Line="7" Column="16" />
+      <File FileName="Assets\Scripts\Items\Item.cs" Line="1" Column="1" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
