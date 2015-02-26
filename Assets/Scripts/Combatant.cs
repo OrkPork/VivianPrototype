@@ -63,9 +63,10 @@ public class Combatant : MonoBehaviour
 	public void AddXp(int addedXp)
 	{
 		xp += addedXp;
-		if(xp >= xpToNextLevel)
+		while(xp >= xpToNextLevel)
 		{
 			xp -= xpToNextLevel;
+			level++;
 			xpToNextLevel += 1000;
 		}
 	}

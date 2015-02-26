@@ -55,6 +55,7 @@
      <Compile Include="Assets\Scripts\EffectText.cs" />
      <Compile Include="Assets\Scripts\Fades.cs" />
      <Compile Include="Assets\Scripts\InitiativeToken.cs" />
+     <Compile Include="Assets\Scripts\Items\Item.cs" />
      <Compile Include="Assets\Scripts\MainMechanics.cs" />
      <Compile Include="Assets\Scripts\PlayerControls.cs" />
      <Compile Include="Assets\Scripts\RelativityControls.cs" />

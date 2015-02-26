@@ -57,7 +57,9 @@ public class BattleMap : MonoBehaviour {
 			}
 			Rect portraitRect;
 			GUIContent nameCalc = new GUIContent(player.partyList[i].creatureName);
+			GUIContent levelCalc = new GUIContent("Level: 99");
 			Vector2 nameSize = style.CalcSize(nameCalc);
+			Vector2 levelSize = style.CalcSize(levelCalc);
 			if(i<2)
 			{
 				portraitRect = new Rect(Screen.width/100, (Screen.height/8*(i+1))+(i*(Screen.height/15)), Screen.height/6, Screen.height/18);
@@ -67,13 +69,16 @@ public class BattleMap : MonoBehaviour {
 				portraitRect = new Rect(Screen.width/2 + Screen.width/100, (Screen.height/8*(i-1))+((i-2)*((Screen.height/15))), Screen.height/6, Screen.height/18);
 			}
 			Rect nameTextRect = new Rect( portraitRect.x+portraitRect.width+(Screen.width/100), portraitRect.y, nameSize.x, nameSize.y);
-
+			Rect xpBarRect = new Rect(portraitRect.x, portraitRect.y+portraitRect.height+Screen.height/50, Screen.width/4, Screen.height/20);
+			Rect levelTextRect = new Rect (xpBarRect.x+xpBarRect.width-levelSize.x, nameTextRect.y, levelSize.x, levelSize.y); 
 			GUI.DrawTexture(portraitRect, player.partyList[i].partyPortrait);
 			GUI.contentColor = Color.black;
 			GUI.Label(nameTextRect,player.partyList[i].creatureName);
+			style.alignment = TextAnchor.UpperLeft;
+			GUI.Label(levelTextRect, "Level: "+player.partyList[i].level);
+			style.alignment = TextAnchor.UpperCenter;
 			GUI.contentColor = Color.white;
 
-			Rect xpBarRect = new Rect(portraitRect.x, portraitRect.y+portraitRect.height+Screen.height/50, Screen.width/4, Screen.height/20);
 			GUI.DrawTexture(xpBarRect, barOutline);
 			
 			int xpPercent = (int)(player.partyList[i].getXpPercent()*(xpBarRect.width-2));
@@ -553,6 +558,14 @@ public class BattleMap : MonoBehaviour {
 			
 			if(Input.GetButtonUp("Action") == true)
 			{
+				if(xpGained > 0)
+				{
+					for(int i = 0; i < player.partyList.Count; i++)
+					{
+						player.partyList[i].AddXp(xpGained);
+					}
+					xpGained = 0;
+				}
 				CompleteCombat();
 			}
 		}
