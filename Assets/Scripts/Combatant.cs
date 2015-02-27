@@ -101,17 +101,24 @@ public class Combatant : MonoBehaviour
 		return percent;
 	}
 
+    /// <summary>
+    /// Enables menu mechanics if in proper game state, there is a delay to keep you from fast scrolling
+    /// </summary>
 	public void getTurn ()
 	{
+        //we are not defending against an attack
 		isDefending = false;
+        //if animating skip menu mechanics and resolve animation.
 		if (isWaitingOnAnimation == true) 
 		{
 			chosenAction.Update ();
 		} 
 		else 
 		{
+            //if this combatant is the player character
 			if (isPC == true) 
 			{
+                //if we haven't clicked any buttons
 				if (isChoosing == false) 
 				{
 					float moveVertial = Input.GetAxis ("Vertical");//Gets keyboard/controller Up/Down rating
@@ -126,7 +133,7 @@ public class Combatant : MonoBehaviour
 					}
 					Vector2 mousePos = new Vector2 (Input.mousePosition.x, Screen.height - Input.mousePosition.y);//get mouse positions
 						
-						
+					//keyboard/controller controls	
 					if (weGonnaWaitOnThisShit <= 0) 
 					{//Wait to make sure the system doesn't scroll through the menu 1 button per frame
 							
@@ -153,7 +160,7 @@ public class Combatant : MonoBehaviour
 					{
 						weGonnaWaitOnThisShit -= 1 * Time.deltaTime;//Count down wait timer
 					}
-						
+					//Mouse controls	
 					for (int i = 0; i < buttonAreaList.Count; i++) 
 					{
 						if (buttonAreaList [i].Contains (mousePos)) 
@@ -171,7 +178,7 @@ public class Combatant : MonoBehaviour
 						determineAction (chosenOption); //do chosen action
 					}
 						
-					predictAction (chosenOption);//predict initiative change from chosen option
+					predictAction (chosenOption);//recalculate initiative order
 						
 					
 				} 
@@ -199,6 +206,9 @@ public class Combatant : MonoBehaviour
 		}
 	}
 
+    /// <summary>
+    /// Unused/Empty.
+    /// </summary>
 	public void Update ()
 	{
 
