@@ -184,19 +184,26 @@ public class Combatant : MonoBehaviour
 				} 
 				else if (isChoosing == true) 
 				{
+                    //Call target selection function and save reference to targeted selection
 					Combatant target = battleMechanics.selectTarget (actionIsOffensive, this);
+                    //if the player actually selects a target 
+                    //(if the player has not yet selected a target battlemap returns null)
+                    //target selection doesn't change the game state to a target selection mode so this function is constantly called
+                    //and needs a fail state inbetween people actually making a choice or exiting choice selection loop.
 					if (target != null) 
 					{
 						chosenAction.playAnimation (target, this);
 					} 
 					else if (Input.GetButtonUp ("Cancel")) 
 					{
+                        //exits choice selection loop
 						battleMechanics.cancleSelect (this);
 					}
 				}
 			} 
 			else 
 			{ //If isPC is false, default to AI;
+                //AI logic determined by HP level
 				if (getPercentHP () >= 0.5f) {
 					determineAction (0);
 				} else if (getPercentHP () < 0.5f) {
@@ -214,6 +221,10 @@ public class Combatant : MonoBehaviour
 
 	}
 
+    /// <summary>
+    /// Submits speed values for each chosen action to determine the initiative order
+    /// </summary>
+    /// <param name="choice">int reference to an action</param>
 	void predictAction (int choice)
 	{
 		switch (choice) {
@@ -238,6 +249,7 @@ public class Combatant : MonoBehaviour
 			break;
 		}
 	}
+
 
 	void determineAction (int choice)
 	{

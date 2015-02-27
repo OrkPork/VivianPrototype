@@ -225,7 +225,12 @@ public class BattleMap : MonoBehaviour {
 	{
 		weGonnaWaitOnThisShit = time;
 	}
-	
+	/// <summary>
+	/// Mechanic for selecting attack targets.
+	/// </summary>
+	/// <param name="isOffensive"></param>
+	/// <param name="selectingTarget"></param>
+	/// <returns></returns>
 	public Combatant selectTarget(bool isOffensive, Combatant selectingTarget)
 	{
 		if(Input.GetButtonUp("Action") == true && weGonnaWaitOnThisShit <= 0)
