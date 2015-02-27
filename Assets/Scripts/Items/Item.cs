@@ -2,8 +2,10 @@
 using System.Collections;
 
 public class Item {
-	
-	// Update is called once per frame
+
+
+	public string itemName;
+
 	public virtual void UseItem (Combatant user, Combatant target) 
 	{
 	

@@ -11,6 +11,7 @@ public class MainMechanics : MonoBehaviour {
 	public CameraControls mainCamera;
 	public BattleMap battleMechanics;
 	public Fades fader;
+	public ItemFactory itemCreator = new ItemFactory();
     //they're private but playercontrols calls public functions that change them
 	private bool waitingForFade = false;
 	private bool goingToBattle = false;

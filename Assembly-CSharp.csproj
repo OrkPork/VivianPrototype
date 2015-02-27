@@ -56,6 +56,8 @@
      <Compile Include="Assets\Scripts\Fades.cs" />
      <Compile Include="Assets\Scripts\InitiativeToken.cs" />
      <Compile Include="Assets\Scripts\Items\Item.cs" />
+     <Compile Include="Assets\Scripts\Items\ItemFactory.cs" />
+     <Compile Include="Assets\Scripts\Items\Potion.cs" />
      <Compile Include="Assets\Scripts\MainMechanics.cs" />
      <Compile Include="Assets\Scripts\PlayerControls.cs" />
      <Compile Include="Assets\Scripts\RelativityControls.cs" />
