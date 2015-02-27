@@ -222,7 +222,7 @@ public class Combatant : MonoBehaviour
 	}
 
     /// <summary>
-    /// Submits speed values for each chosen action to determine the initiative order
+    /// Submits action speed values for determining initiative order
     /// </summary>
     /// <param name="choice">int reference to an action</param>
 	void predictAction (int choice)
@@ -250,7 +250,10 @@ public class Combatant : MonoBehaviour
 		}
 	}
 
-
+    /// <summary>
+    /// Submits action speed values for determining initiative order and resolves chosen action
+    /// </summary>
+    /// <param name="choice">int reference to an action</param>
 	void determineAction (int choice)
 	{
 		switch (choice) {
@@ -264,12 +267,14 @@ public class Combatant : MonoBehaviour
 			} 
 			else 
 			{
+                //more enemy AI scattered about!
+                //AI picks a target at random
 				int target = Random.Range (0, battleMechanics.player.partyList.Count);
 				Combatant targetOfAI = battleMechanics.player.partyList [target];
 				chosenAction.playAnimation (targetOfAI, this);
 			}
 			break;
-			
+			//rest of the commands do nothing atm
 		case 1://magic
 			battleMechanics.MakeInitPrediction (battleMechanics.initiativeList [0], magicAttackTicks, true);
 			endTurn ();
