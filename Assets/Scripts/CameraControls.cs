@@ -18,7 +18,7 @@ public class CameraControls : MonoBehaviour {
 	void Start () 
 	{
 		offset = transform.position;
-		combatOffset = new Vector3 (-2f, 2f, -10f);
+		combatOffset = new Vector3 (15f, 10f, 5f);
 	}
 
 	public void combatAngleChange()
