@@ -297,19 +297,25 @@ public class Combatant : MonoBehaviour
 		}
 	}
 
+    /// <summary>
+    /// Get appearance change in combatGUI
+    /// </summary>
 	public void getGUI ()
 	{
 
 
 		if (isChoosing == false) {
+            //cycle through buttons changing their appearance
 			for (int i = 0; i < buttonAreaList.Count; i++) {
 				string buttonName;
 				if (chosenOption != i) {
+                    //Not a chosen button normal background state
 					GUI.DrawTexture (buttonAreaList [i], buttonBackground);
 				} else {
+                    //We found the selected button
 					GUI.DrawTexture (buttonAreaList [i], buttonSelectBackground);
 				}
-
+                //find the buttons name hardcoded
 				switch (i) {
 				case 0:
 					buttonName = "Attack";
@@ -334,6 +340,9 @@ public class Combatant : MonoBehaviour
 		}
 	}
 
+    /// <summary>
+    /// Sets bool values, calls battlemechanics to end turn
+    /// </summary>
 	public void endTurn ()
 	{
 		isWaitingOnAnimation = false;
@@ -341,6 +350,9 @@ public class Combatant : MonoBehaviour
 		battleMechanics.endCurrentTurn ();
 	}
 
+    /// <summary>
+    /// Gives initToken a reference to this character and its portrait
+    /// </summary>
 	public void Awake ()
 	{
 		initToken.character = this;
@@ -348,17 +360,29 @@ public class Combatant : MonoBehaviour
 		initToken.intiativePortrait = intiativePortrait;
 	}
 
+    /// <summary>
+    /// Rmeoves this combatant from initiative list then destroys it
+    /// </summary>
 	public void isKill ()
 	{
 		battleMechanics.RemoveFromInitiative (gameObject, this);
 		Destroy (this.gameObject);
 	}
 
+
+    /// <summary>
+    /// Sets reference to battlemap
+    /// </summary>
+    /// <param name="battleMechs">provided BattleMap reference</param>
 	public void setBattleMap (BattleMap battleMechs)
 	{
 		battleMechanics = battleMechs;
 	}
 
+    /// <summary>
+    /// Calculates damage, if this is an enemy award exp if it's a player "Man down!"
+    /// </summary>
+    /// <param name="damage">damage taken</param>
 	public void beDealtDamage (int damage)
 	{
 		if (isDefending == true && damage > 0) 
