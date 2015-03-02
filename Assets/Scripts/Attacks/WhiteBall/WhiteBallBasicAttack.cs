@@ -21,11 +21,11 @@ public class WhiteBallBasicAttack : CombatAction {
 	public override void Update ()
 	{
 		base.Update ();
-		if (trueAnimating == true && returningToBasePosition == false) 
+		if (state == animationState.trueAnimate) 
 		{
 			Combatant enemyFile = targetEnemy.GetComponent("Combatant") as Combatant;
 			enemyFile.beDealtDamage(damage);
-			returningToBasePosition = true;
+			state = animationState.returnToPosition;
 		}
 	}
 

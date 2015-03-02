@@ -49,8 +49,22 @@ public class Combatant : MonoBehaviour
 			return chosenAction.isReadyToEndTurn ();
 		}
 	}
+	
+	void DisplayInventoryUI()
+	{
+		Rect outline = new Rect (0, Screen.height / 2, Screen.width, Screen.height / 2);
+		Rect itemInterior = new Rect (outline.x + 4, outline.y + 4, outline.width - 8, outline.height - 8);
+		
+		GUI.color = Color.black;
+		GUI.DrawTexture (outline, Texture2D.whiteTexture);
+		
+		GUI.color = Color.white;
+		GUI.DrawTexture (itemInterior, Texture2D.whiteTexture);
+	}
 
     //calls basicattack, a function that only calls a function?
+	//MonoBehaviors call Start() at the beginning of the system load. Non-MonoBehaviors do not.
+	//Normally, this would call the .Start() function of every attack ability the combatant has.
 	void Start ()
 	{
 		basicAttack.Start ();

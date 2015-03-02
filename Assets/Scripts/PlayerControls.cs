@@ -13,6 +13,8 @@ public class PlayerControls : MonoBehaviour
 	public bool inCombat;
 	public bool waitingForFader = false;
 	public List<Combatant> partyList = new List<Combatant> ();
+	public List<InventorySlot> inventory = new List<InventorySlot>();
+
 	public void setMainMechs(MainMechanics input)
 	{
 		mainMechs = input;
