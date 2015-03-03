@@ -7,6 +7,7 @@ public class CombatAction
 	public int damage;
 	public Animation combatAnimation;
 	public bool isMelee;
+	public bool isOffensive;
 	public GameObject bulletType;
 	public Combatant user;
 
@@ -26,9 +27,12 @@ public class CombatAction
 
 	public bool isReadyToEndTurn ()
 	{
-		if (state == animationState.doNothing) {
+		if (state == animationState.doNothing) 
+		{
 			return true;
-		} else {
+		} 
+		else 
+		{
 			return false;
 		}
 		   
@@ -70,9 +74,9 @@ public class CombatAction
 	// Update is called once per frame
 	public virtual void Update ()
 	{
-		switch (state) {
+		switch (state) 
+		{
 		case animationState.moveToPosition:
-		//if (isAnimating == true && trueAnimating == false) 
 			Quaternion currentRot = user.transform.rotation; //Remember current roation
 			user.transform.LookAt (targetEnemy.transform.position);//set current rotation to desired rotation
 			user.transform.rotation = Quaternion.Lerp (currentRot, user.transform.rotation, 2 * Time.deltaTime);//Interpolates towards target.
@@ -92,9 +96,7 @@ public class CombatAction
 			}
 			break;
 
-		case animationState.returnToPosition:
-		//else if (returningToBasePosition == true) 
-
+		case animationState.returnToPosition: 
 			if (user.transform.position == startingPosition && user.transform.rotation == startingRotation) 
 			{
 				state = animationState.doNothing;

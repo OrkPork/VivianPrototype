@@ -47,6 +47,7 @@
   </ItemGroup>
   <ItemGroup>
      <Compile Include="Assets\Scripts\Attacks\CombatAction.cs" />
+     <Compile Include="Assets\Scripts\Attacks\UseItem.cs" />
      <Compile Include="Assets\Scripts\Attacks\WhiteBall\WhiteBallBasicAttack.cs" />
      <Compile Include="Assets\Scripts\BattleMap.cs" />
      <Compile Include="Assets\Scripts\CameraControls.cs" />

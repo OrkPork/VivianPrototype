@@ -15,6 +15,18 @@ public class PlayerControls : MonoBehaviour
 	public List<Combatant> partyList = new List<Combatant> ();
 	public List<InventorySlot> inventory = new List<InventorySlot>();
 
+	public void checkInventorySlots()
+	{
+		for(int i = 0; i < inventory.Count; i++)
+		{
+			if(inventory[i].ammountHere <= 0)
+			{
+				inventory.RemoveAt(i);
+				i--;
+			}
+		}
+	}
+
 	public void setMainMechs(MainMechanics input)
 	{
 		mainMechs = input;
@@ -28,6 +40,12 @@ public class PlayerControls : MonoBehaviour
 		SetCountText();
 		winText.text = "";
 		inCombat = false;
+		for(int i = 0; i < 5; i++)
+		{
+			InventorySlot potion = new InventorySlot();
+			potion.set (mainMechs.itemCreator.getPotion(0), 1);
+			inventory.Add(potion);
+		}
 	}
 
     /// <summary>

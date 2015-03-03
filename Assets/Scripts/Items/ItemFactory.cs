@@ -11,10 +11,10 @@ public class ItemFactory
 		{
 
 		case 0:
-			returnPotion.set(-100, "Potion");
+			returnPotion.set(-100, "Potion", false);
 			return returnPotion;
 		case 1:
-			returnPotion.set(-1000, "Super Potion");
+			returnPotion.set(-1000, "Super Potion", false);
 			return returnPotion;
 
 		default:

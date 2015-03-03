@@ -118,7 +118,7 @@ public class MainMechanics : MonoBehaviour {
 	void DeactivateBattleMap()
 	{
 		battleMap.SetActive (false);
-		battleMechanics.activateEndCombatMenu = false;
+		battleMechanics.uiState = BattleMap.combatUiState.optionGet;
 		mainMap.SetActive (true);
 		player.removeForce ();
 		player.inCombat = false;

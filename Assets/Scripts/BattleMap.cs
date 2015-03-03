@@ -24,12 +24,68 @@ public class BattleMap : MonoBehaviour
 	float weGonnaWaitOnThisShit;
 	public Texture2D barOutline;
 	List<EffectText> effectsList = new List<EffectText> ();
-	public bool activateEndCombatMenu = false;
+	//public bool activateEndCombatMenu = false;
 	int xpGained;
+
+	public enum combatUiState
+	{
+		optionGet,
+		endCombatScreen
+	}
+
+	public combatUiState uiState;
+
 	// Use this for initialization
 	void Start ()
 	{
 		offset = transform.position;
+	}
+	
+	public void DisplayInventoryUI(GUIStyle style, int selection)
+	{
+		Rect outline = new Rect (0, Screen.height / 2, Screen.width, Screen.height / 2);
+		Rect itemInterior = new Rect (outline.x + 4, outline.y + 4, outline.width - 8, outline.height - 8);
+
+
+		GUI.color = Color.black;
+		GUI.DrawTexture (outline, Texture2D.whiteTexture);
+		
+		GUI.color = Color.white;
+		GUI.DrawTexture (itemInterior, Texture2D.whiteTexture);
+
+		//int numberOfColumns = 2;
+		int columnX = 0;
+
+		style.fontSize = ((Screen.height / 20));
+		for(int i = 0; i < player.inventory.Count; i++)
+		{
+			GUI.color = Color.black;
+
+			GUIContent nameCalc = new GUIContent (player.inventory[i].itemHere.itemName + " x255");
+			Vector2 nameSize = style.CalcSize (nameCalc);
+
+			Rect itemTextRect = new Rect(itemInterior.x+(itemInterior.width/40)+(itemInterior.width/2*(columnX)),
+			                             itemInterior.y+((nameSize.y+(itemInterior.height/40))*((int)(i/2))),
+			                             nameSize.x,nameSize.y);
+
+			if(selection == i)
+			{
+				GUI.color = Color.black;
+				GUI.DrawTexture(itemTextRect, Texture2D.whiteTexture);
+				GUI.color = Color.white;
+			}
+
+			GUI.Label(itemTextRect, player.inventory[i].itemHere.itemName+ " x" + player.inventory[i].ammountHere);
+
+			if(columnX >= 1)
+			{
+				columnX = 0;
+			}
+			else
+			{
+				columnX++;
+			}
+		}
 	}
 
 	public void addXpGain (int xpGain)
@@ -107,7 +163,7 @@ public class BattleMap : MonoBehaviour
 		centeredStyle.alignment = TextAnchor.UpperCenter;
 		centeredStyle.fontSize = ((Screen.height / 40));
 		
-		if (activateEndCombatMenu == true) 
+		if (uiState == combatUiState.endCombatScreen) 
 		{
 			DisplayEndCombatMenu (centeredStyle);
 		} else if (initiativeList.Count > 10) 
@@ -194,7 +250,7 @@ public class BattleMap : MonoBehaviour
 			if (initiativeList [0].character.isPC == true) 
 			{
 				centeredStyle.fontSize = Screen.height / 40;
-				initiativeList [0].character.getGUI ();
+				initiativeList [0].character.getGUI (centeredStyle);
 			}
 			
 		}
@@ -229,6 +285,7 @@ public class BattleMap : MonoBehaviour
 		if (Input.GetButtonUp ("Action") == true && weGonnaWaitOnThisShit <= 0) 
 		{
 			selectorModel.SetActive (false);
+			selectingTarget.currentChoiceState = Combatant.choiceState.mainUI;
 			return targetedCombatant;
 		}
 		if (weGonnaWaitOnThisShit > 0) 
@@ -239,6 +296,11 @@ public class BattleMap : MonoBehaviour
 		if (isOffensive == true && selectingTarget.isChoosing == false) 
 		{
 			targetedCombatant = combatantsInFight [0].GetComponent ("Combatant") as Combatant;
+			selectingTarget.isChoosing = true;
+		}
+		else if (isOffensive == false && selectingTarget.isChoosing == false) 
+		{
+			targetedCombatant = selectingTarget;
 			selectingTarget.isChoosing = true;
 		}
 
@@ -534,13 +596,18 @@ public class BattleMap : MonoBehaviour
 
 	void Update ()
 	{
-		if (player.inCombat == true && player.waitingForFader == false && activateEndCombatMenu == false) {//Sets player to being in combat
+		if (player.inCombat == true && player.waitingForFader == false && uiState == combatUiState.optionGet) 
+		{//Sets player to being in combat
 			initiativeList [0].character.getTurn ();
-		} else if (activateEndCombatMenu == true) {
+		} 
+		else if (uiState == combatUiState.endCombatScreen) {
 			
-			if (Input.GetButtonUp ("Action") == true) {
-				if (xpGained > 0) {
-					for (int i = 0; i < player.partyList.Count; i++) {
+			if (Input.GetButtonUp ("Action") == true) 
+			{
+				if (xpGained > 0) 
+				{
+					for (int i = 0; i < player.partyList.Count; i++) 
+					{
 						player.partyList [i].AddXp (xpGained);
 					}
 					xpGained = 0;
@@ -572,7 +639,8 @@ public class BattleMap : MonoBehaviour
 				}
 			}
 			if (enemiesInFight == 0 && initiativeList [0].character.isReadyToEndTurn () == true) { //If there are no enemies left, end the combat
-				activateEndCombatMenu = true;
+				uiState = combatUiState.endCombatScreen;
+				//activateEndCombatMenu = true;
 				//CompleteCombat();
 			}
 		}

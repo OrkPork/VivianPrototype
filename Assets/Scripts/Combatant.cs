@@ -18,6 +18,7 @@ public class Combatant : MonoBehaviour
 	public bool isPC;
 	List<Rect> buttonAreaList = new List<Rect> ();
 	int chosenOption = 0;
+	int itemChosenOption = 0;
 	float weGonnaWaitOnThisShit = 0;
 	public Texture2D buttonBackground;
 	public Texture2D buttonSelectBackground;
@@ -27,10 +28,21 @@ public class Combatant : MonoBehaviour
 	int defendSelfTicks = 3;
 	float waitAmount = 0.1f;
 	public bool isChoosing = false;
+
+	public enum choiceState
+	{
+		mainUI,
+		chooseItem,
+		chooseSpell
+	}
+	public choiceState currentChoiceState;
+
 	bool actionIsOffensive;
 	public Vector3 distanceTracker;
-	public CombatAction basicAttack = new WhiteBallBasicAttack ();
-	public CombatAction chosenAction;
+	CombatAction basicAttack = new WhiteBallBasicAttack ();
+	UseItem itemUse = new UseItem();
+	CombatAction chosenAction;
+
 	public bool isWaitingOnAnimation = false;
 	bool isDefending = false;
 	int xp = 0;
@@ -49,18 +61,6 @@ public class Combatant : MonoBehaviour
 			return chosenAction.isReadyToEndTurn ();
 		}
 	}
-	
-	void DisplayInventoryUI()
-	{
-		Rect outline = new Rect (0, Screen.height / 2, Screen.width, Screen.height / 2);
-		Rect itemInterior = new Rect (outline.x + 4, outline.y + 4, outline.width - 8, outline.height - 8);
-		
-		GUI.color = Color.black;
-		GUI.DrawTexture (outline, Texture2D.whiteTexture);
-		
-		GUI.color = Color.white;
-		GUI.DrawTexture (itemInterior, Texture2D.whiteTexture);
-	}
 
     //calls basicattack, a function that only calls a function?
 	//MonoBehaviors call Start() at the beginning of the system load. Non-MonoBehaviors do not.
@@ -68,6 +68,7 @@ public class Combatant : MonoBehaviour
 	void Start ()
 	{
 		basicAttack.Start ();
+		itemUse.Start();
 	}
 
     /// <summary>
@@ -136,6 +137,12 @@ public class Combatant : MonoBehaviour
 				if (isChoosing == false) 
 				{
 					float moveVertial = Input.GetAxis ("Vertical");//Gets keyboard/controller Up/Down rating
+					float moveHorizontal = Input.GetAxis ("Horizontal");//Gets keyboard/controller Left/Right rating
+
+					switch(currentChoiceState)
+					{
+
+					case choiceState.mainUI:
 					buttonAreaList.Clear ();//Clears buttons
 					for (int i = 4; i != 0; i--) 
 					{//Reforms buttons
@@ -194,8 +201,88 @@ public class Combatant : MonoBehaviour
 						
 					predictAction (chosenOption);//recalculate initiative order
 						
-					
-				} 
+						
+						break;
+						//End MainUI
+					case choiceState.chooseItem:
+
+						if (Input.GetButtonUp ("Cancel") == true) 
+						{
+							currentChoiceState = choiceState.mainUI;
+							battleMechanics.uiState = BattleMap.combatUiState.optionGet;
+						}
+						else if (Input.GetButtonUp ("Action") == true) 
+						{
+							Item inspectedItem = battleMechanics.player.inventory[itemChosenOption].itemHere;
+							itemUse.setItem(battleMechanics.player.inventory[itemChosenOption]);
+							chosenAction = itemUse;
+							battleMechanics.wait (0.1f);
+							battleMechanics.selectTarget (inspectedItem.isOffensive, this);
+						}
+
+						if(weGonnaWaitOnThisShit <= 0)
+						{
+							bool dirChosen = false;
+							if(Mathf.Abs(moveVertial) > Mathf.Abs(moveHorizontal) && Mathf.Abs(moveVertial) > 0.8)
+							{
+								if(moveVertial > 0)
+								{
+									itemChosenOption -= 2;
+								}
+								else if(moveVertial < 0)
+								{
+									itemChosenOption += 2;
+								}
+								dirChosen = true;
+							}
+							else if(Mathf.Abs(moveVertial) < Mathf.Abs(moveHorizontal) && Mathf.Abs(moveHorizontal) > 0.8)
+							{
+								if(moveHorizontal > 0)
+								{
+									itemChosenOption += 1;
+								}
+								else if(moveHorizontal < 0)
+								{
+									itemChosenOption -= 1;
+								}
+								dirChosen = true;
+							}
+							if(dirChosen == true)
+							{
+								weGonnaWaitOnThisShit = waitAmount;
+							}
+						}
+						else
+						{
+							weGonnaWaitOnThisShit -= Time.deltaTime;
+						}
+
+						
+						if(itemChosenOption < 0)
+						{
+							itemChosenOption = 0;
+						}
+						else if(itemChosenOption > battleMechanics.player.inventory.Count-1)
+						{
+							itemChosenOption = battleMechanics.player.inventory.Count-1;
+						}
+						
+						//End chooseItem
+						break;
+
+					case choiceState.chooseSpell:
+
+
+
+						if (Input.GetButtonUp ("Cancel") == true) 
+						{
+							currentChoiceState = choiceState.mainUI;
+						}
+
+						//End chooseSpell
+						break;
+					}
+				}
 				else if (isChoosing == true) 
 				{
                     //Call target selection function and save reference to targeted selection
@@ -275,7 +362,8 @@ public class Combatant : MonoBehaviour
 			battleMechanics.MakeInitPrediction (battleMechanics.initiativeList [0], basicAttackTicks, true);
 			actionIsOffensive = true;
 			chosenAction = basicAttack;
-			if (isPC == true) {
+			if (isPC == true) 
+			{
 				battleMechanics.wait (0.1f);
 				battleMechanics.selectTarget (actionIsOffensive, this);
 			} 
@@ -296,7 +384,7 @@ public class Combatant : MonoBehaviour
 			
 		case 2://Item
 			battleMechanics.MakeInitPrediction (battleMechanics.initiativeList [0], itemUseTicks, true);
-			endTurn ();
+			currentChoiceState = choiceState.chooseItem;
 			break;
 			
 		case 3://Defend
@@ -314,22 +402,31 @@ public class Combatant : MonoBehaviour
     /// <summary>
     /// Get appearance change in combatGUI
     /// </summary>
-	public void getGUI ()
+	public void getGUI (GUIStyle style)
 	{
 
 
-		if (isChoosing == false) {
+		if (isChoosing == false) 
+		{
+			if(currentChoiceState == choiceState.mainUI)
+			{
             //cycle through buttons changing their appearance
-			for (int i = 0; i < buttonAreaList.Count; i++) {
+			for (int i = 0; i < buttonAreaList.Count; i++) 
+				{
 				string buttonName;
-				if (chosenOption != i) {
-                    //Not a chosen button normal background state
-					GUI.DrawTexture (buttonAreaList [i], buttonBackground);
-				} else {
-                    //We found the selected button
-					GUI.DrawTexture (buttonAreaList [i], buttonSelectBackground);
-				}
-                //find the buttons name hardcoded
+				if (chosenOption != i) 
+					{
+                    	//Not a chosen button normal background state
+						GUI.DrawTexture (buttonAreaList [i], buttonBackground);
+				
+					} 
+					else 
+					{
+                    	//We found the selected button
+						GUI.DrawTexture (buttonAreaList [i], buttonSelectBackground);
+				
+					}
+                	//find the buttons name hardcoded
 				switch (i) {
 				case 0:
 					buttonName = "Attack";
@@ -350,6 +447,12 @@ public class Combatant : MonoBehaviour
 				GUI.contentColor = Color.red;
 				GUI.Label (buttonAreaList [i], buttonName);
 				GUI.contentColor = Color.white;
+				}
+			}
+
+			else if(currentChoiceState == choiceState.chooseItem)
+			{
+				battleMechanics.DisplayInventoryUI(style, itemChosenOption);
 			}
 		}
 	}
