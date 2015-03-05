@@ -24,6 +24,9 @@ public class BattleMap : MonoBehaviour
 	float weGonnaWaitOnThisShit;
 	public Texture2D barOutline;
 	List<EffectText> effectsList = new List<EffectText> ();
+
+	Vector2 itemUIOffset = new Vector2 (0,0);
+
 	//public bool activateEndCombatMenu = false;
 	int xpGained;
 
@@ -41,7 +44,7 @@ public class BattleMap : MonoBehaviour
 		offset = transform.position;
 	}
 	
-	public void DisplayInventoryUI(GUIStyle style, int selection)
+	public void DisplayInventoryUI(GUIStyle style, Combatant selector)
 	{
 		Rect outline = new Rect (0, Screen.height / 2, Screen.width, Screen.height / 2);
 		Rect itemInterior = new Rect (outline.x + 4, outline.y + 4, outline.width - 8, outline.height - 8);
@@ -64,18 +67,46 @@ public class BattleMap : MonoBehaviour
 			GUIContent nameCalc = new GUIContent (player.inventory[i].itemHere.itemName + " x255");
 			Vector2 nameSize = style.CalcSize (nameCalc);
 
-			Rect itemTextRect = new Rect(itemInterior.x+(itemInterior.width/40)+(itemInterior.width/2*(columnX)),
-			                             itemInterior.y+((nameSize.y+(itemInterior.height/40))*((int)(i/2))),
+			Rect itemTextRect = new Rect(itemInterior.x+(itemInterior.width/40)+(itemInterior.width/2*(columnX))+itemUIOffset.x,
+			                             itemInterior.y+((nameSize.y+(itemInterior.height/40))*((int)(i/2)))+itemUIOffset.y,
 			                             nameSize.x,nameSize.y);
 
-			if(selection == i)
+
+
+			if(itemTextRect.Contains(new Vector2(Input.mousePosition.x, Screen.height-Input.mousePosition.y))
+			   && itemTextRect.y >= itemInterior.y && itemTextRect.y+itemTextRect.height <= itemInterior.y+itemInterior.height)
+			{
+				selector.itemChosenOption = i;
+				if(Input.GetMouseButtonUp(0))
+				{
+					Item inspectedItem = player.inventory[selector.itemChosenOption].itemHere;
+					selector.itemUse.setItem(player.inventory[selector.itemChosenOption]);
+					selector.chosenAction = selector.itemUse;
+					wait (0.1f);
+					selectTarget (inspectedItem.isOffensive, selector);
+				}
+			}
+
+			if(selector.itemChosenOption == i)
 			{
 				GUI.color = Color.black;
 				GUI.DrawTexture(itemTextRect, Texture2D.whiteTexture);
 				GUI.color = Color.white;
+				if(itemTextRect.y+itemTextRect.height > itemInterior.y+itemInterior.height)
+				{
+					itemUIOffset.y -= itemTextRect.height+itemInterior.height/40;
+				}
+				else if(itemTextRect.y < itemInterior.y)
+				{
+					itemUIOffset.y += itemTextRect.height+itemInterior.height/40;
+				}
 			}
 
-			GUI.Label(itemTextRect, player.inventory[i].itemHere.itemName+ " x" + player.inventory[i].ammountHere);
+			if(itemTextRect.y >= itemInterior.y && itemTextRect.y+itemTextRect.height <= itemInterior.y+itemInterior.height)
+			{
+				GUI.Label(itemTextRect, player.inventory[i].itemHere.itemName+ " x" + player.inventory[i].ammountHere);
+			}
+
 
 			if(columnX >= 1)
 			{
@@ -640,6 +671,7 @@ public class BattleMap : MonoBehaviour
 			}
 			if (enemiesInFight == 0 && initiativeList [0].character.isReadyToEndTurn () == true) { //If there are no enemies left, end the combat
 				uiState = combatUiState.endCombatScreen;
+				effectsList.Clear();
 				//activateEndCombatMenu = true;
 				//CompleteCombat();
 			}

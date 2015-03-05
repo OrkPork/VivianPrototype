@@ -40,10 +40,10 @@ public class PlayerControls : MonoBehaviour
 		SetCountText();
 		winText.text = "";
 		inCombat = false;
-		for(int i = 0; i < 5; i++)
+		for(int i = 0; i < 20; i++)
 		{
 			InventorySlot potion = new InventorySlot();
-			potion.set (mainMechs.itemCreator.getPotion(0), 1);
+			potion.set (mainMechs.itemCreator.getPotion(i), 1);
 			inventory.Add(potion);
 		}
 	}

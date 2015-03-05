@@ -18,7 +18,7 @@ public class Combatant : MonoBehaviour
 	public bool isPC;
 	List<Rect> buttonAreaList = new List<Rect> ();
 	int chosenOption = 0;
-	int itemChosenOption = 0;
+	public int itemChosenOption = 0;
 	float weGonnaWaitOnThisShit = 0;
 	public Texture2D buttonBackground;
 	public Texture2D buttonSelectBackground;
@@ -40,8 +40,8 @@ public class Combatant : MonoBehaviour
 	bool actionIsOffensive;
 	public Vector3 distanceTracker;
 	CombatAction basicAttack = new WhiteBallBasicAttack ();
-	UseItem itemUse = new UseItem();
-	CombatAction chosenAction;
+	public UseItem itemUse = new UseItem();
+	public CombatAction chosenAction;
 
 	public bool isWaitingOnAnimation = false;
 	bool isDefending = false;
@@ -452,7 +452,7 @@ public class Combatant : MonoBehaviour
 
 			else if(currentChoiceState == choiceState.chooseItem)
 			{
-				battleMechanics.DisplayInventoryUI(style, itemChosenOption);
+				battleMechanics.DisplayInventoryUI(style, this);
 			}
 		}
 	}

@@ -18,7 +18,9 @@ public class CameraControls : MonoBehaviour {
 	void Start () 
 	{
 		offset = transform.position;
-		combatOffset = new Vector3 (15f, 10f, 5f);
+		combatOffset = new Vector3 (0f, 5f, -10f);
+		//combatOffset = new Vector3 (-2f, 2f, -10f);
+		//combatOffset = new Vector3 (15f, 10f, 5f);
 	}
 
 	public void combatAngleChange()
@@ -34,6 +36,7 @@ public class CameraControls : MonoBehaviour {
 			bool cameraRotating = false;
 			if (inCombat == false) 
 			{
+				target = player;
 				float moveHorizontal = Input.GetAxis ("Camera Horizontal");
 				float moveVertial = Input.GetAxis ("Camera Vertical");
 				if(Mathf.Abs(moveVertial) > 0 || Mathf.Abs(moveHorizontal) > 0)
@@ -86,14 +89,15 @@ public class CameraControls : MonoBehaviour {
 			}
 			if(cameraRotating == false)
 			{
-			Quaternion currentRot = transform.rotation; //Remember current roation
-			transform.LookAt (target.transform.position);//set current rotation to desired rotation
-			transform.rotation = Quaternion.Lerp (currentRot, transform.rotation, trackingSpeed * Time.deltaTime);//Interpolates towards target.
+				Quaternion currentRot = transform.rotation; //Remember current roation
+				transform.LookAt (target.transform.position);//set current rotation to desired rotation
+				transform.rotation = Quaternion.Lerp (currentRot, transform.rotation, trackingSpeed * Time.deltaTime);//Interpolates towards target.
 			}
 		} 
 		else 
 		{
 			target = player;
 		}
+		transform.rotation = Quaternion.Euler(transform.eulerAngles.x,transform.eulerAngles.y,0);
 	}
 }

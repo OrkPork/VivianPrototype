@@ -1,21 +1,21 @@
 ﻿<Properties>
-  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Scripts\Attacks\UseItem.cs">
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="MonoDevelop.Default" />
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Scripts\CameraControls.cs">
     <Files>
-      <File FileName="Assets\Scripts\Combatant.cs" Line="301" Column="31" />
-      <File FileName="Assets\Scripts\CameraControls.cs" Line="21" Column="45" />
-      <File FileName="Assets\Scripts\Attacks\CombatAction.cs" Line="10" Column="26" />
-      <File FileName="Assets\Scripts\PlayerControls.cs" Line="46" Column="53" />
+      <File FileName="Assets\Scripts\Combatant.cs" Line="44" Column="35" />
+      <File FileName="Assets\Scripts\CameraControls.cs" Line="39" Column="21" />
+      <File FileName="Assets\Scripts\Attacks\CombatAction.cs" Line="1" Column="1" />
+      <File FileName="Assets\Scripts\PlayerControls.cs" Line="46" Column="55" />
       <File FileName="Assets\Scripts\MainMechanics.cs" Line="1" Column="1" />
-      <File FileName="Assets\Scripts\Attacks\WhiteBall\WhiteBallBasicAttack.cs" Line="35" Column="3" />
-      <File FileName="Assets\Scripts\BattleMap.cs" Line="288" Column="70" />
+      <File FileName="Assets\Scripts\Attacks\WhiteBall\WhiteBallBasicAttack.cs" Line="1" Column="1" />
+      <File FileName="Assets\Scripts\BattleMap.cs" Line="674" Column="25" />
       <File FileName="Assets\Scripts\EffectText.cs" Line="1" Column="1" />
       <File FileName="Assets\Scripts\InitiativeToken.cs" Line="1" Column="1" />
       <File FileName="Assets\Scripts\Items\Item.cs" Line="1" Column="1" />
-      <File FileName="Assets\Scripts\Items\Potion.cs" Line="1" Column="1" />
-      <File FileName="Assets\Scripts\Items\ItemFactory.cs" Line="1" Column="1" />
+      <File FileName="Assets\Scripts\Items\Potion.cs" Line="12" Column="29" />
+      <File FileName="Assets\Scripts\Items\ItemFactory.cs" Line="23" Column="21" />
       <File FileName="Assets\Scripts\InventorySlot.cs" Line="1" Column="1" />
-      <File FileName="Assets\Scripts\Attacks\UseItem.cs" Line="35" Column="55" />
+      <File FileName="Assets\Scripts\Attacks\UseItem.cs" Line="1" Column="1" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
