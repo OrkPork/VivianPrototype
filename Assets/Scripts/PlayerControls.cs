@@ -27,6 +27,42 @@ public class PlayerControls : MonoBehaviour
 		}
 	}
 
+	public void addItemToInventory(Item item)
+	{
+		bool wasAdded = false;
+		for(int i = 0; i < inventory.Count; i++)
+		{
+			if(inventory[i].itemHere.itemName == item.itemName)
+			{
+				inventory[i].ammountHere++;
+				wasAdded = true;
+			}
+		}
+		if(wasAdded == false)
+		{
+			InventorySlot adder = new InventorySlot();
+			adder.set(item, 1);
+			inventory.Add(adder);
+		}
+	}
+
+	public void addItemToInventory(InventorySlot itemSlot)
+	{
+		bool wasAdded = false;
+		for(int i = 0; i < inventory.Count; i++)
+		{
+			if(inventory[i].itemHere.itemName == itemSlot.itemHere.itemName)
+			{
+				inventory[i].addToHere(itemSlot.ammountHere);
+				wasAdded = true;
+			}
+		}
+		if(wasAdded == false)
+		{
+			inventory.Add(itemSlot);
+		}
+	}
+
 	public void setMainMechs(MainMechanics input)
 	{
 		mainMechs = input;
@@ -40,11 +76,9 @@ public class PlayerControls : MonoBehaviour
 		SetCountText();
 		winText.text = "";
 		inCombat = false;
-		for(int i = 0; i < 20; i++)
+		for(int i = 0; i < 5; i++)
 		{
-			InventorySlot potion = new InventorySlot();
-			potion.set (mainMechs.itemCreator.getPotion(i), 1);
-			inventory.Add(potion);
+			addItemToInventory(mainMechs.itemCreator.getPotion(0));
 		}
 	}
 

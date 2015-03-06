@@ -119,6 +119,13 @@ public class MainMechanics : MonoBehaviour {
 	{
 		battleMap.SetActive (false);
 		battleMechanics.uiState = BattleMap.combatUiState.optionGet;
+
+		for(int i = 0; i < battleMechanics.droppedItems.Count; i++)
+		{
+			player.addItemToInventory(battleMechanics.droppedItems[i]);
+		}
+		battleMechanics.droppedItems.Clear();
+
 		mainMap.SetActive (true);
 		player.removeForce ();
 		player.inCombat = false;

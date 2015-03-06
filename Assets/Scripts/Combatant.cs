@@ -48,6 +48,8 @@ public class Combatant : MonoBehaviour
 	int xp = 0;
 	int xpToNextLevel = 1000;
 	public int xpValue;
+	List<Item> itemsToDrop = new List<Item>();
+
 
 	public bool isReadyToEndTurn()
 	{
@@ -62,6 +64,12 @@ public class Combatant : MonoBehaviour
 		}
 	}
 
+	public virtual void setDroppedItem()
+	{
+		ItemFactory itemFactory = new ItemFactory();
+		itemsToDrop.Add(itemFactory.getPotion(1));
+	}
+
     //calls basicattack, a function that only calls a function?
 	//MonoBehaviors call Start() at the beginning of the system load. Non-MonoBehaviors do not.
 	//Normally, this would call the .Start() function of every attack ability the combatant has.
@@ -69,6 +77,7 @@ public class Combatant : MonoBehaviour
 	{
 		basicAttack.Start ();
 		itemUse.Start();
+		setDroppedItem();
 	}
 
     /// <summary>
@@ -537,6 +546,10 @@ public class Combatant : MonoBehaviour
 			if (isPC == false) 
 			{
 				battleMechanics.addXpGain(xpValue);
+				for(int i = 0; i < itemsToDrop.Count; i++)
+				{
+					battleMechanics.addItemGain(itemsToDrop[i]);
+				}
 				isKill ();
 			} 
 			else 

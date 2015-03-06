@@ -29,6 +29,7 @@ public class BattleMap : MonoBehaviour
 
 	//public bool activateEndCombatMenu = false;
 	int xpGained;
+	public List<InventorySlot> droppedItems = new List<InventorySlot>();
 
 	public enum combatUiState
 	{
@@ -124,6 +125,26 @@ public class BattleMap : MonoBehaviour
 		xpGained += xpGain;
 	}
 
+	public void addItemGain (Item item)
+	{
+		bool foundSlot = false;
+		for(int i = 0; i < droppedItems.Count; i++)
+		{
+			if(droppedItems[i].itemHere.itemName == item.itemName)
+			{
+				droppedItems[i].addToHere(1);
+				foundSlot = true;
+			}
+		}
+		if (foundSlot == false)
+		{
+			InventorySlot adder = new InventorySlot();
+			adder.set (item, 1);
+			droppedItems.Add(adder);
+		}
+
+	}
+
 	public void addEffectText (Vector3 position, string text, Color color)
 	{
 		EffectText effectText = new EffectText ();
@@ -137,8 +158,10 @@ public class BattleMap : MonoBehaviour
 		GUI.DrawTexture (new Rect (0, 0, Screen.width, Screen.height), Texture2D.whiteTexture);
 		
 		style.fontSize = ((Screen.height / 20));
-		for (int i = 0; i < player.partyList.Count; i++) {
-			if (xpGained > 0) {
+		for (int i = 0; i < player.partyList.Count; i++) 
+		{
+			if (xpGained > 0) 
+			{
 				player.partyList [i].AddXp (1);
 			}
 			Rect portraitRect;
@@ -146,9 +169,12 @@ public class BattleMap : MonoBehaviour
 			GUIContent levelCalc = new GUIContent ("Level: 99");
 			Vector2 nameSize = style.CalcSize (nameCalc);
 			Vector2 levelSize = style.CalcSize (levelCalc);
-			if (i < 2) {
+			if (i < 2) 
+			{
 				portraitRect = new Rect (Screen.width / 100, (Screen.height / 8 * (i + 1)) + (i * (Screen.height / 15)), Screen.height / 6, Screen.height / 18);
-			} else {
+			} 
+			else 
+			{
 				portraitRect = new Rect (Screen.width / 2 + Screen.width / 100, (Screen.height / 8 * (i - 1)) + ((i - 2) * ((Screen.height / 15))), Screen.height / 6, Screen.height / 18);
 			}
 			Rect nameTextRect = new Rect (portraitRect.x + portraitRect.width + (Screen.width / 100), portraitRect.y, nameSize.x, nameSize.y);
@@ -166,12 +192,14 @@ public class BattleMap : MonoBehaviour
 			
 			int xpPercent = (int)(player.partyList [i].getXpPercent () * (xpBarRect.width - 2));
 			GUI.color = Color.cyan;
-			for (int p = 0; p < xpPercent; p++) {
+			for (int p = 0; p < xpPercent; p++) 
+			{
 				GUI.DrawTexture (new Rect (xpBarRect.x + 1 + p, xpBarRect.y + 1, 1, xpBarRect.height - 2), Texture2D.whiteTexture);
 			}
 			GUI.color = Color.white;
 		}
-		if (xpGained > 0) {
+		if (xpGained > 0) 
+		{
 			xpGained--;
 		}
 		
@@ -184,6 +212,39 @@ public class BattleMap : MonoBehaviour
 		
 		GUI.color = Color.white;
 		GUI.DrawTexture (itemInterior, Texture2D.whiteTexture);
+
+		style.fontSize = ((Screen.height / 20));
+		
+		
+		
+		int columnX = 0;
+		
+		for(int i = 0; i < droppedItems.Count; i++)
+		{
+			GUI.color = Color.black;
+			
+			GUIContent nameCalc = new GUIContent (droppedItems[i].itemHere.itemName + " x255");
+			Vector2 nameSize = style.CalcSize (nameCalc);
+			
+			Rect itemTextRect = new Rect(itemInterior.x+(itemInterior.width/40)+(itemInterior.width/2*(columnX))+itemUIOffset.x,
+			                             itemInterior.y+((nameSize.y+(itemInterior.height/40))*((int)(i/2)))+itemUIOffset.y,
+			                             nameSize.x,nameSize.y);
+			
+			if(itemTextRect.y >= itemInterior.y && itemTextRect.y+itemTextRect.height <= itemInterior.y+itemInterior.height)
+			{
+				GUI.Label(itemTextRect, droppedItems[i].itemHere.itemName+ " x" + droppedItems[i].ammountHere);
+			}
+			
+			
+			if(columnX >= 1)
+			{
+				columnX = 0;
+			}
+			else
+			{
+				columnX++;
+			}
+		}
 		
 		
 	}
@@ -631,7 +692,8 @@ public class BattleMap : MonoBehaviour
 		{//Sets player to being in combat
 			initiativeList [0].character.getTurn ();
 		} 
-		else if (uiState == combatUiState.endCombatScreen) {
+		else if (uiState == combatUiState.endCombatScreen) 
+		{
 			
 			if (Input.GetButtonUp ("Action") == true) 
 			{
