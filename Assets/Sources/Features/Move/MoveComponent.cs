@@ -1,7 +1,9 @@
 ﻿using Entitas;
+using Entitas.CodeGenerator;
 
+[SingleEntity]
 public class MoveComponent : IComponent {
-    public float speed;
-    public float maxSpeed;
+    public float hSpeed;
+    public float vSpeed;
 }
 

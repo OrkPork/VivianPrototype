@@ -9,6 +9,10 @@ public class InputSystem : IEntitySystem, ISetEntityRepository {
     }
 
     public void Execute() {
+        //needs references to player, pause
+        _repo.hSpeed = Input.GetAxis("Horizontal");
+        _repo.vSpeed = Input.GetAxis("Vertical");
+        //accelerate button
         _repo.isAccelerate = Input.GetMouseButton(0);
     }
 }

@@ -19,6 +19,7 @@ public class AccelerateSystem : IReactiveSubEntitySystem, ISetEntityRepository {
         var accelerate = entities.SingleEntity().isAccelerate;
         foreach (var e in _collection.GetEntities()) {
             var move = e.move;
+            //acceleration calculation, currently just jumps to max speed, zero if cannot accelerate
             var speed = accelerate ? move.maxSpeed : 0;
             e.ReplaceMove(speed, move.maxSpeed);
         }
