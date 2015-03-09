@@ -1,18 +1,18 @@
 ﻿using Entitas;
 
-public class AccelerateSystem : IReactiveSubEntitySystem, ISetEntityRepository {
-    public IEntityMatcher GetTriggeringMatcher() {
+public class AccelerateSystem : IReactiveSystem, ISetPool {
+    public IMatcher GetTriggeringMatcher() {
         return Matcher.Accelerate;
     }
 
-    public EntityCollectionEventType GetEventType() {
-        return EntityCollectionEventType.OnEntityAddedOrRemoved;
+    public GroupEventType GetEventType() {
+        return GroupEventType.OnEntityAddedOrRemoved;
     }
 
-    EntityCollection _collection;
+    Group _collection;
 
-    public void SetEntityRepository(EntityRepository repo) {
-        _collection = repo.GetCollection(Matcher.AllOf(Matcher.Acceleratable, Matcher.Move));
+    public void SetPool(Pool repo) {
+        _collection = repo.GetGroup(Matcher.AllOf(Matcher.Acceleratable, Matcher.Move));
     }
 
     public void Execute(Entity[] entities) {

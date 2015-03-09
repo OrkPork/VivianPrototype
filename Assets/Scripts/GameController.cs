@@ -2,13 +2,13 @@
 using Entitas;
 
 public class GameController : MonoBehaviour {
-    EntityRepository _repo;
+    Pool _repo;
 
-    IEntitySystem[] _systems;
+    IExecuteSystem[] _systems;
 
     void Start() {
         Random.seed = 42;
-        _repo = new EntityRepository(ComponentIds.TotalComponents);
+        _repo = new Pool(ComponentIds.TotalComponents);
         createSystems();
         createPlayer();
         createOpponents();
@@ -49,7 +49,7 @@ public class GameController : MonoBehaviour {
         buttlord.AddResource("supremebuttlord");
         var e = _repo.CreateEntity();
         e.AddResource("Player");
-        e.AddPosition(0, 0, 0);
+        e.AddPosition(0, 0.5f, 0);
         e.AddMove(0, 0.025f);
         e.isAcceleratable = true;
     }

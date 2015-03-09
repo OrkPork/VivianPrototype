@@ -1,12 +1,12 @@
 ﻿using Entitas;
 
-public class DestroySystem : IEntitySystem, ISetEntityRepository {
-    EntityRepository _repo;
-    EntityCollection _collection;
+public class DestroySystem : IExecuteSystem, ISetPool {
+    Pool _repo;
+    Group _collection;
 
-    public void SetEntityRepository(EntityRepository repo) {
+    public void SetPool(Pool repo) {
         _repo = repo;
-        _collection = repo.GetCollection(Matcher.Destroy);
+        _collection = repo.GetGroup(Matcher.Destroy);
     }
 
     public void Execute() {

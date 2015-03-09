@@ -1,17 +1,17 @@
 ﻿using Entitas;
 
-public static class EntityRepositoryExtensions {
+public static class PoolExtensions {
 
-    public static IEntitySystem CreateSystem<T>(this EntityRepository repo) where T: new() {
+    public static IExecuteSystem CreateSystem<T>(this Pool repo) where T: new() {
         var system = new T();
-        if (system is ISetEntityRepository) {
-            ((ISetEntityRepository)system).SetEntityRepository(repo);
+        if (system is ISetPool) {
+            ((ISetPool)system).SetPool(repo);
         }
-        if (system is IEntitySystem) {
-            return (IEntitySystem)system;
+        if (system is IExecuteSystem) {
+            return (IExecuteSystem)system;
         }
-        if (system is IReactiveSubEntitySystem) {
-            return new ReactiveEntitySystem(repo, (IReactiveSubEntitySystem)system);
+        if (system is IReactiveSystem) {
+            return new ReactiveSystem(repo, (IReactiveSystem)system);
         }
         if (system is IReactiveSubEntityWillBeRemovedSystem) {
             return new ReactiveEntityWillBeRemovedSystem(repo, (IReactiveSubEntityWillBeRemovedSystem)system);
@@ -21,6 +21,6 @@ public static class EntityRepositoryExtensions {
     }
 }
 
-public interface ISetEntityRepository {
-    void SetEntityRepository(EntityRepository repo);
+public interface ISetPool {
+    void SetPool(Pool repo);
 }

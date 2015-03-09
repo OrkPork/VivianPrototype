@@ -1,10 +1,10 @@
 ﻿using Entitas;
 using UnityEngine;
 
-public class InputSystem : IEntitySystem, ISetEntityRepository {
-    EntityRepository _repo;
+public class InputSystem : IExecuteSystem, ISetPool {
+    Pool _repo;
 
-    public void SetEntityRepository(EntityRepository repo) {
+    public void SetPool(Pool repo) {
         _repo = repo;
     }
 

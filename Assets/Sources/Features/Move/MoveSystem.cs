@@ -1,17 +1,17 @@
 ﻿using Entitas;
 
-public class MoveSystem : IEntitySystem, ISetEntityRepository {
-    EntityCollection _collection;
+public class MoveSystem : IExecuteSystem, ISetPool {
+    Group _collection;
 
-    public void SetEntityRepository(EntityRepository repo) {
-        _collection = repo.GetCollection(Matcher.AllOf(Matcher.Move, Matcher.Position));
+    public void SetPool(Pool repo) {
+        _collection = repo.GetGroup(Matcher.AllOf(Matcher.Move, Matcher.Position));
     }
 
     public void Execute() {
         foreach (var e in _collection.GetEntities()) {
             var move = e.move;
             var pos = e.position;
-            e.ReplacePosition(pos.x, pos.y + move.speed, pos.z);
+            e.ReplacePosition(pos.x + move.xSpeed, pos.y + move.ySpeed, pos.z + move.zSpeed);
         }
     }
 }
