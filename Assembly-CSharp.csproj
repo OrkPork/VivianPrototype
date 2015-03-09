@@ -46,6 +46,7 @@
 	</Reference>
   </ItemGroup>
   <ItemGroup>
+<<<<<<< HEAD
      <Compile Include="Assets\Libraries\Entitas\Entitas\Entity.cs" />
      <Compile Include="Assets\Libraries\Entitas\Entitas\Extensions\CollectionExtension.cs" />
      <Compile Include="Assets\Libraries\Entitas\Entitas\Extensions\GroupExtension.cs" />
@@ -103,6 +104,75 @@
  <Reference Include="UnityEngine.UI">
  <HintPath>C:/Program Files (x86)/Unity/Editor/Data/UnityExtensions/Unity/GUISystem/4.6.2/UnityEngine.UI.dll</HintPath>
  </Reference>
+=======
+    <Compile Include="Assets\Sources\Features\FightSelector\FightSelected.cs" />
+    <Compile Include="Assets\Sources\Features\FightSelector\FightSelecting.cs" />
+    <Compile Include="Assets\Sources\Features\Contact\TouchingComponent.cs" />
+    <Compile Include="Assets\Sources\Features\Input\CharMove.cs" />
+    <Compile Include="Assets\Sources\Features\Selector\SelectingComponent.cs" />
+    <Compile Include="Assets\Libraries\Entitas\CodeGenerator\Attributes\DontGenerateAttribute.cs" />
+    <Compile Include="Assets\Libraries\Entitas\CodeGenerator\Attributes\EntityRepositoryAttribute.cs" />
+    <Compile Include="Assets\Libraries\Entitas\CodeGenerator\Attributes\SingleEntityAttribute.cs" />
+    <Compile Include="Assets\Libraries\Entitas\CodeGenerator\EntitasCodeGenerator.cs" />
+    <Compile Include="Assets\Libraries\Entitas\CodeGenerator\Generators\ComponentExtensionsGenerator.cs" />
+    <Compile Include="Assets\Libraries\Entitas\CodeGenerator\Generators\IndicesLookupGenerator.cs" />
+    <Compile Include="Assets\Libraries\Entitas\Entity.cs" />
+    <Compile Include="Assets\Libraries\Entitas\EntityCollection.cs" />
+    <Compile Include="Assets\Libraries\Entitas\EntityEqualityComparer.cs" />
+    <Compile Include="Assets\Libraries\Entitas\EntityMatcher\AbstractEntityMatcher.cs" />
+    <Compile Include="Assets\Libraries\Entitas\EntityMatcher\AllOfEntityMatcher.cs" />
+    <Compile Include="Assets\Libraries\Entitas\EntityMatcher\Matcher.cs" />
+    <Compile Include="Assets\Libraries\Entitas\EntityRepository.cs" />
+    <Compile Include="Assets\Libraries\Entitas\EntityRepositoryObserver.cs" />
+    <Compile Include="Assets\Libraries\Entitas\EntityWillBeRemovedEntityRepositoryObserver.cs" />
+    <Compile Include="Assets\Libraries\Entitas\Extensions\CollectionExtension.cs" />
+    <Compile Include="Assets\Libraries\Entitas\Extensions\EntityRepositoryExtension.cs" />
+    <Compile Include="Assets\Libraries\Entitas\Extensions\ReactiveEntitySystem\IReactiveSubEntitySystem.cs" />
+    <Compile Include="Assets\Libraries\Entitas\Extensions\ReactiveEntitySystem\IReactiveSubEntityWillBeRemovedSystem.cs" />
+    <Compile Include="Assets\Libraries\Entitas\Extensions\ReactiveEntitySystem\ReactiveEntitySystem.cs" />
+    <Compile Include="Assets\Libraries\Entitas\Extensions\ReactiveEntitySystem\ReactiveEntityWillBeRemovedSystem.cs" />
+    <Compile Include="Assets\Libraries\Entitas\Interfaces\IComponent.cs" />
+    <Compile Include="Assets\Libraries\Entitas\Interfaces\IEntityMatcher.cs" />
+    <Compile Include="Assets\Libraries\Entitas\Interfaces\IEntitySystem.cs" />
+    <Compile Include="Assets\Libraries\ToolKit\Collections\LinkedListSet.cs" />
+    <Compile Include="Assets\Libraries\ToolKit\Collections\ListSet.cs" />
+    <Compile Include="Assets\Libraries\ToolKit\Misc\DelayedCall.cs" />
+    <Compile Include="Assets\Libraries\ToolKit\Misc\ObjectPool.cs" />
+    <Compile Include="Assets\Scripts\GameController.cs" />
+    <Compile Include="Assets\Sources\Extensions\EntityRepositoryExtensions.cs" />
+    <Compile Include="Assets\Sources\Features\Accelerate\AcceleratableComponent.cs" />
+    <Compile Include="Assets\Sources\Features\Accelerate\AccelerateComponent.cs" />
+    <Compile Include="Assets\Sources\Features\Accelerate\AccelerateSystem.cs" />
+    <Compile Include="Assets\Sources\Features\Destroy\DestroyComponent.cs" />
+    <Compile Include="Assets\Sources\Features\Destroy\DestroySystem.cs" />
+    <Compile Include="Assets\Sources\Features\Input\InputSystem.cs" />
+    <Compile Include="Assets\Sources\Features\Move\MoveComponent.cs" />
+    <Compile Include="Assets\Sources\Features\Move\MoveSystem.cs" />
+    <Compile Include="Assets\Sources\Features\Move\PositionComponent.cs" />
+    <Compile Include="Assets\Sources\Features\ReachedFinish\FinishLineComponent.cs" />
+    <Compile Include="Assets\Sources\Features\ReachedFinish\ReachedFinishSystem.cs" />
+    <Compile Include="Assets\Sources\Features\RenderDespawn\RenderDespawnSystem.cs" />
+    <Compile Include="Assets\Sources\Features\RenderPosition\RenderPositionSystem.cs" />
+    <Compile Include="Assets\Sources\Features\RenderSpawn\RenderSpawnSystem.cs" />
+    <Compile Include="Assets\Sources\Features\RenderSpawn\ResourceComponent.cs" />
+    <Compile Include="Assets\Sources\Features\RenderSpawn\ViewComponent.cs" />
+    <Compile Include="Assets\Sources\Generated\AcceleratableComponentGeneratedExtension.cs" />
+    <Compile Include="Assets\Sources\Generated\AccelerateComponentGeneratedExtension.cs" />
+    <Compile Include="Assets\Sources\Generated\ComponentIds.cs" />
+    <Compile Include="Assets\Sources\Generated\DestroyComponentGeneratedExtension.cs" />
+    <Compile Include="Assets\Sources\Generated\MoveComponentGeneratedExtension.cs" />
+    <Compile Include="Assets\Sources\Generated\PositionComponentGeneratedExtension.cs" />
+    <Compile Include="Assets\Sources\Generated\ResourceComponentGeneratedExtension.cs" />
+    <Compile Include="Assets\Sources\Generated\ViewComponentGeneratedExtension.cs" />
+    <Reference Include="UnityEngine.UI">
+      <HintPath>C:/Program Files (x86)/Unity/Editor/Data/UnityExtensions/Unity/GUISystem/4.6.2/UnityEngine.UI.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Assets\Sources\Features\FightUI\" />
+    <Folder Include="Assets\Sources\Features\UserItems\" />
+    <Folder Include="Assets\Sources\Features\UserSkills\" />
+>>>>>>> origin/master
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
