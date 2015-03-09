@@ -12,16 +12,29 @@ public class GameController : MonoBehaviour {
         createSystems();
         createPlayer();
         createOpponents();
-        createFinishLine();
     }
 
     void createSystems() {
+        /*
+             * Input
+             * 
+             * Apply Acceleration/movement modifiers
+             * 
+             * Handle all movements.
+             * 
+             * Handle contacts/collisions
+             * 
+             * Render scene
+             * 
+             * 
+             * 
+             * */
         _systems = new [] {
+            
             _repo.CreateSystem<InputSystem>(),
-
+            
             _repo.CreateSystem<AccelerateSystem>(),
             _repo.CreateSystem<MoveSystem>(),
-            _repo.CreateSystem<ReachedFinishSystem>(),
 
             _repo.CreateSystem<RenderSpawnSystem>(),
             _repo.CreateSystem<RenderPositionSystem>(),
@@ -50,13 +63,6 @@ public class GameController : MonoBehaviour {
             var speed = Random.value * 0.02f;
             e.AddMove(speed, speed);
         }
-    }
-
-    void createFinishLine() {
-        var finishLine = _repo.CreateEntity();
-        finishLine.isFinishLine = true;
-        finishLine.AddResource("Finish Line");
-        finishLine.AddPosition(4.5f, 3.5f, 0);
     }
 
     void Update() {
