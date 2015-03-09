@@ -47,13 +47,11 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Assets\SingleStandardComponent.cs" />
     <Compile Include="Assets\Sources\Features\FightSelector\FightSelected.cs" />
     <Compile Include="Assets\Sources\Features\FightSelector\FightSelecting.cs" />
     <Compile Include="Assets\Sources\Features\Contact\TouchingComponent.cs" />
+    <Compile Include="Assets\Sources\Features\Input\CharMove.cs" />
     <Compile Include="Assets\Sources\Features\Selector\SelectingComponent.cs" />
-    <Compile Include="Assets\TemplateFlagComponent.cs" />
-    <Compile Include="Assets\SingleFlagComponent.cs" />
     <Compile Include="Assets\Libraries\Entitas\CodeGenerator\Attributes\DontGenerateAttribute.cs" />
     <Compile Include="Assets\Libraries\Entitas\CodeGenerator\Attributes\EntityRepositoryAttribute.cs" />
     <Compile Include="Assets\Libraries\Entitas\CodeGenerator\Attributes\SingleEntityAttribute.cs" />
@@ -104,12 +102,10 @@
     <Compile Include="Assets\Sources\Generated\AccelerateComponentGeneratedExtension.cs" />
     <Compile Include="Assets\Sources\Generated\ComponentIds.cs" />
     <Compile Include="Assets\Sources\Generated\DestroyComponentGeneratedExtension.cs" />
-    <Compile Include="Assets\Sources\Generated\FinishLineComponentGeneratedExtension.cs" />
     <Compile Include="Assets\Sources\Generated\MoveComponentGeneratedExtension.cs" />
     <Compile Include="Assets\Sources\Generated\PositionComponentGeneratedExtension.cs" />
     <Compile Include="Assets\Sources\Generated\ResourceComponentGeneratedExtension.cs" />
     <Compile Include="Assets\Sources\Generated\ViewComponentGeneratedExtension.cs" />
-    <Compile Include="Assets\TemplateStandardComponent.cs" />
     <Reference Include="UnityEngine.UI">
       <HintPath>C:/Program Files (x86)/Unity/Editor/Data/UnityExtensions/Unity/GUISystem/4.6.2/UnityEngine.UI.dll</HintPath>
     </Reference>
