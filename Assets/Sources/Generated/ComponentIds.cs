@@ -8,12 +8,18 @@ public static class ComponentIds {
     public const int FightSelecting = 6;
     public const int FightData = 7;
     public const int CharMove = 8;
-    public const int Move = 9;
-    public const int Position = 10;
-    public const int Resource = 11;
-    public const int View = 12;
-    public const int Selecting = 13;
-    public const int CharData = 14;
+    public const int GameMaps = 9;
+    public const int LastCoords = 10;
+    public const int MapPlayer = 11;
+    public const int OverWorld = 12;
+    public const int Town = 13;
+    public const int Move = 14;
+    public const int Position = 15;
+    public const int Resource = 16;
+    public const int View = 17;
+    public const int PushScripts = 18;
+    public const int Selecting = 19;
+    public const int CharData = 20;
 
-    public const int TotalComponents = 15;
+    public const int TotalComponents = 21;
 }

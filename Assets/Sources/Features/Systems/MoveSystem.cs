@@ -1,4 +1,5 @@
 ﻿using Entitas;
+using UnityEngine;
 
 public class MoveSystem : IExecuteSystem, ISetPool {
     Group _collection;
@@ -9,9 +10,9 @@ public class MoveSystem : IExecuteSystem, ISetPool {
 
     public void Execute() {
         foreach (var e in _collection.GetEntities()) {
-            var move = e.move;
-            var pos = e.position;
-            e.ReplacePosition(pos.x + move.xSpeed, pos.y + move.ySpeed, pos.z + move.zSpeed);
+            var move = e.move.moveSPD;
+            var pos = e.position.myPos;
+            e.ReplacePosition(new Vector3 (pos.x + move.x, pos.y + move.y, pos.z + move.z));
         }
     }
 }

@@ -46,10 +46,13 @@
 	</Reference>
   </ItemGroup>
   <ItemGroup>
+     <Compile Include="Assets\JSON\Editor\JSONChecker.cs" />
      <Compile Include="Assets\Libraries\EntitasUnity\CodeGenerator\Editor\EntitasCodeGeneratorMenuItem.cs" />
      <Compile Include="Assets\Libraries\EntitasUnity\VisualDebugging\Editor\EntityDebugEditor.cs" />
      <Compile Include="Assets\Libraries\EntitasUnity\VisualDebugging\Editor\ICustomTypeDrawer.cs" />
      <Compile Include="Assets\Libraries\EntitasUnity\VisualDebugging\Editor\PoolDebugEditor.cs" />
+     <None Include="Assets\JSON\readme.txt" />
+     <None Include="Assets\Libraries\LICENSE.txt" />
  <Reference Include="UnityEngine.UI">
  <HintPath>C:/Program Files (x86)/Unity/Editor/Data/UnityExtensions/Unity/GUISystem/4.6.2/UnityEngine.UI.dll</HintPath>
  </Reference>
@@ -58,6 +61,15 @@
  </Reference>
  <Reference Include="UnityEditor.Graphs">
  <HintPath>C:/Program Files (x86)/Unity/Editor/Data/Managed/UnityEditor.Graphs.dll</HintPath>
+ </Reference>
+ <Reference Include="SyntaxTree.VisualStudio.Unity.Bridge">
+ <HintPath>C:/Users/Zerakoin/VivianPrototype/Assets/UnityVS/Editor/SyntaxTree.VisualStudio.Unity.Bridge.dll</HintPath>
+ </Reference>
+ <Reference Include="SyntaxTree.VisualStudio.Unity.Messaging">
+ <HintPath>C:/Users/Zerakoin/VivianPrototype/Assets/UnityVS/Editor/SyntaxTree.VisualStudio.Unity.Messaging.dll</HintPath>
+ </Reference>
+ <Reference Include="UnityVS.VersionSpecific">
+ <HintPath>C:/Users/Zerakoin/VivianPrototype/Assets/UnityVS/Editor/UnityVS.VersionSpecific.dll</HintPath>
  </Reference>
   </ItemGroup>
   <ItemGroup>

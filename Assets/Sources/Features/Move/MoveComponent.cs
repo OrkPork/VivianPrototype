@@ -1,8 +1,7 @@
 ﻿using Entitas;
+using UnityEngine;
 public class MoveComponent : IComponent {
-    public float xSpeed;
-    public float ySpeed;
-    public float zSpeed;
+    public Vector3 moveSPD;
 
 }
 

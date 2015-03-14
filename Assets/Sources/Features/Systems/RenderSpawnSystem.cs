@@ -19,6 +19,14 @@ public class RenderSpawnSystem : IReactiveSystem
             var gameObject = (GameObject)Object.Instantiate(res);
             gameObject.transform.parent = _viewContainer;
             e.AddView(gameObject);
+           /* if(e.hasPushScripts){
+              for ( int i = 0; i < e.pushScripts.pushedScripts.Length; i++) {
+                  gameObject.AddComponent(e.pushScripts.pushedScripts[i]);
+              }
+            }*/
+             
+
+             
         }
     }
 }

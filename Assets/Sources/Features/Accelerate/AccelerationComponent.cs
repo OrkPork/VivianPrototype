@@ -1,12 +1,9 @@
 ﻿using Entitas;
+using UnityEngine;
 
 public class AccelerationComponent : IComponent
 {
     //Variables go here
-    public float xInc;
-    public float yInc;
-    public float zInc;
-    public float xMax;
-    public float yMax;
-    public float zMax;
+    public Vector3 accBy;
+    public Vector3 accCaps;
 }

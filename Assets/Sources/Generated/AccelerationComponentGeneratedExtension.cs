@@ -8,18 +8,14 @@ namespace Entitas {
             AddComponent(ComponentIds.Acceleration, component);
         }
 
-        public void AddAcceleration(float newXInc, float newYInc, float newZInc, float newXMax, float newYMax, float newZMax) {
+        public void AddAcceleration(UnityEngine.Vector3 newAccBy, UnityEngine.Vector3 newAccCaps) {
             var component = new AccelerationComponent();
-            component.xInc = newXInc;
-            component.yInc = newYInc;
-            component.zInc = newZInc;
-            component.xMax = newXMax;
-            component.yMax = newYMax;
-            component.zMax = newZMax;
+            component.accBy = newAccBy;
+            component.accCaps = newAccCaps;
             AddAcceleration(component);
         }
 
-        public void ReplaceAcceleration(float newXInc, float newYInc, float newZInc, float newXMax, float newYMax, float newZMax) {
+        public void ReplaceAcceleration(UnityEngine.Vector3 newAccBy, UnityEngine.Vector3 newAccCaps) {
             AccelerationComponent component;
             if (hasAcceleration) {
                 WillRemoveComponent(ComponentIds.Acceleration);
@@ -27,12 +23,8 @@ namespace Entitas {
             } else {
                 component = new AccelerationComponent();
             }
-            component.xInc = newXInc;
-            component.yInc = newYInc;
-            component.zInc = newZInc;
-            component.xMax = newXMax;
-            component.yMax = newYMax;
-            component.zMax = newZMax;
+            component.accBy = newAccBy;
+            component.accCaps = newAccCaps;
             ReplaceComponent(ComponentIds.Acceleration, component);
         }
 

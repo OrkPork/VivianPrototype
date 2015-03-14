@@ -8,15 +8,13 @@ namespace Entitas {
             AddComponent(ComponentIds.Position, component);
         }
 
-        public void AddPosition(float newX, float newY, float newZ) {
+        public void AddPosition(UnityEngine.Vector3 newMyPos) {
             var component = new PositionComponent();
-            component.x = newX;
-            component.y = newY;
-            component.z = newZ;
+            component.myPos = newMyPos;
             AddPosition(component);
         }
 
-        public void ReplacePosition(float newX, float newY, float newZ) {
+        public void ReplacePosition(UnityEngine.Vector3 newMyPos) {
             PositionComponent component;
             if (hasPosition) {
                 WillRemoveComponent(ComponentIds.Position);
@@ -24,9 +22,7 @@ namespace Entitas {
             } else {
                 component = new PositionComponent();
             }
-            component.x = newX;
-            component.y = newY;
-            component.z = newZ;
+            component.myPos = newMyPos;
             ReplaceComponent(ComponentIds.Position, component);
         }
 

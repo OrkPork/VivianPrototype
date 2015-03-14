@@ -8,15 +8,13 @@ namespace Entitas {
             AddComponent(ComponentIds.Move, component);
         }
 
-        public void AddMove(float newXSpeed, float newYSpeed, float newZSpeed) {
+        public void AddMove(UnityEngine.Vector3 newMoveSPD) {
             var component = new MoveComponent();
-            component.xSpeed = newXSpeed;
-            component.ySpeed = newYSpeed;
-            component.zSpeed = newZSpeed;
+            component.moveSPD = newMoveSPD;
             AddMove(component);
         }
 
-        public void ReplaceMove(float newXSpeed, float newYSpeed, float newZSpeed) {
+        public void ReplaceMove(UnityEngine.Vector3 newMoveSPD) {
             MoveComponent component;
             if (hasMove) {
                 WillRemoveComponent(ComponentIds.Move);
@@ -24,9 +22,7 @@ namespace Entitas {
             } else {
                 component = new MoveComponent();
             }
-            component.xSpeed = newXSpeed;
-            component.ySpeed = newYSpeed;
-            component.zSpeed = newZSpeed;
+            component.moveSPD = newMoveSPD;
             ReplaceComponent(ComponentIds.Move, component);
         }
 

@@ -3,6 +3,7 @@ using UnityEngine;
 
 public class RenderPositionSystem : IReactiveSystem {
     public IMatcher GetTriggeringMatcher() {
+        //     position
         return Matcher.AllOf(Matcher.View, Matcher.Position);
     }
 
@@ -12,8 +13,8 @@ public class RenderPositionSystem : IReactiveSystem {
 
     public void Execute(Entity[] entities) {
         foreach (var e in entities) {
-            var pos = e.position;
-            e.view.gameObject.transform.position = new Vector3(pos.x, pos.y, pos.z);
+            //var pos = e.position.myPos;
+            e.view.gameObject.transform.position = e.position.myPos;
         }
     }
 }
