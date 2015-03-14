@@ -1,9 +1,12 @@
 ﻿using UnityEngine;
 using System.Collections.Generic;
 using Entitas;
+using System.IO; 
+//using j
 
 public class GameController : MonoBehaviour {
     Pool _repo;
+    //JSONTemplates
     int mapIndex = 0;
     public List<string> mapTitles = new List<string> { "TestMap" };
     IExecuteSystem[] _systems;
@@ -16,10 +19,15 @@ public class GameController : MonoBehaviour {
         createSystems();
         if (!PlayerPrefs.HasKey("MyProfiles"))
         {
+            Debug.Log("No profile detected, creating one");
             createProfile();
+            
+            //JSONObject
         }
         else
         {
+            //new JSONObject()
+            
             //loadProfile();
         }
         
@@ -97,6 +105,27 @@ public class GameController : MonoBehaviour {
         //if (savereference) first time playing e.AddMyinputs(default inputs)
         
         var e = _repo.CreateEntity();
+        e.AddMyInputs(new Dictionary<string, string> { 
+        {"Left","Left" },
+        {"Right", "Right"},
+        {"Up", "Up"},
+        {"Down", "Down"},
+        {"Jump", "Jump"},
+        {"Run","" },
+        {"Roll", ""},
+        {"Attack","" },
+        {"Block","" },
+        {"Items","" },
+        {"Skills","" },
+        {"Select","Submit" },
+        {"Cancel","Cancel" },
+        {"Settings","" },
+        {"Menu","" },
+        {"Inventory","" },
+        {"Map","" },
+        {"Save","" },
+        {"Pause","" }
+        });
         //can't have resource or position
         //input data
         //char data
@@ -115,8 +144,8 @@ public class GameController : MonoBehaviour {
 
     void createPlayer() {
         var e = _repo.CreateEntity();
-        //var myscripts = new list<string> { "ContactFights" };
-        //e.AddPushScripts(myscripts);
+        var myscripts = new List<string> { "ContactFights" };
+        e.AddPushScripts(myscripts);
         e.AddResource("Player");
         e.AddPosition(new Vector3 (0, 0.5f, 0));
         e.AddCharMove(new Vector3 (8f, 0, 8f));

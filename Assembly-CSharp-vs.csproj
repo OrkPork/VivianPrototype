@@ -1,147 +1,154 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <PropertyGroup>
-	<Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
-	<Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-	<ProductVersion>10.0.20506</ProductVersion>
-	<SchemaVersion>2.0</SchemaVersion>
-	<ProjectGuid>{85F4B8E3-E0D2-BAF6-E362-25F8313D7F78}</ProjectGuid>
-	<OutputType>Library</OutputType>
-	<AppDesignerFolder>Properties</AppDesignerFolder>
-	<RootNamespace></RootNamespace>
-	<AssemblyName>Assembly-CSharp</AssemblyName>
-	<TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
-	<FileAlignment>512</FileAlignment>
-	<BaseDirectory>Assets</BaseDirectory>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>10.0.20506</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{85F4B8E3-E0D2-BAF6-E362-25F8313D7F78}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>
+    </RootNamespace>
+    <AssemblyName>Assembly-CSharp</AssemblyName>
+    <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <BaseDirectory>Assets</BaseDirectory>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
-	<DebugSymbols>true</DebugSymbols>
-	<DebugType>full</DebugType>
-	<Optimize>false</Optimize>
-	<OutputPath>Temp\bin\Debug\</OutputPath>
-	<DefineConstants>DEBUG;TRACE;UNITY_4_6_2;UNITY_4_6;UNITY_STANDALONE_WIN;ENABLE_MICROPHONE;ENABLE_TEXTUREID_MAP;ENABLE_UNITYEVENTS;ENABLE_NEW_HIERARCHY ;ENABLE_AUDIO_FMOD;UNITY_STANDALONE;ENABLE_TERRAIN;ENABLE_SUBSTANCE;ENABLE_GENERICS;INCLUDE_IL2CPP;INCLUDE_WP8SUPPORT;ENABLE_MOVIES;ENABLE_WWW;ENABLE_IMAGEEFFECTS;ENABLE_4_6_FEATURES;INCLUDE_WP_BLUE_SUPPORT;ENABLE_WEBCAM;INCLUDE_METROSUPPORT;RENDER_SOFTWARE_CURSOR;ENABLE_NETWORK;ENABLE_PHYSICS;UNITY5_SCRIPTING_IN_UNITY4;ENABLE_CACHING;ENABLE_CLOTH;ENABLE_2D_PHYSICS;ENABLE_SHADOWS;ENABLE_AUDIO;ENABLE_NAVMESH_CARVING;ENABLE_DUCK_TYPING;ENABLE_SINGLE_INSTANCE_BUILD_SETTING;ENABLE_MONO;ENABLE_PROFILER;UNITY_EDITOR;UNITY_EDITOR_WIN</DefineConstants>
-	<ErrorReport>prompt</ErrorReport>
-	<WarningLevel>4</WarningLevel>
-	<NoWarn>0169</NoWarn>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>Temp\bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE;UNITY_4_6_2;UNITY_4_6;UNITY_STANDALONE_WIN;ENABLE_MICROPHONE;ENABLE_TEXTUREID_MAP;ENABLE_UNITYEVENTS;ENABLE_NEW_HIERARCHY ;ENABLE_AUDIO_FMOD;UNITY_STANDALONE;ENABLE_TERRAIN;ENABLE_SUBSTANCE;ENABLE_GENERICS;INCLUDE_IL2CPP;INCLUDE_WP8SUPPORT;ENABLE_MOVIES;ENABLE_WWW;ENABLE_IMAGEEFFECTS;ENABLE_4_6_FEATURES;INCLUDE_WP_BLUE_SUPPORT;ENABLE_WEBCAM;INCLUDE_METROSUPPORT;RENDER_SOFTWARE_CURSOR;ENABLE_NETWORK;ENABLE_PHYSICS;UNITY5_SCRIPTING_IN_UNITY4;ENABLE_CACHING;ENABLE_CLOTH;ENABLE_2D_PHYSICS;ENABLE_SHADOWS;ENABLE_AUDIO;ENABLE_NAVMESH_CARVING;ENABLE_DUCK_TYPING;ENABLE_SINGLE_INSTANCE_BUILD_SETTING;ENABLE_MONO;ENABLE_PROFILER;UNITY_EDITOR;UNITY_EDITOR_WIN</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <NoWarn>0169</NoWarn>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
-	<DebugType>pdbonly</DebugType>
-	<Optimize>true</Optimize>
-	<OutputPath>Temp\bin\Release\</OutputPath>
-	<DefineConstants>TRACE</DefineConstants>
-	<ErrorReport>prompt</ErrorReport>
-	<WarningLevel>4</WarningLevel>
-	<NoWarn>0169</NoWarn>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>Temp\bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <NoWarn>0169</NoWarn>
   </PropertyGroup>
   <ItemGroup>
-	<Reference Include="System" />
+    <Reference Include="System" />
     <Reference Include="System.XML" />
-	<Reference Include="System.Core" />
-	<Reference Include="System.Xml.Linq" />
-	<Reference Include="UnityEngine">
-	  <HintPath>C:/Program Files (x86)/Unity/Editor/Data/Managed/UnityEngine.dll</HintPath>
-	</Reference>
-	<Reference Include="UnityEditor">
-	  <HintPath>C:/Program Files (x86)/Unity/Editor/Data/Managed/UnityEditor.dll</HintPath>
-	</Reference>
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="UnityEngine">
+      <HintPath>C:/Program Files (x86)/Unity/Editor/Data/Managed/UnityEngine.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEditor">
+      <HintPath>C:/Program Files (x86)/Unity/Editor/Data/Managed/UnityEditor.dll</HintPath>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
-     <Compile Include="Assets\JSON\JSONObject.cs" />
-     <Compile Include="Assets\JSON\JSONTemplates.cs" />
-     <Compile Include="Assets\JSON\VectorTemplates.cs" />
-     <Compile Include="Assets\Libraries\Entitas\Entity.cs" />
-     <Compile Include="Assets\Libraries\Entitas\Extensions\CollectionExtension.cs" />
-     <Compile Include="Assets\Libraries\Entitas\Extensions\GroupExtension.cs" />
-     <Compile Include="Assets\Libraries\Entitas\Extensions\PoolExtension.cs" />
-     <Compile Include="Assets\Libraries\Entitas\Group.cs" />
-     <Compile Include="Assets\Libraries\Entitas\GroupObserver.cs" />
-     <Compile Include="Assets\Libraries\Entitas\Interfaces\IComponent.cs" />
-     <Compile Include="Assets\Libraries\Entitas\Interfaces\IExecuteSystem.cs" />
-     <Compile Include="Assets\Libraries\Entitas\Interfaces\IMatcher.cs" />
-     <Compile Include="Assets\Libraries\Entitas\Interfaces\IReactiveSystem.cs" />
-     <Compile Include="Assets\Libraries\Entitas\Interfaces\ISystem.cs" />
-     <Compile Include="Assets\Libraries\Entitas\Matcher\AbstractCompoundMatcher.cs" />
-     <Compile Include="Assets\Libraries\Entitas\Matcher\AbstractMatcher.cs" />
-     <Compile Include="Assets\Libraries\Entitas\Matcher\AllOfCompoundMatcher.cs" />
-     <Compile Include="Assets\Libraries\Entitas\Matcher\AllOfMatcher.cs" />
-     <Compile Include="Assets\Libraries\Entitas\Matcher\AnyOfCompoundMatcher.cs" />
-     <Compile Include="Assets\Libraries\Entitas\Matcher\AnyOfMatcher.cs" />
-     <Compile Include="Assets\Libraries\Entitas\Matcher\NoneOfCompoundMatcher.cs" />
-     <Compile Include="Assets\Libraries\Entitas\Matcher\NoneOfMatcher.cs" />
-     <Compile Include="Assets\Libraries\Entitas\Pool.cs" />
-     <Compile Include="Assets\Libraries\Entitas\ReactiveSystem.cs" />
-     <Compile Include="Assets\Libraries\EntitasCodeGenerator\Attributes\DontGenerateAttribute.cs" />
-     <Compile Include="Assets\Libraries\EntitasCodeGenerator\Attributes\PoolAttribute.cs" />
-     <Compile Include="Assets\Libraries\EntitasCodeGenerator\Attributes\SingleEntityAttribute.cs" />
-     <Compile Include="Assets\Libraries\EntitasCodeGenerator\EntitasCodeGenerator.cs" />
-     <Compile Include="Assets\Libraries\EntitasCodeGenerator\Generators\ComponentExtensionsGenerator.cs" />
-     <Compile Include="Assets\Libraries\EntitasCodeGenerator\Generators\IndicesLookupGenerator.cs" />
-     <Compile Include="Assets\Libraries\EntitasUnity\VisualDebugging\DebugComponent.cs" />
-     <Compile Include="Assets\Libraries\EntitasUnity\VisualDebugging\DebugPool.cs" />
-     <Compile Include="Assets\Libraries\EntitasUnity\VisualDebugging\EntityDebugBehaviour.cs" />
-     <Compile Include="Assets\Libraries\EntitasUnity\VisualDebugging\PoolDebugBehaviour.cs" />
-     <Compile Include="Assets\Scripts\CameraController.cs" />
-     <Compile Include="Assets\Scripts\ContactFights.cs" />
-     <Compile Include="Assets\Scripts\GameController.cs" />
-     <Compile Include="Assets\Sources\Features\Accelerate\AcceleratableComponent.cs" />
-     <Compile Include="Assets\Sources\Features\Accelerate\AccelerateComponent.cs" />
-     <Compile Include="Assets\Sources\Features\Accelerate\AccelerationComponent.cs" />
-     <Compile Include="Assets\Sources\Features\Contact\TouchingComponent.cs" />
-     <Compile Include="Assets\Sources\Features\Destroy\DestroyComponent.cs" />
-     <Compile Include="Assets\Sources\Features\FightSelector\FightSelectedComponent.cs" />
-     <Compile Include="Assets\Sources\Features\FightSelector\FightSelectingComponent.cs" />
-     <Compile Include="Assets\Sources\Features\FightUI\FightDataComponent.cs" />
-     <Compile Include="Assets\Sources\Features\Input\CharMoveComponent.cs" />
-     <Compile Include="Assets\Sources\Features\Input\DefaultInputsComponent.cs" />
-     <Compile Include="Assets\Sources\Features\Input\MaxSavedInputs.cs" />
-     <Compile Include="Assets\Sources\Features\Input\MyInputsComponent.cs" />
-     <Compile Include="Assets\Sources\Features\Input\SavedInputsComponent.cs" />
-     <Compile Include="Assets\Sources\Features\Maps\GameMapsComponent.cs" />
-     <Compile Include="Assets\Sources\Features\Maps\LastCoordsComponent.cs" />
-     <Compile Include="Assets\Sources\Features\Maps\MapPlayerComponent.cs" />
-     <Compile Include="Assets\Sources\Features\Maps\OverWorldComponent.cs" />
-     <Compile Include="Assets\Sources\Features\Maps\TownComponent.cs" />
-     <Compile Include="Assets\Sources\Features\Move\FreeToMoveComponent.cs" />
-     <Compile Include="Assets\Sources\Features\Move\MoveComponent.cs" />
-     <Compile Include="Assets\Sources\Features\Move\PositionComponent.cs" />
-     <Compile Include="Assets\Sources\Features\RenderSpawn\ResourceComponent.cs" />
-     <Compile Include="Assets\Sources\Features\RenderSpawn\ViewComponent.cs" />
-     <Compile Include="Assets\Sources\Features\SCRIPTS\PushScriptsComponent.cs" />
-     <Compile Include="Assets\Sources\Features\Selector\SelectingComponent.cs" />
-     <Compile Include="Assets\Sources\Features\Systems\AccelerateSystem.cs" />
-     <Compile Include="Assets\Sources\Features\Systems\DestroySystem.cs" />
-     <Compile Include="Assets\Sources\Features\Systems\InputSystem.cs" />
-     <Compile Include="Assets\Sources\Features\Systems\MoveSystem.cs" />
-     <Compile Include="Assets\Sources\Features\Systems\RenderDespawnSystem.cs" />
-     <Compile Include="Assets\Sources\Features\Systems\RenderPositionSystem.cs" />
-     <Compile Include="Assets\Sources\Features\Systems\RenderSpawnSystem.cs" />
-     <Compile Include="Assets\Sources\Features\Users\CharDataComponent.cs" />
-     <Compile Include="Assets\Sources\Generated\AcceleratableComponentGeneratedExtension.cs" />
-     <Compile Include="Assets\Sources\Generated\AccelerateComponentGeneratedExtension.cs" />
-     <Compile Include="Assets\Sources\Generated\AccelerationComponentGeneratedExtension.cs" />
-     <Compile Include="Assets\Sources\Generated\CharDataComponentGeneratedExtension.cs" />
-     <Compile Include="Assets\Sources\Generated\CharMoveComponentGeneratedExtension.cs" />
-     <Compile Include="Assets\Sources\Generated\ComponentIds.cs" />
-     <Compile Include="Assets\Sources\Generated\DestroyComponentGeneratedExtension.cs" />
-     <Compile Include="Assets\Sources\Generated\FightDataComponentGeneratedExtension.cs" />
-     <Compile Include="Assets\Sources\Generated\FightSelectedGeneratedExtension.cs" />
-     <Compile Include="Assets\Sources\Generated\FightSelectingComponentGeneratedExtension.cs" />
-     <Compile Include="Assets\Sources\Generated\GameMapsComponentGeneratedExtension.cs" />
-     <Compile Include="Assets\Sources\Generated\LastCoordsComponentGeneratedExtension.cs" />
-     <Compile Include="Assets\Sources\Generated\MapPlayerComponentGeneratedExtension.cs" />
-     <Compile Include="Assets\Sources\Generated\MoveComponentGeneratedExtension.cs" />
-     <Compile Include="Assets\Sources\Generated\OverWorldComponentGeneratedExtension.cs" />
-     <Compile Include="Assets\Sources\Generated\PositionComponentGeneratedExtension.cs" />
-     <Compile Include="Assets\Sources\Generated\ResourceComponentGeneratedExtension.cs" />
-     <Compile Include="Assets\Sources\Generated\SelectingComponentGeneratedExtension.cs" />
-     <Compile Include="Assets\Sources\Generated\TouchingComponentGeneratedExtension.cs" />
-     <Compile Include="Assets\Sources\Generated\TownComponentGeneratedExtension.cs" />
-     <Compile Include="Assets\Sources\Generated\ViewComponentGeneratedExtension.cs" />
-     <None Include="Assets\JSON\readme.txt" />
-     <None Include="Assets\Libraries\LICENSE.txt" />
- <Reference Include="UnityEngine.UI">
- <HintPath>C:/Program Files (x86)/Unity/Editor/Data/UnityExtensions/Unity/GUISystem/4.6.2/UnityEngine.UI.dll</HintPath>
- </Reference>
+    <Compile Include="Assets\JSON\JSONObject.cs" />
+    <Compile Include="Assets\JSON\JSONTemplates.cs" />
+    <Compile Include="Assets\JSON\VectorTemplates.cs" />
+    <Compile Include="Assets\Libraries\Entitas\Entity.cs" />
+    <Compile Include="Assets\Libraries\Entitas\Extensions\CollectionExtension.cs" />
+    <Compile Include="Assets\Libraries\Entitas\Extensions\GroupExtension.cs" />
+    <Compile Include="Assets\Libraries\Entitas\Extensions\PoolExtension.cs" />
+    <Compile Include="Assets\Libraries\Entitas\Group.cs" />
+    <Compile Include="Assets\Libraries\Entitas\GroupObserver.cs" />
+    <Compile Include="Assets\Libraries\Entitas\Interfaces\IComponent.cs" />
+    <Compile Include="Assets\Libraries\Entitas\Interfaces\IExecuteSystem.cs" />
+    <Compile Include="Assets\Libraries\Entitas\Interfaces\IMatcher.cs" />
+    <Compile Include="Assets\Libraries\Entitas\Interfaces\IReactiveSystem.cs" />
+    <Compile Include="Assets\Libraries\Entitas\Interfaces\ISystem.cs" />
+    <Compile Include="Assets\Libraries\Entitas\Matcher\AbstractCompoundMatcher.cs" />
+    <Compile Include="Assets\Libraries\Entitas\Matcher\AbstractMatcher.cs" />
+    <Compile Include="Assets\Libraries\Entitas\Matcher\AllOfCompoundMatcher.cs" />
+    <Compile Include="Assets\Libraries\Entitas\Matcher\AllOfMatcher.cs" />
+    <Compile Include="Assets\Libraries\Entitas\Matcher\AnyOfCompoundMatcher.cs" />
+    <Compile Include="Assets\Libraries\Entitas\Matcher\AnyOfMatcher.cs" />
+    <Compile Include="Assets\Libraries\Entitas\Matcher\NoneOfCompoundMatcher.cs" />
+    <Compile Include="Assets\Libraries\Entitas\Matcher\NoneOfMatcher.cs" />
+    <Compile Include="Assets\Libraries\Entitas\Pool.cs" />
+    <Compile Include="Assets\Libraries\Entitas\ReactiveSystem.cs" />
+    <Compile Include="Assets\Libraries\EntitasCodeGenerator\Attributes\DontGenerateAttribute.cs" />
+    <Compile Include="Assets\Libraries\EntitasCodeGenerator\Attributes\PoolAttribute.cs" />
+    <Compile Include="Assets\Libraries\EntitasCodeGenerator\Attributes\SingleEntityAttribute.cs" />
+    <Compile Include="Assets\Libraries\EntitasCodeGenerator\EntitasCodeGenerator.cs" />
+    <Compile Include="Assets\Libraries\EntitasCodeGenerator\Generators\ComponentExtensionsGenerator.cs" />
+    <Compile Include="Assets\Libraries\EntitasCodeGenerator\Generators\IndicesLookupGenerator.cs" />
+    <Compile Include="Assets\Libraries\EntitasUnity\VisualDebugging\DebugComponent.cs" />
+    <Compile Include="Assets\Libraries\EntitasUnity\VisualDebugging\DebugPool.cs" />
+    <Compile Include="Assets\Libraries\EntitasUnity\VisualDebugging\EntityDebugBehaviour.cs" />
+    <Compile Include="Assets\Libraries\EntitasUnity\VisualDebugging\PoolDebugBehaviour.cs" />
+    <Compile Include="Assets\Scripts\CameraController.cs" />
+    <Compile Include="Assets\Scripts\ContactFights.cs" />
+    <Compile Include="Assets\Scripts\GameController.cs" />
+    <Compile Include="Assets\Sources\Features\Accelerate\AcceleratableComponent.cs" />
+    <Compile Include="Assets\Sources\Features\Accelerate\AccelerateComponent.cs" />
+    <Compile Include="Assets\Sources\Features\Accelerate\AccelerationComponent.cs" />
+    <Compile Include="Assets\Sources\Features\Contact\TouchingComponent.cs" />
+    <Compile Include="Assets\Sources\Features\Destroy\DestroyComponent.cs" />
+    <Compile Include="Assets\Sources\Features\FightSelector\FightSelectedComponent.cs" />
+    <Compile Include="Assets\Sources\Features\FightSelector\FightSelectingComponent.cs" />
+    <Compile Include="Assets\Sources\Features\FightUI\FightDataComponent.cs" />
+    <Compile Include="Assets\Sources\Features\Input\CharMoveComponent.cs" />
+    <Compile Include="Assets\Sources\Features\Input\DefaultInputsComponent.cs" />
+    <Compile Include="Assets\Sources\Features\Input\MaxSavedInputs.cs" />
+    <Compile Include="Assets\Sources\Features\Input\MyInputsComponent.cs" />
+    <Compile Include="Assets\Sources\Features\Input\SavedInputsComponent.cs" />
+    <Compile Include="Assets\Sources\Features\Maps\GameMapsComponent.cs" />
+    <Compile Include="Assets\Sources\Features\Maps\LastCoordsComponent.cs" />
+    <Compile Include="Assets\Sources\Features\Maps\MapPlayerComponent.cs" />
+    <Compile Include="Assets\Sources\Features\Maps\OverWorldComponent.cs" />
+    <Compile Include="Assets\Sources\Features\Maps\TownComponent.cs" />
+    <Compile Include="Assets\Sources\Features\Move\FreeToMoveComponent.cs" />
+    <Compile Include="Assets\Sources\Features\Move\MoveComponent.cs" />
+    <Compile Include="Assets\Sources\Features\Move\PositionComponent.cs" />
+    <Compile Include="Assets\Sources\Features\RenderSpawn\ResourceComponent.cs" />
+    <Compile Include="Assets\Sources\Features\RenderSpawn\ViewComponent.cs" />
+    <Compile Include="Assets\Sources\Features\SCRIPTS\PushScriptsComponent.cs" />
+    <Compile Include="Assets\Sources\Features\Selector\SelectingComponent.cs" />
+    <Compile Include="Assets\Sources\Features\Systems\AccelerateSystem.cs" />
+    <Compile Include="Assets\Sources\Features\Systems\DestroySystem.cs" />
+    <Compile Include="Assets\Sources\Features\Systems\InputSystem.cs" />
+    <Compile Include="Assets\Sources\Features\Systems\MoveSystem.cs" />
+    <Compile Include="Assets\Sources\Features\Systems\RenderDespawnSystem.cs" />
+    <Compile Include="Assets\Sources\Features\Systems\RenderPositionSystem.cs" />
+    <Compile Include="Assets\Sources\Features\Systems\RenderSpawnSystem.cs" />
+    <Compile Include="Assets\Sources\Features\Users\CharDataComponent.cs" />
+    <Compile Include="Assets\Sources\Generated\AcceleratableComponentGeneratedExtension.cs" />
+    <Compile Include="Assets\Sources\Generated\AccelerateComponentGeneratedExtension.cs" />
+    <Compile Include="Assets\Sources\Generated\AccelerationComponentGeneratedExtension.cs" />
+    <Compile Include="Assets\Sources\Generated\CharDataComponentGeneratedExtension.cs" />
+    <Compile Include="Assets\Sources\Generated\CharMoveComponentGeneratedExtension.cs" />
+    <Compile Include="Assets\Sources\Generated\ComponentIds.cs" />
+    <Compile Include="Assets\Sources\Generated\DefaultInputsComponentGeneratedExtension.cs" />
+    <Compile Include="Assets\Sources\Generated\DestroyComponentGeneratedExtension.cs" />
+    <Compile Include="Assets\Sources\Generated\FightDataComponentGeneratedExtension.cs" />
+    <Compile Include="Assets\Sources\Generated\FightSelectedGeneratedExtension.cs" />
+    <Compile Include="Assets\Sources\Generated\FightSelectingComponentGeneratedExtension.cs" />
+    <Compile Include="Assets\Sources\Generated\FreeToMoveComponentGeneratedExtension.cs" />
+    <Compile Include="Assets\Sources\Generated\GameMapsComponentGeneratedExtension.cs" />
+    <Compile Include="Assets\Sources\Generated\LastCoordsComponentGeneratedExtension.cs" />
+    <Compile Include="Assets\Sources\Generated\MapPlayerComponentGeneratedExtension.cs" />
+    <Compile Include="Assets\Sources\Generated\MaxSavedInputsGeneratedExtension.cs" />
+    <Compile Include="Assets\Sources\Generated\MoveComponentGeneratedExtension.cs" />
+    <Compile Include="Assets\Sources\Generated\MyInputsComponentGeneratedExtension.cs" />
+    <Compile Include="Assets\Sources\Generated\OverWorldComponentGeneratedExtension.cs" />
+    <Compile Include="Assets\Sources\Generated\PositionComponentGeneratedExtension.cs" />
+    <Compile Include="Assets\Sources\Generated\PushScriptsComponentGeneratedExtension.cs" />
+    <Compile Include="Assets\Sources\Generated\ResourceComponentGeneratedExtension.cs" />
+    <Compile Include="Assets\Sources\Generated\SavedInputsComponentGeneratedExtension.cs" />
+    <Compile Include="Assets\Sources\Generated\SelectingComponentGeneratedExtension.cs" />
+    <Compile Include="Assets\Sources\Generated\TouchingComponentGeneratedExtension.cs" />
+    <Compile Include="Assets\Sources\Generated\TownComponentGeneratedExtension.cs" />
+    <Compile Include="Assets\Sources\Generated\ViewComponentGeneratedExtension.cs" />
+    <None Include="Assets\JSON\readme.txt" />
+    <None Include="Assets\Libraries\LICENSE.txt" />
+    <Reference Include="UnityEngine.UI">
+      <HintPath>C:/Program Files (x86)/Unity/Editor/Data/UnityExtensions/Unity/GUISystem/4.6.2/UnityEngine.UI.dll</HintPath>
+    </Reference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
@@ -151,5 +158,4 @@
   <Target Name="AfterBuild">
   </Target>
   -->
-  
 </Project>

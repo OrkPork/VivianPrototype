@@ -17,11 +17,11 @@ public class InputSystem : IExecuteSystem, ISetPool {
          * */
         //replace with component reference
         List<string> compareStr = new List<string> {"butts"};
-        Dictionary<string, string> removeaftergenerate = new Dictionary<string,string>() {{"also", "butts"}};
+        Dictionary<string, string> dictInputs = _repo.myInputs.commands;
         if (Input.anyKey)
         {
             //reference to a component goes here
-            List<string> componentkeysreference = getStrokedKeys(compareStr, removeaftergenerate);
+            List<string> componentkeysreference = getStrokedKeys(compareStr, dictInputs);
         }
     }
 

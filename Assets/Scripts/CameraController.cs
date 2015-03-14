@@ -17,17 +17,17 @@ public class CameraController : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
-		calcBorders();
+		//calcBorders();
 	}
 
 	
 	// Update is called once per frame
 	void Update () {
-		if(players == null){
+		/*if(players == null){
 			checkPlayers();
 		}
 		calcBorders(); 
-		moveCamera();
+		moveCamera();*/
 	}
 
 	public void checkPlayers(){
