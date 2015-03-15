@@ -105,27 +105,27 @@ public class GameController : MonoBehaviour {
         //if (savereference) first time playing e.AddMyinputs(default inputs)
         
         var e = _repo.CreateEntity();
-        e.AddMyInputs(new Dictionary<string, string> { 
-        {"Left","Left" },
-        {"Right", "Right"},
-        {"Up", "Up"},
-        {"Down", "Down"},
-        {"Jump", "Jump"},
-        {"Run","" },
-        {"Roll", ""},
-        {"Attack","" },
-        {"Block","" },
-        {"Items","" },
-        {"Skills","" },
-        {"Select","Submit" },
-        {"Cancel","Cancel" },
-        {"Settings","" },
-        {"Menu","" },
-        {"Inventory","" },
-        {"Map","" },
-        {"Save","" },
-        {"Pause","" }
-        });
+       /* e.AddMyInputs(new Dictionary<string, string> { 
+            {"Left","Left" },
+            {"Right", "Right"},
+            {"Up", "Up"},
+            {"Down", "Down"},
+            {"Jump", "Jump"},
+            {"Run","" },
+            {"Roll", ""},
+            {"Attack","" },
+            {"Block","" },
+            {"Items","" },
+            {"Skills","" },
+            {"Select","Submit" },
+            {"Cancel","Cancel" },
+            {"Settings","" },
+            {"Menu","" },
+            {"Inventory","" },
+            {"Map","" },
+            {"Save","" },
+            {"Pause","" }
+        });*/
         //can't have resource or position
         //input data
         //char data

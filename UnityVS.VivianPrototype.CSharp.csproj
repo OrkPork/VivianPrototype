@@ -101,6 +101,7 @@
     <Compile Include="Assets\Sources\Features\FightUI\FightDataComponent.cs" />
     <Compile Include="Assets\Sources\Features\Input\CharMoveComponent.cs" />
     <Compile Include="Assets\Sources\Features\Input\DefaultInputsComponent.cs" />
+    <Compile Include="Assets\Sources\Features\Input\InputStateComponent.cs" />
     <Compile Include="Assets\Sources\Features\Input\MaxSavedInputs.cs" />
     <Compile Include="Assets\Sources\Features\Input\MyInputsComponent.cs" />
     <Compile Include="Assets\Sources\Features\Input\SavedInputsComponent.cs" />
