@@ -1,0 +1,71 @@
+{
+	"DefaultInputs": {
+		"myCommands":[ 
+			"Left", 
+			"Right", 
+			"Up",
+			"Down",
+            "Jump",
+            "Run",
+            "Roll",
+            "Attack",
+            "Block",
+            "Items",
+            "Skills",
+            "Select",
+            "Cancel",
+            "Settings",
+            "Menu",
+            "Inventory",
+            "Map",
+            "Save",
+			"Pause"],
+		"myButton":[
+			"bttns1":[
+				"KeyCode.LeftArrow",
+				"KeyCode.RightArrow",
+				"KeyCode.UpArrow",
+				"KeyCode.DownArrow",
+				"KeyCode.NONE",
+				"KeyCode.NONE",
+				"KeyCode.NONE",
+				"KeyCode.Q",
+				"KeyCode.W",
+				"KeyCode.E",
+				"KeyCode.R",
+				"KeyCode.Return",
+				"KeyCode.BackSpace",
+				"KeyCode.U",
+				"KeyCode.Y",
+				"KeyCode.I",
+				"KeyCode.M",
+				"KeyCode.J",
+				"KeyCode.P"]
+			
+		],
+		"myAxis":[
+			"Horizontal",
+			"Horizontal",
+			"Vertical",
+			"Vertical",
+			"",
+			"",
+			"",
+			"",
+			"",
+			"",
+			"",
+			"",
+			"",
+			"",
+			"",
+			"",
+			"",
+			"",
+			""
+		]
+		
+		
+		
+	}
+}

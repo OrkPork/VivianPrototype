@@ -8,13 +8,14 @@ namespace Entitas {
             AddComponent(ComponentIds.SavedInputs, component);
         }
 
-        public void AddSavedInputs(System.Collections.Generic.List<System.Collections.Generic.Dictionary<string, string>> newProfiles) {
+        public void AddSavedInputs(System.Collections.Generic.List<System.Collections.Generic.List<UnityEngine.KeyCode>> newCommandButton, System.Collections.Generic.List<System.Collections.Generic.List<string>> newCommandAxis) {
             var component = new SavedInputsComponent();
-            component.profiles = newProfiles;
+            component.commandButton = newCommandButton;
+            component.commandAxis = newCommandAxis;
             AddSavedInputs(component);
         }
 
-        public void ReplaceSavedInputs(System.Collections.Generic.List<System.Collections.Generic.Dictionary<string, string>> newProfiles) {
+        public void ReplaceSavedInputs(System.Collections.Generic.List<System.Collections.Generic.List<UnityEngine.KeyCode>> newCommandButton, System.Collections.Generic.List<System.Collections.Generic.List<string>> newCommandAxis) {
             SavedInputsComponent component;
             if (hasSavedInputs) {
                 WillRemoveComponent(ComponentIds.SavedInputs);
@@ -22,7 +23,8 @@ namespace Entitas {
             } else {
                 component = new SavedInputsComponent();
             }
-            component.profiles = newProfiles;
+            component.commandButton = newCommandButton;
+            component.commandAxis = newCommandAxis;
             ReplaceComponent(ComponentIds.SavedInputs, component);
         }
 

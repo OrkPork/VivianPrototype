@@ -92,9 +92,6 @@
      <Compile Include="Assets\Sources\Features\FightSelector\FightSelectingComponent.cs" />
      <Compile Include="Assets\Sources\Features\FightUI\FightDataComponent.cs" />
      <Compile Include="Assets\Sources\Features\Input\CharMoveComponent.cs" />
-     <Compile Include="Assets\Sources\Features\Input\DefaultInputsComponent.cs" />
-     <Compile Include="Assets\Sources\Features\Input\InputStateComponent.cs" />
-     <Compile Include="Assets\Sources\Features\Input\MaxSavedInputs.cs" />
      <Compile Include="Assets\Sources\Features\Input\MyInputsComponent.cs" />
      <Compile Include="Assets\Sources\Features\Input\SavedInputsComponent.cs" />
      <Compile Include="Assets\Sources\Features\Maps\GameMapsComponent.cs" />
@@ -123,7 +120,6 @@
      <Compile Include="Assets\Sources\Generated\CharDataComponentGeneratedExtension.cs" />
      <Compile Include="Assets\Sources\Generated\CharMoveComponentGeneratedExtension.cs" />
      <Compile Include="Assets\Sources\Generated\ComponentIds.cs" />
-     <Compile Include="Assets\Sources\Generated\DefaultInputsComponentGeneratedExtension.cs" />
      <Compile Include="Assets\Sources\Generated\DestroyComponentGeneratedExtension.cs" />
      <Compile Include="Assets\Sources\Generated\FightDataComponentGeneratedExtension.cs" />
      <Compile Include="Assets\Sources\Generated\FightSelectedGeneratedExtension.cs" />
@@ -132,7 +128,6 @@
      <Compile Include="Assets\Sources\Generated\GameMapsComponentGeneratedExtension.cs" />
      <Compile Include="Assets\Sources\Generated\LastCoordsComponentGeneratedExtension.cs" />
      <Compile Include="Assets\Sources\Generated\MapPlayerComponentGeneratedExtension.cs" />
-     <Compile Include="Assets\Sources\Generated\MaxSavedInputsGeneratedExtension.cs" />
      <Compile Include="Assets\Sources\Generated\MoveComponentGeneratedExtension.cs" />
      <Compile Include="Assets\Sources\Generated\MyInputsComponentGeneratedExtension.cs" />
      <Compile Include="Assets\Sources\Generated\OverWorldComponentGeneratedExtension.cs" />
@@ -146,6 +141,8 @@
      <Compile Include="Assets\Sources\Generated\ViewComponentGeneratedExtension.cs" />
      <None Include="Assets\JSON\readme.txt" />
      <None Include="Assets\Libraries\LICENSE.txt" />
+     <None Include="Assets\GameData\TestData.txt" />
+     <None Include="Assets\GameData\myDefaults.txt" />
  <Reference Include="UnityEngine.UI">
  <HintPath>C:/Program Files (x86)/Unity/Editor/Data/UnityExtensions/Unity/GUISystem/4.6.2/UnityEngine.UI.dll</HintPath>
  </Reference>

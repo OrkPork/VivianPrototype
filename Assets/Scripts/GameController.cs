@@ -99,34 +99,23 @@ public class GameController : MonoBehaviour {
 
     void createProfile()
     {
+        //can't have resource or position
         //do stuff about profiles later
         
         //var safereference = my save reference
         //if (savereference) first time playing e.AddMyinputs(default inputs)
         
         var e = _repo.CreateEntity();
-       /* e.AddMyInputs(new Dictionary<string, string> { 
-            {"Left","Left" },
-            {"Right", "Right"},
-            {"Up", "Up"},
-            {"Down", "Down"},
-            {"Jump", "Jump"},
-            {"Run","" },
-            {"Roll", ""},
-            {"Attack","" },
-            {"Block","" },
-            {"Items","" },
-            {"Skills","" },
-            {"Select","Submit" },
-            {"Cancel","Cancel" },
-            {"Settings","" },
-            {"Menu","" },
-            {"Inventory","" },
-            {"Map","" },
-            {"Save","" },
-            {"Pause","" }
-        });*/
-        //can't have resource or position
+        var cNames = new List<string>();
+        var cBttns= new List<List<KeyCode>>();
+        var cAxis= new List<List<string>>();
+        var cUP= new List<List<bool>>();
+        var cHeld= new List<List<bool>>();
+        var cDown= new List<List<bool>>();
+        var cAxisV= new List<List<float>>();
+
+        e.AddMyInputs(cNames,cBttns,cAxis,cUP,cHeld,cDown,cAxisV);
+        
         //input data
         //char data
         //other stuff
@@ -144,8 +133,8 @@ public class GameController : MonoBehaviour {
 
     void createPlayer() {
         var e = _repo.CreateEntity();
-        var myscripts = new List<string> { "ContactFights" };
-        e.AddPushScripts(myscripts);
+        //push scripts have to go before resource
+        e.AddPushScripts(new List<string> { "ContactFights" });
         e.AddResource("Player");
         e.AddPosition(new Vector3 (0, 0.5f, 0));
         e.AddCharMove(new Vector3 (8f, 0, 8f));

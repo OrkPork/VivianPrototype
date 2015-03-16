@@ -8,13 +8,19 @@ namespace Entitas {
             AddComponent(ComponentIds.MyInputs, component);
         }
 
-        public void AddMyInputs(System.Collections.Generic.Dictionary<string, string> newCommands) {
+        public void AddMyInputs(System.Collections.Generic.List<string> newCommandNames, System.Collections.Generic.List<System.Collections.Generic.List<UnityEngine.KeyCode>> newCommandButton, System.Collections.Generic.List<System.Collections.Generic.List<string>> newCommandAxis, System.Collections.Generic.List<System.Collections.Generic.List<bool>> newIsUp, System.Collections.Generic.List<System.Collections.Generic.List<bool>> newisHeld, System.Collections.Generic.List<System.Collections.Generic.List<bool>> newisDown, System.Collections.Generic.List<System.Collections.Generic.List<float>> newAxisValue) {
             var component = new MyInputsComponent();
-            component.commands = newCommands;
+            component.commandNames = newCommandNames;
+            component.commandButton = newCommandButton;
+            component.commandAxis = newCommandAxis;
+            component.isUp = newIsUp;
+            component.isHeld = newisHeld;
+            component.isDown = newisDown;
+            component.axisValue = newAxisValue;
             AddMyInputs(component);
         }
 
-        public void ReplaceMyInputs(System.Collections.Generic.Dictionary<string, string> newCommands) {
+        public void ReplaceMyInputs(System.Collections.Generic.List<string> newCommandNames, System.Collections.Generic.List<System.Collections.Generic.List<UnityEngine.KeyCode>> newCommandButton, System.Collections.Generic.List<System.Collections.Generic.List<string>> newCommandAxis, System.Collections.Generic.List<System.Collections.Generic.List<bool>> newIsUp, System.Collections.Generic.List<System.Collections.Generic.List<bool>> newisHeld, System.Collections.Generic.List<System.Collections.Generic.List<bool>> newisDown, System.Collections.Generic.List<System.Collections.Generic.List<float>> newAxisValue) {
             MyInputsComponent component;
             if (hasMyInputs) {
                 WillRemoveComponent(ComponentIds.MyInputs);
@@ -22,7 +28,13 @@ namespace Entitas {
             } else {
                 component = new MyInputsComponent();
             }
-            component.commands = newCommands;
+            component.commandNames = newCommandNames;
+            component.commandButton = newCommandButton;
+            component.commandAxis = newCommandAxis;
+            component.isUp = newIsUp;
+            component.isHeld = newisHeld;
+            component.isDown = newisDown;
+            component.axisValue = newAxisValue;
             ReplaceComponent(ComponentIds.MyInputs, component);
         }
 
@@ -47,21 +59,21 @@ namespace Entitas {
             return entity;
         }
 
-        public Entity SetMyInputs(System.Collections.Generic.Dictionary<string, string> newCommands) {
+        public Entity SetMyInputs(System.Collections.Generic.List<string> newCommandNames, System.Collections.Generic.List<System.Collections.Generic.List<UnityEngine.KeyCode>> newCommandButton, System.Collections.Generic.List<System.Collections.Generic.List<string>> newCommandAxis, System.Collections.Generic.List<System.Collections.Generic.List<bool>> newIsUp, System.Collections.Generic.List<System.Collections.Generic.List<bool>> newisHeld, System.Collections.Generic.List<System.Collections.Generic.List<bool>> newisDown, System.Collections.Generic.List<System.Collections.Generic.List<float>> newAxisValue) {
             if (hasMyInputs) {
                 throw new SingleEntityException(Matcher.MyInputs);
             }
             var entity = CreateEntity();
-            entity.AddMyInputs(newCommands);
+            entity.AddMyInputs(newCommandNames, newCommandButton, newCommandAxis, newIsUp, newisHeld, newisDown, newAxisValue);
             return entity;
         }
 
-        public Entity ReplaceMyInputs(System.Collections.Generic.Dictionary<string, string> newCommands) {
+        public Entity ReplaceMyInputs(System.Collections.Generic.List<string> newCommandNames, System.Collections.Generic.List<System.Collections.Generic.List<UnityEngine.KeyCode>> newCommandButton, System.Collections.Generic.List<System.Collections.Generic.List<string>> newCommandAxis, System.Collections.Generic.List<System.Collections.Generic.List<bool>> newIsUp, System.Collections.Generic.List<System.Collections.Generic.List<bool>> newisHeld, System.Collections.Generic.List<System.Collections.Generic.List<bool>> newisDown, System.Collections.Generic.List<System.Collections.Generic.List<float>> newAxisValue) {
             var entity = myInputsEntity;
             if (entity == null) {
-                entity = SetMyInputs(newCommands);
+                entity = SetMyInputs(newCommandNames, newCommandButton, newCommandAxis, newIsUp, newisHeld, newisDown, newAxisValue);
             } else {
-                entity.ReplaceMyInputs(newCommands);
+                entity.ReplaceMyInputs(newCommandNames, newCommandButton, newCommandAxis, newIsUp, newisHeld, newisDown, newAxisValue);
             }
 
             return entity;

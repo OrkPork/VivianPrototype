@@ -82,6 +82,8 @@
     <Compile Include="Assets\Libraries\EntitasUnity\VisualDebugging\Editor\PoolDebugEditor.cs" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="Assets\GameData\myDefaults.txt" />
+    <None Include="Assets\GameData\TestData.txt" />
     <None Include="Assets\JSON\readme.txt" />
     <None Include="Assets\Libraries\LICENSE.txt" />
   </ItemGroup>

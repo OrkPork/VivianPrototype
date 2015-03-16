@@ -1,0 +1,207 @@
+{
+	"DefaultInputs": {
+		"maxAltCommands": 2,
+		"myCommands":[ 
+			{
+				"Name":"Left", 
+				"buttonAsAxis": true,
+				"buttons":[
+					"KeyCode.LeftArrow",
+					"KeyCode.A"
+				],
+				"axes": [
+					"Horizontal",
+					"KeyHorizontal"
+				]
+			},
+			{
+				"Name":"Right", 
+				"buttonAsAxis": true,
+				"buttons":[
+					"KeyCode.RightArrow",
+					"KeyCode.D"
+				],
+				"axes": [
+					"Horizontal",
+					"KeyHorizontal"
+				]
+			},
+			{
+				"Name":"Up", 
+				"buttonAsAxis": true,
+				"buttons":[
+					"KeyCode.UpArrow",
+					"KeyCode.W"
+				],
+				"axes": [
+					"Vertical",
+					"KeyVertical"
+				]
+			},
+			{
+				"Name":"Down", 
+				"buttonAsAxis": true,
+				"buttons":[
+					"KeyCode.DownArrow",
+					"KeyCode.W"
+				],
+				"axes": [
+					"Vertical",
+					"KeyVertical"
+				]
+			},
+			{
+				"Name":"Jump", 
+				"buttonAsAxis": false,
+				"buttons":[
+					"KeyCode.NONE"
+				],
+				"axes": [
+					""
+				]
+			},
+			{
+				"Name":"Run",
+				"buttonAsAxis": false,				
+				"buttons":[
+					"KeyCode.NONE"
+				],
+				"axes": [
+					""
+				]
+			},
+			{
+				"Name":"Roll", 
+				"buttonAsAxis": false,
+				"buttons":[
+					"KeyCode.NONE"
+				],
+				"axes": [
+					""
+				]
+			},
+            {
+				"Name":"Attack",
+				"buttonAsAxis": false,				
+				"buttons":[
+					"KeyCode.Q"
+				],
+				"axes": [
+					""
+				]
+			},
+            {
+				"Name":"Block", 
+				"buttonAsAxis": false,
+				"buttons":[
+					"KeyCode.W"
+				],
+				"axes": [
+					""
+				]
+			},
+			{
+				"Name":"Items", 
+				"buttonAsAxis": false,
+				"buttons":[
+					"KeyCode.E"
+				],
+				"axes": [
+					""
+				]
+			},
+            {
+				"Name":"Skills", 
+				"buttonAsAxis": false,
+				"buttons":[
+					"KeyCode.R"
+				],
+				"axes": [
+					""
+				]
+			},
+			{
+				"Name":"Select",
+				"buttonAsAxis": false,
+				"buttons":[
+					"KeyCode.Return"
+				],
+				"axes": [
+					""
+				]
+			},
+            {
+				"Name":"Cancel",
+				"buttonAsAxis": false,
+				"buttons":[
+					"KeyCode.BackSpace"
+				],
+				"axes": [
+					""
+				]
+			},
+            {
+				"Name":"Settings", 
+				"buttonAsAxis": false,
+				"buttons":[
+					"KeyCode.U"
+				],
+				"axes": [
+					""
+				]
+			},
+            {
+				"Name":"Menu", 
+				"buttonAsAxis": false,
+				"buttons":[
+					"KeyCode.Y"
+				],
+				"axes": [
+					""
+				]
+			},
+            {
+				"Name":"Inventory",
+				"buttonAsAxis": false,
+				"buttons":[
+					"KeyCode.I"
+				],
+				"axes": [
+					""
+				]
+			},
+            {
+				"Name":"Map",
+				"buttonAsAxis": false,
+				"buttons":[
+					"KeyCode.M"
+				],
+				"axes": [
+					""
+				]
+			},
+            {
+				"Name":"Save",
+				"buttonAsAxis": false,
+				"buttons":[
+					"KeyCode.J"
+				],
+				"axes": [
+					""
+				]
+			},
+            {
+				"Name":"Pause", 
+				"buttonAsAxis": false,
+				"buttons":[
+					"KeyCode.P"
+				],
+				"axes": [
+					""
+				]
+			}]
+		
+		
+		
+	}
+}

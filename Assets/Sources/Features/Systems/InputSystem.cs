@@ -24,65 +24,76 @@ public class InputSystem : IExecuteSystem, ISetPool {
         //^for (cnLength)
         //@this axes (if not null)
         //if over or below sensitivity -set value or ignore
-
-        //if switch on axis
-        //if anykeydown
-        //if anykey
-        //if anykeyup
-        
-
-        //if you use keycodes instead of strings you don't need to do extra work to capture mouse clicks
-        //PROBLEM: you will need to make sure the offline data is a corresponding keycode.
-
-        List<string> compareStr = new List<string> {"butts"};
-        Dictionary<string, string> furcoat = new Dictionary<string, string>();
-        Dictionary<string, string> dictInputs = _repo.myInputs.commands;
-        if (Input.anyKeyDown)
+        //var cnLength = _repo.myInputs.commandNames.Count;
+        //Check axis for movement (and if it matters to us)
+        //for our total set of axis receivables
+        string myAxis;
+        for (int axCLM = 0; axCLM < _repo.myInputs.commandAxis.Count; axCLM++)
         {
-            //reference to a component goes here
-            List<string> componentkeysreference = getStrokedKeys(compareStr, dictInputs);
-        }
-        //if held down
-        //if just released
-        //if an axis
-    }
-
-    List<string> getStrokedKeys(List<string> str_sort, Dictionary<string,string> dict_sort)
-    {
-        var strokedKeys = new List<string>();
-        string temp;
-        for (int i = 0; i < str_sort.Count; i++)
-        {
-            if (dict_sort.TryGetValue(str_sort[i], out temp))
+            //for each axis relevant to a command
+            var axTemp = _repo.myInputs.commandAxis[axCLM].Count;
+            for (int axROW = 0; axROW < axTemp; axROW++)
             {
-                
-                if (Input.GetKeyDown(temp))
+                myAxis = _repo.myInputs.commandAxis[axCLM][axROW];
+                if (myAxis != "") // may want to put or null
                 {
-                    strokedKeys.Add(str_sort[i]);
+                    _repo.myInputs.axisValue[axCLM][axROW] = Input.GetAxis(myAxis);
                 }
                 else
                 {
-                    //what about mouse clicks?
-                    switch (temp)
-                    {
-                        case "0":
-                            Input.GetMouseButtonDown(0);
-                            break;
-                        case "1":
-                            Input.GetMouseButtonDown(1);
-                            break;
-                        case "2":
-                            Input.GetMouseButtonDown(2);
-                            break;
-                    }
-                    
+                    _repo.myInputs.axisValue[axCLM][axROW] = 0f;
                 }
                 
             }
         }
-            
-        //dict_sort.Keys;
-        return strokedKeys;
+
+        for (int CLM = 0; CLM < _repo.myInputs.commandButton.Count; CLM++)
+        {
+            var tmp = _repo.myInputs.commandButton[CLM].Count;
+            for (int ROW = 0; ROW < tmp; ROW++)
+            {
+                var myBttn = _repo.myInputs.commandButton[CLM][ROW];
+                //var bttnType = _repo.myInputs.buttonAxis[ROW];
+                //if(bttnType)
+                //{
+                //  continue;
+                //} else 
+                if (Input.GetKey(myBttn))
+                {
+                    _repo.myInputs.isHeld[CLM][ROW] = true;
+                    //
+                    _repo.myInputs.isUp[CLM][ROW] = false;
+                    _repo.myInputs.isDown[CLM][ROW] = false;
+                    //Debug.Log(myBttn + "key held");
+                }
+                else if (Input.GetKeyUp(myBttn))
+                {
+                    _repo.myInputs.isUp[CLM][ROW] = true;
+                    //
+                    _repo.myInputs.isHeld[CLM][ROW] = false;
+                    _repo.myInputs.isDown[CLM][ROW] = false;
+                    //Debug.Log(myBttn + "key released");
+                }
+                else if (Input.GetKeyDown(myBttn))
+                {
+                    _repo.myInputs.isDown[CLM][ROW] = true;
+                    //
+                    _repo.myInputs.isHeld[CLM][ROW] = false;
+                    _repo.myInputs.isUp[CLM][ROW] = false;
+                   // Debug.Log(myBttn + "key pressed");
+                }
+                else
+                {
+                    _repo.myInputs.isDown[CLM][ROW] = false;
+                    _repo.myInputs.isHeld[CLM][ROW] = false;
+                    _repo.myInputs.isUp[CLM][ROW] = false;
+                }
+            }
+
+        }
+
     }
+
+    
 }
 

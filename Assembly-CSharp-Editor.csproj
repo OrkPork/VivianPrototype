@@ -53,6 +53,8 @@
      <Compile Include="Assets\Libraries\EntitasUnity\VisualDebugging\Editor\PoolDebugEditor.cs" />
      <None Include="Assets\JSON\readme.txt" />
      <None Include="Assets\Libraries\LICENSE.txt" />
+     <None Include="Assets\GameData\TestData.txt" />
+     <None Include="Assets\GameData\myDefaults.txt" />
  <Reference Include="UnityEngine.UI">
  <HintPath>C:/Program Files (x86)/Unity/Editor/Data/UnityExtensions/Unity/GUISystem/4.6.2/UnityEngine.UI.dll</HintPath>
  </Reference>

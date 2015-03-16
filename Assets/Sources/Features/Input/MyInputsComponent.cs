@@ -11,6 +11,10 @@ public class MyInputsComponent : IComponent
     public List<string> commandNames;
     public List<List<KeyCode>> commandButton;
     public List<List<string>> commandAxis;
-    public Dictionary<string, string> commands;
+    public List<List<bool>> isUp;
+    public List<List<bool>> isHeld;
+    public List<List<bool>> isDown;
+    public List<List<float>> axisValue;
+    public List<bool> buttonAxis;
 
 }
