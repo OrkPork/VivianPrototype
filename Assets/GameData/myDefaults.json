@@ -6,8 +6,8 @@
 				"Name":"Left", 
 				"buttonAsAxis": true,
 				"buttons":[
-					"KeyCode.LeftArrow",
-					"KeyCode.A"
+					"LeftArrow",
+					"A"
 				],
 				"axes": [
 					"Horizontal",
@@ -18,8 +18,8 @@
 				"Name":"Right", 
 				"buttonAsAxis": true,
 				"buttons":[
-					"KeyCode.RightArrow",
-					"KeyCode.D"
+					"RightArrow",
+					"D"
 				],
 				"axes": [
 					"Horizontal",
@@ -30,8 +30,8 @@
 				"Name":"Up", 
 				"buttonAsAxis": true,
 				"buttons":[
-					"KeyCode.UpArrow",
-					"KeyCode.W"
+					"UpArrow",
+					"W"
 				],
 				"axes": [
 					"Vertical",
@@ -42,8 +42,8 @@
 				"Name":"Down", 
 				"buttonAsAxis": true,
 				"buttons":[
-					"KeyCode.DownArrow",
-					"KeyCode.W"
+					"DownArrow",
+					"W"
 				],
 				"axes": [
 					"Vertical",
@@ -54,7 +54,7 @@
 				"Name":"Jump", 
 				"buttonAsAxis": false,
 				"buttons":[
-					"KeyCode.NONE"
+					"None"
 				],
 				"axes": [
 					""
@@ -64,7 +64,7 @@
 				"Name":"Run",
 				"buttonAsAxis": false,				
 				"buttons":[
-					"KeyCode.NONE"
+					"None"
 				],
 				"axes": [
 					""
@@ -74,7 +74,7 @@
 				"Name":"Roll", 
 				"buttonAsAxis": false,
 				"buttons":[
-					"KeyCode.NONE"
+					"None"
 				],
 				"axes": [
 					""
@@ -84,7 +84,7 @@
 				"Name":"Attack",
 				"buttonAsAxis": false,				
 				"buttons":[
-					"KeyCode.Q"
+					"Q"
 				],
 				"axes": [
 					""
@@ -94,7 +94,7 @@
 				"Name":"Block", 
 				"buttonAsAxis": false,
 				"buttons":[
-					"KeyCode.W"
+					"W"
 				],
 				"axes": [
 					""
@@ -104,7 +104,7 @@
 				"Name":"Items", 
 				"buttonAsAxis": false,
 				"buttons":[
-					"KeyCode.E"
+					"E"
 				],
 				"axes": [
 					""
@@ -114,7 +114,7 @@
 				"Name":"Skills", 
 				"buttonAsAxis": false,
 				"buttons":[
-					"KeyCode.R"
+					"R"
 				],
 				"axes": [
 					""
@@ -124,7 +124,7 @@
 				"Name":"Select",
 				"buttonAsAxis": false,
 				"buttons":[
-					"KeyCode.Return"
+					"Return"
 				],
 				"axes": [
 					""
@@ -134,7 +134,7 @@
 				"Name":"Cancel",
 				"buttonAsAxis": false,
 				"buttons":[
-					"KeyCode.BackSpace"
+					"Backspace"
 				],
 				"axes": [
 					""
@@ -144,7 +144,7 @@
 				"Name":"Settings", 
 				"buttonAsAxis": false,
 				"buttons":[
-					"KeyCode.U"
+					"U"
 				],
 				"axes": [
 					""
@@ -154,7 +154,7 @@
 				"Name":"Menu", 
 				"buttonAsAxis": false,
 				"buttons":[
-					"KeyCode.Y"
+					"Y"
 				],
 				"axes": [
 					""
@@ -164,7 +164,7 @@
 				"Name":"Inventory",
 				"buttonAsAxis": false,
 				"buttons":[
-					"KeyCode.I"
+					"I"
 				],
 				"axes": [
 					""
@@ -174,7 +174,7 @@
 				"Name":"Map",
 				"buttonAsAxis": false,
 				"buttons":[
-					"KeyCode.M"
+					"M"
 				],
 				"axes": [
 					""
@@ -184,7 +184,7 @@
 				"Name":"Save",
 				"buttonAsAxis": false,
 				"buttons":[
-					"KeyCode.J"
+					"J"
 				],
 				"axes": [
 					""
@@ -194,7 +194,7 @@
 				"Name":"Pause", 
 				"buttonAsAxis": false,
 				"buttons":[
-					"KeyCode.P"
+					"P"
 				],
 				"axes": [
 					""
