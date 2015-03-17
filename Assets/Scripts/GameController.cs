@@ -96,9 +96,13 @@ public class GameController : MonoBehaviour {
             
             //_repo.CreateSystem<AccelerateSystem>(),
             _repo.CreateSystem<MoveSystem>(),
-            //pushscripts dumps here
-            _repo.CreateSystem<RenderSpawnSystem>(),
+            //replace/update with:
+            //--load to pool
+            //--instantiate from pool and view
+            _repo.CreateSystem<LoadAndViewSystem>(),
             //bumpsystem goes here
+            //instead of pushing a monobehaviour script
+            //
             _repo.CreateSystem<RenderPositionSystem>(),
 
             _repo.CreateSystem<DestroySystem>(),
@@ -238,6 +242,9 @@ public class GameController : MonoBehaviour {
         {
             Debug.Log("myDefaults.json not found in path specified: " + targetFile);
         }
+
+        Dictionary<string, object> testdict = new Dictionary<string, object>();
+
 
         
     }

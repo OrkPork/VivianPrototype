@@ -1,7 +1,7 @@
 ﻿using Entitas;
 using UnityEngine;
 
-public class RenderSpawnSystem : IReactiveSystem
+public class LoadAndViewSystem : IReactiveSystem
 {
     public IMatcher GetTriggeringMatcher() {
         return Matcher.Resource;

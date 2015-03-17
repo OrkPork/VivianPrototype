@@ -7,7 +7,13 @@ using UnityEngine;
 public class MyInputsComponent : IComponent
 {
 
-    //Name for command, button that activates command
+    //commandNames should be a dictionary with the indice listed
+    //so that a system can query where to look ex:
+    //if(MyInputs.isUp[i][commandNames["Left"]])
+    //...could just hardcode it to indices
+    //...not sure if commandNames["Left"] is any faster than commandNames.
+    //public Dictionary<string, Dictionary<string, bool>> inputState; // ex: inputState["Left"]["isUp"];
+    //public Dictionary<string, Dictionary<int, KeyCode>> myButtons;
     public List<string> commandNames;
     public List<List<KeyCode>> commandButton;
     public List<List<string>> commandAxis;
