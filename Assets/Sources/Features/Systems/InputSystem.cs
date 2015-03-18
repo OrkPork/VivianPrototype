@@ -3,79 +3,158 @@ using UnityEngine;
 using System.Collections.Generic;
 
 public class InputSystem : IExecuteSystem, ISetPool {
+    /*public IMatcher GetTriggeringMatcher()// trigger this on....
+    {
+        return Matcher.ReceivesInput;
+    }
+
+    public GroupEventType GetEventType()//...this event...
+    {
+        //...if entity is added or removed, looking at reactivesystem it seems execute stops being called if matcher count=0
+        //So if we have no receivesInput components, this thing will stop crunching commands (I hope)
+        //I'm confused though
+        //A component isn't an entity, I create nameless entities to push into a pool and attach components to them
+        //Will this trigger if I remove a component from an entity? That's what I need/want it to do...
+        // will test
+        //alright it checks if any entity has my matching component, so if I remove the matching component(s) from every entity
+        //it won't execute.
+        //if something can receive, start processing
+        //wish there was a silent version that just kept track of count instead of copying the entities and pushing them
+        //to me
+        //I should make a 'HandsOffReactiveSystem'
+        //All it needs to know is that things can receive input, it doesn't need to know who 
+        //I don't know maybe I'm approaching all of this all wrong...
+        //this is my first entity system, kind of weird to get my head around
+
+        //OH FORGET ME
+        //I forgot this event is part of the matcher SO IF THERE'S NOTHING BEING ADDED OR REMOVED
+        //THIS 
+        //DOES
+        //NOTHING
+
+        //Saved as a monument to my dumbness
+        return GroupEventType.OnEntityAddedOrRemoved;
+    }*/
+
     Pool _repo;
+    Group _collection;
+    string command;
+    string axes;
+    float vAxis;
+    bool inputMovement;
+    KeyCode bttn;
 
     public void SetPool(Pool repo) {
         _repo = repo;
+        _collection = _repo.GetGroup(Matcher.ReceivesInput);
     }
 
     public void Execute() {
-        //check axes for movement
-        string myAxis;
-        for (int axCLM = 0; axCLM < _repo.myInputs.commandAxis.Count; axCLM++)
-        {
-            //for each axis relevant to a command
-            var axTemp = _repo.myInputs.commandAxis[axCLM].Count;
-            for (int axROW = 0; axROW < axTemp; axROW++)
+        //Debug.Log("???");
+        
+        //entities.SingleEntity().isInputDetected = false;
+        if(_collection.Count != 0) {
+            inputMovement = false; // ZERO IT VERY IMPORTANT
+            //only set here ^
+            for (int i = 0; i < _repo.myInputs.inputNames.Count; i++)
             {
-                myAxis = _repo.myInputs.commandAxis[axCLM][axROW];
-                if (myAxis != "") // may want to put or null
+                command = _repo.myInputs.inputNames[i];
+                //get axes
+                for (int x = 0; x < _repo.myInputs.myAxes[command].Count; x++)
                 {
-                    _repo.myInputs.axisValue[axCLM][axROW] = Input.GetAxis(myAxis);
+                    //I should rethink putting empty strings in
+                    // or whatever
+                    axes = _repo.myInputs.myAxes[command][x];
+                    if (axes != "") 
+                    {
+                    
+                        try
+                        {
+                            //reject values of 0 (let's be sane)
+                            vAxis = Input.GetAxis(axes);
+                            if( vAxis != 0f){
+                                _repo.myInputs.axisValue[command] = vAxis;
+                                //_repo.isReceivingInputComponent;
+                                //Debug.Log(axes + " axis is being pushed: " + _repo.myInputs.axisValue[command]);
+                                inputMovement = true;
+                            }
+                            else
+                            {
+                                //NO INPUT HERE
+                                _repo.myInputs.axisValue[command] = 0f;
+                                //inputMovement = false;
+                            }
+                        }
+                        catch
+                        {
+                            Debug.Log("Axis named improperly: " + axes);
+                            Debug.Log("Zeroed axis value");
+                            _repo.myInputs.axisValue[command] = 0f;
+                        }
+                    }
+                    else
+                    {
+                        //NO INPUT HERE
+                        _repo.myInputs.axisValue[command] = 0f;
+                        //inputMovement = false;
+                    }
                 }
-                else
+
+                //get buttons
+                for (int z = 0; z < _repo.myInputs.myButtons[command].Count; z++)
                 {
-                    _repo.myInputs.axisValue[axCLM][axROW] = 0f;
-                }
+                    //already retrieved these when we check axes, ignore here
+                    if (_repo.myInputs.inputState[command]["isAxis"])
+                    {
+                        continue;
+                    }
+                    bttn = _repo.myInputs.myButtons[command][z];
+                    if (Input.GetKey(bttn))
+                    {
+                        //caught
+                        _repo.myInputs.inputState[command]["isHeld"] = true;
+                        //rejected
+                        _repo.myInputs.inputState[command]["isDown"] = false;
+                        _repo.myInputs.inputState[command]["isUp"] = false;
+                        //Debug.Log(command + " is being held.");
+                        inputMovement = true;
+
+                    }
+                    else if (Input.GetKeyDown(bttn))
+                    {
+                        //caught
+                        _repo.myInputs.inputState[command]["isDown"] = true;
+                        //rejected
+                        _repo.myInputs.inputState[command]["isHeld"] = false;
+                        _repo.myInputs.inputState[command]["isUp"] = false;
+                        inputMovement = true;
+                    }
+                    else if (Input.GetKeyUp(bttn))
+                    {
+                        //caught
+                        _repo.myInputs.inputState[command]["isUp"] = true;
+                        //rejected
+                        _repo.myInputs.inputState[command]["isDown"] = false;
+                        _repo.myInputs.inputState[command]["isHeld"] = false;
+                        inputMovement = true;
+                    }
+                    else
+                    {
+                        //NO INPUT HERE
+                        _repo.myInputs.inputState[command]["isUp"] = false;
+                        _repo.myInputs.inputState[command]["isDown"] = false;
+                        _repo.myInputs.inputState[command]["isHeld"] = false;
+                        //inputMovement = false;
+                    }
                 
-            }
-        }
-        //check buttons for presses, ignore buttons that are treated like an axis (they would've been solved above)
-        for (int CLM = 0; CLM < _repo.myInputs.commandButton.Count; CLM++)
-        {
-            var tmp = _repo.myInputs.commandButton[CLM].Count;
-            for (int ROW = 0; ROW < tmp; ROW++)
-            {
-                var myBttn = _repo.myInputs.commandButton[CLM][ROW];
-                //if it's a bttn axis skip everything
-                if (_repo.myInputs.buttonAxis[ROW])
-                {
-                    continue;
-                }
-                if (Input.GetKey(myBttn))
-                {
-                    _repo.myInputs.isHeld[CLM][ROW] = true;
-                    //
-                    _repo.myInputs.isUp[CLM][ROW] = false;
-                    _repo.myInputs.isDown[CLM][ROW] = false;
-                    //Debug.Log(myBttn + "key held");
-                }
-                else if (Input.GetKeyUp(myBttn))
-                {
-                    _repo.myInputs.isUp[CLM][ROW] = true;
-                    //
-                    _repo.myInputs.isHeld[CLM][ROW] = false;
-                    _repo.myInputs.isDown[CLM][ROW] = false;
-                    //Debug.Log(myBttn + "key released");
-                }
-                else if (Input.GetKeyDown(myBttn))
-                {
-                    _repo.myInputs.isDown[CLM][ROW] = true;
-                    //
-                    _repo.myInputs.isHeld[CLM][ROW] = false;
-                    _repo.myInputs.isUp[CLM][ROW] = false;
-                   // Debug.Log(myBttn + "key pressed");
-                }
-                else
-                {
-                    _repo.myInputs.isDown[CLM][ROW] = false;
-                    _repo.myInputs.isHeld[CLM][ROW] = false;
-                    _repo.myInputs.isUp[CLM][ROW] = false;
+
                 }
             }
 
+            _repo.isInputDetected = inputMovement;
         }
 
+        
     }
 
     

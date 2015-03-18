@@ -95,7 +95,8 @@ public class GameController : MonoBehaviour {
             _repo.CreateSystem<InputSystem>(),
             
             //_repo.CreateSystem<AccelerateSystem>(),
-            _repo.CreateSystem<MoveSystem>(),
+            _repo.CreateSystem<CharMoveSystem>(),
+            //_repo.CreateSystem<MoveSystem>(),
             //replace/update with:
             //--load to pool
             //--instantiate from pool and view
@@ -113,94 +114,93 @@ public class GameController : MonoBehaviour {
     void createProfile()
     {
         
-        List<string> cNames;
-        List<List<KeyCode>> cBttns;
-        List<List<string>> cAxes;
-        List<List<bool>> cUP ;
-        List<List<bool>> cHeld;
-        List<List<bool>> cDown;
-        List<List<float>> cAxesV;
-        List<bool> cBttnAxis;
+        /*
+        namesDict;
+        stateDict;
+        axisvalueDict;
+        buttonsDict;
+        axesDict;
+        */
+        ///////////////////////////////////////////////////
+        //defaults path
         targetFile = fileDir + "/GameData/myDefaults.json";
+        //if defaults exist in path specified
         if (File.Exists(targetFile))
         {
             var str = File.ReadAllText(targetFile);
             JSONObject jData = new JSONObject(str);
-            var myLists = jData.list;
             int lnCLM;
             int lnROW;
+            string command;
+            Dictionary<int, string> namesDict;
+            Dictionary<string, Dictionary<string, bool>> stateDict; // ex: inputState["Left"]["isUp"];
+            Dictionary<string, float> axisvalueDict;
+            Dictionary<string, Dictionary<int, KeyCode>> buttonsDict;
+            Dictionary<string, Dictionary<int, string>> axesDict;
             var e = _repo.CreateEntity();
 
             jData.GetField("DefaultInputs", delegate(JSONObject obj_1)
             {
                 //...I know where max alt commands always is so I cheated, direct reference
                 //Set the rows (possible alternate buttons for both axes and bttns)
-                lnROW = (int)obj_1.list[0].n;
+                lnROW = (int)obj_1.list[0].n; //slightly unused feature, (for now sets capacity, should be used to limit alt command options
                 obj_1.GetField("myCommands", delegate(JSONObject arr_1)
                 {
-                    //set capacity on outer lists
-                    lnCLM = arr_1.list.Count;
-                    cNames = new List<string>(lnCLM);// setting here
-                    cBttns = new List<List<KeyCode>>(lnROW);// setting here
-                    cAxes = new List<List<string>>(lnROW);//setting here
-                    cUP = new List<List<bool>>(lnROW);
-                    cHeld = new List<List<bool>>(lnROW);
-                    cDown = new List<List<bool>>(lnROW);
-                    cAxesV = new List<List<float>>(lnROW);
-                    cBttnAxis = new List<bool>(lnCLM);//setting here
-                    //set capactity on inner lists
-                    //set defaults
-                    for (int k = 0; k < lnROW; k++)
-                    {
-                        cBttns.Add(new List<KeyCode>(lnCLM));
-                        cAxes.Add(new List<string>(lnCLM)); 
-                        cUP.Add(new List<bool>(lnCLM)); 
-                        cHeld.Add(new List<bool>(lnCLM)); 
-                        cDown.Add(new List<bool>(lnCLM));
-                        cAxesV.Add(new List<float>(lnCLM));
-                        //populate lists
-                        for (int w = 0; w < lnCLM; w++)
-                        {
-                            //cNames
-                            ////////////////
-                            cBttns[k].Add(KeyCode.None);
-                            cAxes[k].Add("");
-                            //may not need to populate the input state trackers
-                            cUP[k].Add(false);
-                            cHeld[k].Add(false);
-                            cDown[k].Add(false);
-                            cAxesV[k].Add(0f);
-                        }
 
-                    }
+                    lnCLM = arr_1.list.Count;//myCommands are listed here, get number of commands
+                    //set capacity on outer dictionary
+                    //they are all accessed by command name on outer so they have the same capacity
+                    namesDict = new Dictionary<int, string>(lnCLM);
+                    stateDict = new Dictionary<string,Dictionary<string,bool>>(lnCLM);
+                    axisvalueDict = new Dictionary<string,float>(lnCLM);
+                    buttonsDict = new Dictionary<string,Dictionary<int,KeyCode>>(lnCLM);
+                    axesDict = new Dictionary<string,Dictionary<int,string>>(lnCLM);
+
                         
-                        //Debug.Log("Number of actions" + lnCLM);
-
+                    Debug.Log("Number of actions" + lnCLM);
+                    //For every command 
                     for (int p = 0; p < arr_1.list.Count; p++ )
                     {
                         JSONObject obj = arr_1.list[p];
 
                         //Again I know the structure of the default inputs so I cheated
                         //probably should add some error catching!
-
+                        command = obj.list[0].str;// store the name of our command
                         //Debug.Log("Name Field: " + obj.list[0].str);
-                        cNames.Add(obj.list[0].str);
-                        //Debug.Log("Button as axis:" + obj.list[1].b);
-                        cBttnAxis.Add(obj.list[1].b);
+                        // add keys set default values
+                        namesDict.Add(p, command);
+                        axisvalueDict.Add(command, 0f); 
+                        buttonsDict.Add(command, new Dictionary<int, KeyCode>(lnROW));
+                        axesDict.Add(command, new Dictionary<int, string>(lnROW));
 
+                        //hacky because I know the states I want to use and I'm not interested in making a state class
+                        //maybe i should make a state class/struct...
+                        //then I wouldn't need these rows or hacky references
+                        //just stateDict[command].isUp ...etc
+                        stateDict.Add(command, new Dictionary<string, bool>(4));
+                        stateDict[command].Add("isUp", false);
+                        stateDict[command].Add("isDown", false);
+                        stateDict[command].Add("isHeld", false);
+                        stateDict[command].Add("isAxis", obj.list[1].b);// only state retrieved from json
+                        
+                        //get buttons array
                         //maybe I don't need to use getfield, buttons should always be found
                         //well buttons and axes are the easiest to mess up so error catching is nice
                         obj.GetField("buttons", delegate(JSONObject bttnList)
                         {
+                            //For every alternate button
                             for (int i = 0; i < bttnList.list.Count; i++)
                             {
                                 //ToString() doesn't evaluate properly.
                                 var bttnName = bttnList.list[i].str;
                                 try
                                 {
+                                    //convert string to KeyCode
                                     KeyCode keyBttn = (KeyCode)System.Enum.Parse(typeof(KeyCode), bttnName);
                                     //Debug.Log("KeyCode: " + keyBttn);
-                                    cBttns[i][p] = keyBttn;
+                                    //Add our button to its alt position under our command key
+                                    buttonsDict[command].Add(i, keyBttn);
+                                    //Debug.Log("My buttons Dict: " + buttonsDict[command][i]);
                                 }
                                 catch
                                 {
@@ -214,36 +214,42 @@ public class GameController : MonoBehaviour {
                         {
                             Debug.Log("buttons not found");
                         });
-                        /////////////////////////////////////////////////
 
+                        //get axes array
                         obj.GetField("axes", delegate(JSONObject axesList)
                         {
+                            //For every alternate axes
                             for (int z = 0; z < axesList.list.Count; z++)
                             {
-                                cAxes[z][p] = axesList.list[z].str;
-                                //Debug.Log(axesList.list[z].str);
+                                //Add our button to its alt position under our command key
+                                axesDict[command].Add(z, axesList.list[z].str);
+                                //Debug.Log("My axes Dict: " + axesDict[command][z]);
                             }
                         }, delegate(string dumbname2)
                         {
                             Debug.Log("axes not found");
                         });
                     }
+                    //////////////////YO PAY ATTENTION IMPORTANT STUFF BELOW////////////////
+                    e.AddMyInputs(namesDict, stateDict, axisvalueDict, buttonsDict, axesDict);
 
-
-                    e.AddMyInputs(cNames, cBttns, cAxes, cUP, cHeld, cDown, cAxesV, cBttnAxis);
+                    //e.AddMyInputs(cNames, cBttns, cAxes, cUP, cHeld, cDown, cAxesV, cBttnAxis);
+                }, delegate(string bigerror){
+                    Debug.Log("myCommands not found, improper default inputs format");
+                    //failsafe addmyinputs or something
                 });
             }, delegate(string name)
             {	
                 Debug.Log("DefaultInputs not found");
+                //failsafe addmyinputs or something
             });
 
         }
         else
         {
             Debug.Log("myDefaults.json not found in path specified: " + targetFile);
+            //failsafe addmyinputs or something
         }
-
-        Dictionary<string, object> testdict = new Dictionary<string, object>();
 
 
         
@@ -256,13 +262,19 @@ public class GameController : MonoBehaviour {
         e.AddPosition(new Vector3(0, 0, 0));
     }
 
+    void loadMap()
+    {
+
+    }
+
     void createPlayer() {
         var e = _repo.CreateEntity();
         //push scripts have to go before resource
         e.AddPushScripts(new List<string> { "ContactFights" });
         e.AddResource("Player");
         e.AddPosition(new Vector3 (0, 0.5f, 0));
-        e.AddCharMove(new Vector3 (8f, 0, 8f));
+        e.AddCharMove(new Vector3 (.1f, 0, .1f));
+        e.isReceivesInput = true;
         //Debug.Log()
         //e.isAcceleratable = true;
     }

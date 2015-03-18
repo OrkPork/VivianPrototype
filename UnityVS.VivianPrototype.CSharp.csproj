@@ -100,7 +100,9 @@
     <Compile Include="Assets\Sources\Features\FightSelector\FightSelectingComponent.cs" />
     <Compile Include="Assets\Sources\Features\FightUI\FightDataComponent.cs" />
     <Compile Include="Assets\Sources\Features\Input\CharMoveComponent.cs" />
+    <Compile Include="Assets\Sources\Features\Input\InputDetectedComponent.cs" />
     <Compile Include="Assets\Sources\Features\Input\MyInputsComponent.cs" />
+    <Compile Include="Assets\Sources\Features\Input\ReceivesInputComponent.cs" />
     <Compile Include="Assets\Sources\Features\Input\SavedInputsComponent.cs" />
     <Compile Include="Assets\Sources\Features\Maps\GameMapsComponent.cs" />
     <Compile Include="Assets\Sources\Features\Maps\LastCoordsComponent.cs" />
@@ -115,12 +117,13 @@
     <Compile Include="Assets\Sources\Features\SCRIPTS\PushScriptsComponent.cs" />
     <Compile Include="Assets\Sources\Features\Selector\SelectingComponent.cs" />
     <Compile Include="Assets\Sources\Features\Systems\AccelerateSystem.cs" />
+    <Compile Include="Assets\Sources\Features\Systems\CharMoveSystem.cs" />
     <Compile Include="Assets\Sources\Features\Systems\DestroySystem.cs" />
     <Compile Include="Assets\Sources\Features\Systems\InputSystem.cs" />
+    <Compile Include="Assets\Sources\Features\Systems\LoadAndViewSystem.cs" />
     <Compile Include="Assets\Sources\Features\Systems\MoveSystem.cs" />
     <Compile Include="Assets\Sources\Features\Systems\RenderDespawnSystem.cs" />
     <Compile Include="Assets\Sources\Features\Systems\RenderPositionSystem.cs" />
-    <Compile Include="Assets\Sources\Features\Systems\RenderSpawnSystem.cs" />
     <Compile Include="Assets\Sources\Features\Users\CharDataComponent.cs" />
     <Compile Include="Assets\Sources\Generated\AcceleratableComponentGeneratedExtension.cs" />
     <Compile Include="Assets\Sources\Generated\AccelerateComponentGeneratedExtension.cs" />
@@ -134,6 +137,7 @@
     <Compile Include="Assets\Sources\Generated\FightSelectingComponentGeneratedExtension.cs" />
     <Compile Include="Assets\Sources\Generated\FreeToMoveComponentGeneratedExtension.cs" />
     <Compile Include="Assets\Sources\Generated\GameMapsComponentGeneratedExtension.cs" />
+    <Compile Include="Assets\Sources\Generated\InputDetectedComponentGeneratedExtension.cs" />
     <Compile Include="Assets\Sources\Generated\LastCoordsComponentGeneratedExtension.cs" />
     <Compile Include="Assets\Sources\Generated\MapPlayerComponentGeneratedExtension.cs" />
     <Compile Include="Assets\Sources\Generated\MoveComponentGeneratedExtension.cs" />
@@ -141,6 +145,7 @@
     <Compile Include="Assets\Sources\Generated\OverWorldComponentGeneratedExtension.cs" />
     <Compile Include="Assets\Sources\Generated\PositionComponentGeneratedExtension.cs" />
     <Compile Include="Assets\Sources\Generated\PushScriptsComponentGeneratedExtension.cs" />
+    <Compile Include="Assets\Sources\Generated\ReceivesInputComponentGeneratedExtension.cs" />
     <Compile Include="Assets\Sources\Generated\ResourceComponentGeneratedExtension.cs" />
     <Compile Include="Assets\Sources\Generated\SavedInputsComponentGeneratedExtension.cs" />
     <Compile Include="Assets\Sources\Generated\SelectingComponentGeneratedExtension.cs" />

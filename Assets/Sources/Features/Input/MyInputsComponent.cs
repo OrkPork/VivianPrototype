@@ -7,20 +7,13 @@ using UnityEngine;
 public class MyInputsComponent : IComponent
 {
 
-    //commandNames should be a dictionary with the indice listed
-    //so that a system can query where to look ex:
-    //if(MyInputs.isUp[i][commandNames["Left"]])
-    //...could just hardcode it to indices
-    //...not sure if commandNames["Left"] is any faster than commandNames.
-    //public Dictionary<string, Dictionary<string, bool>> inputState; // ex: inputState["Left"]["isUp"];
-    //public Dictionary<string, Dictionary<int, KeyCode>> myButtons;
-    public List<string> commandNames;
-    public List<List<KeyCode>> commandButton;
-    public List<List<string>> commandAxis;
-    public List<List<bool>> isUp;
-    public List<List<bool>> isHeld;
-    public List<List<bool>> isDown;
-    public List<List<float>> axisValue;
-    public List<bool> buttonAxis;
+    
+    public Dictionary<int, string> inputNames; // for discovery
+    //public Dictionary<string, buttonState>> inputState; //ex: if(inputState["Left"].isUp)
+    public Dictionary<string, Dictionary<string, bool>> inputState; // ex: if(inputState["Left"]["isUp"]);   for reading
+    public Dictionary<string, float> axisValue; // for reading
+    public Dictionary<string, Dictionary<int, KeyCode>> myButtons; //for discovery
+    public Dictionary<string, Dictionary<int, string>> myAxes; // for discovery
+
 
 }
