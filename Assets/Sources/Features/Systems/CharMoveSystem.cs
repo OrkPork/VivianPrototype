@@ -38,6 +38,38 @@ public class CharMoveSystem : IExecuteSystem, ISetPool {
                 //finished with a few short moments in notepad
                 mov.x = mov.x * _repo.myInputs.axisValue["MoveHorizontal"];
                 mov.z = mov.z * _repo.myInputs.axisValue["MoveVertical"];
+                //Debug.Log("My vertical: " + _repo.myInputs.axisValue["MoveVertical"]);
+                //Debug.Log("...and move: " + mov.x);
+                //Debug.Log("My vertical: " + _repo.myInputs.axisValue["MoveHorizontal"]);
+                //Debug.Log("...and move: " + mov.z);
+                //Figure out angular motion later
+                //I need the following
+                //Forward momentum
+                //tapping angles it over time determined by turn ability
+                /*if (mov.x < 0 && mov.z < 0)
+                {
+                    Debug.Log("negative");
+                    if (mov.x < mov.z)
+                    {
+                        mov.z *= .4f;
+                    }
+                    else
+                    {
+                        mov.x *= .4f;
+                    }
+                }
+                else if(mov.x > 0 && mov.z > 0)
+                {
+                    Debug.Log("postive");
+                    if (mov.x > mov.z)
+                    {
+                        mov.z *= .3f;
+                    }
+                    else
+                    {
+                        mov.x *= .3f;
+                    }
+                }*/
                 e.ReplacePosition(new Vector3(pos.x + mov.x, pos.y + mov.y, pos.z + mov.z));
             }
         }

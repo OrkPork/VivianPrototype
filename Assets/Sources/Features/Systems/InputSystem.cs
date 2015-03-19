@@ -35,6 +35,22 @@ public class InputSystem : IExecuteSystem, ISetPool {
         //Saved as a monument to my dumbness
         return GroupEventType.OnEntityAddedOrRemoved;
     }*/
+    /////CONSIDER: Turning the stateDictionary[command] into an object instead of 4 key-value pairs of string-bool
+    ///// also CONSIDER: turning the entire thing into
+    //
+    // 1) an object array for discovery commandObj[] mycommands
+    //for(i=0; i< mycommands[i].count)
+    // axesRef= mycommands[i].axis
+    // bttn= mycommands[i].key
+    // for axes change value mycommands[i].axisValue = input.getaxis(axesref);
+    // for bttns change state mycommands[i].isUp=true;
+    //
+    // And then a dictionary of commands -> object...
+    //2) After I have everything finalized I'LL KNOW all possible commands so I can just make an enum and completely ignore
+    //this name stuff...idk..i'm just not sure
+
+    //I could do an enum of isDown,isHeld, etc...and then set that instead of string...seems like a waste of time maybe
+    //later
 
     Pool _repo;
     Group _collection;
@@ -77,6 +93,8 @@ public class InputSystem : IExecuteSystem, ISetPool {
                                 //_repo.isReceivingInputComponent;
                                 //Debug.Log(axes + " axis is being pushed: " + _repo.myInputs.axisValue[command]);
                                 inputMovement = true;
+                                //we've captured movement at this command, time to leave
+                                break;
                             }
                             else
                             {
@@ -103,7 +121,7 @@ public class InputSystem : IExecuteSystem, ISetPool {
                 //get buttons
                 for (int z = 0; z < _repo.myInputs.myButtons[command].Count; z++)
                 {
-                    //already retrieved these when we check axes, ignore here
+                    //already retrieved these when we checked axes, ignore here
                     if (_repo.myInputs.inputState[command]["isAxis"])
                     {
                         continue;
@@ -150,7 +168,8 @@ public class InputSystem : IExecuteSystem, ISetPool {
 
                 }
             }
-
+            //IMPORTANT
+            //inform the inputReceivers that we've processed input
             _repo.isInputDetected = inputMovement;
         }
 

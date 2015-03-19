@@ -1,0 +1,79 @@
+{
+	"Area_1": {
+		"Battles":[
+			{
+				"BattleZone": "TestBattle1",
+				"Enemies":[
+					{
+						"Altered": true,
+						"ResourceName": "Enemy",
+						"id":"TestEnemy",
+						"SpawnPoint": "Front_Middle",
+						"ModifyRewards": {
+							"EXP": 5000,
+							"Loot":[
+								"KeyItem_BlueKey"
+							]
+						},
+						"ModifyStats":{
+							"HP": 1200
+						},
+						"AddBehaviorToAI":[
+							{
+								"script": "RunOnLowHealth",
+								"priority": 0
+							}
+							
+						],
+						"scripts": [
+							"EndFightOn_Death",
+							"EndFightOn_Run"
+							
+						]
+						
+					},
+					{
+						"Altered": true,
+						"ResourceName": "Enemy",
+						"id":"TestEnemy",
+						"SpawnPoint": "Front_Left",
+						"ModifyStats":{
+							"MP": 9999
+						},
+						"AddBehaviorToAI":[
+							{
+								"script": "HealSpecialAllies",
+								"priority": 0
+							}
+							
+						]
+						
+					},
+					{
+						"Altered": false,
+						"ResourceName": "Enemy",
+						"id":"TestEnemy",
+						"SpawnPoint": "Front_Right"
+					}
+				],
+				
+				"Contact":{
+					"location":[
+						-13,
+						0.5,
+						7.64
+					],
+					"ResourceName":"Enemy",
+					"BehaviorScripts": [
+						"RunToCornerHide"
+					]
+				}
+				
+			},
+			
+			]
+		
+		
+		
+	}
+}

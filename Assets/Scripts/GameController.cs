@@ -19,6 +19,25 @@ public class GameController : MonoBehaviour {
     //retrieve peristent data stuff
     //new WWW("file://" + Application.persistentDataPath + "/myStuff.txt");
 
+    //To-do:
+    // enemy data entity
+    // -enemies will need a dictionary containing references to their stats...so they can be retrieved by string
+    // --because I want to modify battlebehaviors and stats
+    // AI scripts
+    // Initiative scripting
+    // -players can be surprised by Initiative switches (for tutorial)
+    // event scripting
+    // getting entity triggers
+    // load defaults from resources
+    // parse level data
+    // parse encounters
+    // input manager UI
+    // -users can test shortcuts and inputs on a test map
+    // handle menus (how to load menu targets [new game] -> first level)
+    // -scrolling through menus by controller
+
+
+
     void Start() {
         _repo = new Pool(ComponentIds.TotalComponents);
 
@@ -122,6 +141,11 @@ public class GameController : MonoBehaviour {
         axesDict;
         */
         ///////////////////////////////////////////////////
+        /////TO-DO: 
+        ////RETRIEVE DEFAULTS FROM RESOURCES
+        ////SAVE DEFAULTS TO MY GAMEDATA PATH
+        ////INTERNALLY SAVE DEFAULTS TO SAVEDINPUTS UNDER DEFAULT
+        ////PUT PATH TO DEFAULTS UNDER PROFILE? OR PUT IT AS A SECTION UNDER PROFILE
         //defaults path
         targetFile = fileDir + "/GameData/myDefaults.json";
         //if defaults exist in path specified
