@@ -1,0 +1,6 @@
+{
+	
+	"position":[ 0, 0, 0],
+	"appearance": "TestPlayer",
+	"movementSpeed": 30
+}

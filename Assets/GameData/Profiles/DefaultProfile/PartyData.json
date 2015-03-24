@@ -1,0 +1,100 @@
+{
+	{
+		"id": "Vivian",
+		"Appearance": "Vivian_start",
+		"Level": 0,
+		"Exp":0,
+		"CurrentHP": 900,
+		"CurrentMP": 180,
+		"CurrentStatus": "normal",
+		"Equipped":{
+			"Head": "NONE",
+			"Body": "NONE",
+			"Legs": "NONE",
+			"Arms": "NONE",
+			"Accessory": "NONE",
+			"Weapon": "NONE",
+			"Cartridge": {
+				"Library": "Fighting_Games",
+				"Tier": 0
+			},
+			"Customizer": {
+				"Attached":[]
+			}
+		}
+	},
+	{
+		"id": "Gilda",
+		"Appearance": "Gilda_start",
+		"Level": 0,
+		"Exp":0,
+		"CurrentHP": 300,
+		"CurrentMP": 600,
+		"CurrentStatus": "normal",
+		"Equipped":{
+			"Head": "NONE",
+			"Body": "NONE",
+			"Legs": "NONE",
+			"Arms": "NONE",
+			"Accessory": "NONE",
+			"Weapon": "NONE",
+			"Cartridge": {
+				"Library": "RPG_Games",
+				"Tier": 0
+			},
+			"Customizer": {
+				"Attached":[]
+			}
+		}
+	},
+	{
+		"id": "Polina",
+		"Appearance": "Polina_start",
+		"Level": 0,
+		"Exp":0,
+		"CurrentHP": 1200,
+		"CurrentMP": 80,
+		"CurrentStatus": "normal",
+		"Equipped":{
+			"Head": "NONE",
+			"Body": "NONE",
+			"Legs": "NONE",
+			"Arms": "NONE",
+			"Accessory": "NONE",
+			"Weapon": "NONE",
+			"Cartridge": {
+				"Library": "GrandStrategy_Games",
+				"Tier": 0
+			},
+			"Customizer": {
+				"Attached":[]
+			}
+		}
+	},
+	{
+		"id": "Miku",
+		"Appearance": "Miku_start",
+		"Level": 0,
+		"Exp":0,
+		"CurrentHP": 200,
+		"CurrentMP": 960,
+		"CurrentStatus": "normal",
+		"Equipped":{
+			"Head": "NONE",
+			"Body": "NONE",
+			"Legs": "NONE",
+			"Arms": "NONE",
+			"Accessory": "NONE",
+			"Weapon": "NONE",
+			"Cartridge": {
+				"Library": "DatingSim_Games",
+				"Tier": 0
+			},
+			"Customizer": {
+				"Attached":[]
+			}
+		}
+	}
+	
+	
+}

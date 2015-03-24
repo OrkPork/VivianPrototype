@@ -1,0 +1,10 @@
+{
+	"items":[
+		{
+			"id":"potion",
+			"type":"use",
+			"amount": 10
+		}
+	]
+	
+}

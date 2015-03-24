@@ -4,7 +4,8 @@ using UnityEngine;
 public class RenderDespawnSystem : IReactiveSystem
 {
     public IMatcher GetTriggeringMatcher() {
-        return Matcher.View;
+        return Matcher.ObjectRef;
+        //return Matcher.Resource;
     }
 
     public GroupEventType GetEventType()
@@ -15,8 +16,9 @@ public class RenderDespawnSystem : IReactiveSystem
     public void Execute(Entity[] entities)
     {
         foreach (var e in entities) {
-            var view = e.view;
-            Object.Destroy(view.gameObject);
+            //var view = e.view;
+            var obj = e.objectRef;
+            Object.Destroy(obj.gameObject);
         }
     }
 }

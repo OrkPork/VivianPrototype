@@ -1,0 +1,34 @@
+{
+	"myInputs": "nameOfInputFileHere",
+	"PlayerData": {
+		"currentChapter": "TestLevel",
+		"currentMap": "TestMap",
+		"questsCompleted":[
+			"a",
+			"bunch",
+			"of",
+			"QUEST",
+			"tags",
+			"go",
+			"here"
+		],
+		"keyItems":[
+			"a",
+			"bunch",
+			"of",
+			"ITEM",
+			"tags",
+			"go",
+			"here"
+		]
+		
+	},
+	"PlayerAvatar": {
+		"position":[ 0, 0, 0],
+		"appearance": "TestPlayer",
+		"movementSpeed": 30
+	},
+	"PartyData": {
+	
+	}
+}

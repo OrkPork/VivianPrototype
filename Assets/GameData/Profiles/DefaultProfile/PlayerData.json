@@ -1,0 +1,23 @@
+{
+	"myInputs": "nameOfInputFileHere",
+	"currentChapter": "TestLevel",
+	"currentMap": "TestMap",
+	"questsCompleted":[
+		"a",
+		"bunch",
+		"of",
+		"QUEST",
+		"tags",
+		"go",
+		"here"
+	],
+	"keyItems":[
+		"a",
+		"bunch",
+		"of",
+		"ITEM",
+		"tags",
+		"go",
+		"here"
+	]
+}
